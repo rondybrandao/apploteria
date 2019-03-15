@@ -1,0 +1,50 @@
+
+ion-toolbar {
+  --background: linear-gradient(#0c9c4573, #0b893d73), url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
+  -webkit-background-size: cover;
+  color: white;
+  font-family: fantasy;  
+}
+
+ion-content {
+  --background: url('../../assets/lotomania/simpatias.jpg') no-repeat center center / cover;
+}
+
+ion-button {
+    width: -webkit-fill-available;
+}
+
+ion-card {
+  --background: #0c9c45;
+  color: #fff;
+  font-size: 15px;
+  text-align: center;
+}
+
+.card {
+  
+  padding-bottom: 9px;
+
+}
+#valor {
+  color: crimson;
+  font-weight: bold;
+  padding-top: 6px;
+}
+#valor-card {
+  color: crimson;
+  font-weight: bold;
+  padding-top: 15px;
+}
+#dezena {
+  padding-top: 3px;
+  color: chartreuse;
+}
+#apostas {
+  color: blue;
+}
+
+#fixas {
+  color: cyan;
+}
+  

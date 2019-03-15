@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      QUINA
+    </ion-title>
+    <ion-buttons slot="end">
+     <ion-icon size="large" color="danger" name="notifications"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card (click)="fechamento_18x12x5x6()">
+          <div id="dezena">10 dezenas</div>
+          <div id="fixas">100% terno</div>
+          <div id="fixas">SE 3 acertos</div>
+          <div id ="apostas">19 apostas</div>
+          <div id="apostas">de 5 dezenas</div>
+          <div id="valor">R$ 28,50</div>
+          <div></div>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card (click)="fechamento_10x19()">
+          <div id="dezena">18 dezenas</div>
+          <div id="fixas">100% terno</div>
+          <div id="fixas">SE 5 acertos</div>
+          <div id="apostas">9 apostas</div>
+          <div id="apostas">de 6 dezenas</div>
+          <div id="valor">R$ 108,00</div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>

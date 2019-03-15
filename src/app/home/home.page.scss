@@ -1,4 +1,15 @@
-.welcome-card ion-img {
-  max-height: 35vh;
-  overflow: hidden;
+
+ion-toolbar {
+  --background: url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
+  -webkit-background-size: cover;
+  color: white;
+  font-family: fantasy;
+  
+}
+ion-content {
+  --background: url('../../assets/lotomania/simpatias.jpg') no-repeat center center / cover;
+}
+
+ion-button {
+  width: -webkit-fill-available;
 }

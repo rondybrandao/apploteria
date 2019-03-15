@@ -1,5 +1,12 @@
 {
   "name": "loteria",
   "integrations": {},
-  "type": "angular"
+  "type": "angular",
+  "proxies": [
+    {
+      "path": "/megasena",
+      "proxyUrl": "http://127.0.0.1:8000/megasena"
+    }
+  ]
 }
+

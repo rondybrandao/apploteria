@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      MEGA-SENA
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <!--<ion-button size="large" color="success" (click)="escolherDezenas()">Fechamento 12-6</ion-button>
+  <ion-button size="large" color="success" (click)="fechamneto18x3x9()">Fechamento 18-3-9</ion-button>-->
+  
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card class="card" (click)="escolherDezenas()">
+          <div id="dezena">12 dezenas</div>
+          <div id ="apostas">6 apostas</div>
+          <div id="valor-card">R$ 21,00</div>
+          <div></div>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card (click)="fechamneto18x3x9()">
+          <div id="dezena">18 dezenas</div>
+          <div id="fixas">3 fixas</div>
+          <div id="apostas">9 apostas</div>
+          <div id="valor">R$ 31,50</div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
