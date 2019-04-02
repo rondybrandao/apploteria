@@ -21,5 +21,8 @@ export class LotomaniaPage implements OnInit {
   fechamento_100x6(){
     this.router.navigate(['/dezenas-lotomania', { fechamento_100x6: true }]);
   }
+  voltar() {
+    this.router.navigate(['/home'])
+  }
 
 }

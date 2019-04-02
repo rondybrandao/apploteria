@@ -1,6 +1,12 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Fechamento 22-8-6</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button  defaultHref="lotofacil"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Fechamento 22-8-6
+    </ion-title>
+    <div id="frase">"Que a sorte acompanhe os bons princípios e as atitudes mais corajosas."</div>
   </ion-toolbar>
 </ion-header>
 
@@ -119,16 +125,46 @@
   </ul>
 
   <ion-button *ngIf="fechamento_22x8x6" size="large" color="primary" (click)="callServiceLotofacil_22x8x6()">Gerar Combinações</ion-button>
+  <ion-button *ngIf="verificador" size="large" color="primary" (click)="verificarDezenas()">VERIFICAR</ion-button>
 
-  <ion-grid *ngIf="mock.length > 0">
+  <ion-grid *ngIf="apostas.length > 0">
     <ion-row>
-      <ion-col>
-        <ion-list>
-          <ion-note class="contador" *ngFor="let aposta of mock">
-            <div id="aposta"><div id="aposta-label">aposta <q></q>:</div> <h5>{{aposta}}</h5></div>
-          </ion-note>
+      <ion-col size="12">
+        <ion-card class="contador"  *ngFor="let aposta of apostas">
+            <div id="aposta">
+              <div id="aposta-label">
+                aposta <q></q>:
+                <h5>{{aposta.num_usuario}}</h5>
+                <table>
+                  <tr>
+                    <th id="table-header">Premio</th>
+                    <th id="table-header">Quantidade</th>
+                  </tr>
+                  <tr>
+                    <td id="sena">15 pontos</td>
+                    <td id="sena">{{aposta.sena}}</td>
+                  </tr>
+                  <tr>
+                    <td id="quina">14 pontos</td>
+                    <td id="quina">{{aposta.quina}}</td>
+                  </tr>
+                  <tr>
+                    <td id="quadra">13 pontos</td>
+                    <td id="quadra">{{aposta.quadra}}</td>
+                  </tr>
+                  <tr>
+                    <td id="quadra">12 pontos</td>
+                    <td id="quadra">{{aposta.quadra}}</td>
+                  </tr>
+                  <tr>
+                    <td id="quadra">11 pontos</td>
+                    <td id="quadra">{{aposta.quadra}}</td>
+                  </tr>
+                </table>
+              </div> 
+            </div>
+          </ion-card>
           <br>
-        </ion-list>
       </ion-col>
     </ion-row>
   </ion-grid>

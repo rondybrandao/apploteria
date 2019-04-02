@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar primary>
+    <ion-buttons slot="start">
+      <ion-back-button  defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Quadro de Vizualização
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-slides [options]="sliderOpts">
+    <ion-slide *ngFor="let img of [1,2,3,4,5,6]">
+      <img src="assets/lotomania/{{ img }}.jpg" tappable (click)="openPreview(img)">
+    </ion-slide>
+  </ion-slides>
+</ion-content>

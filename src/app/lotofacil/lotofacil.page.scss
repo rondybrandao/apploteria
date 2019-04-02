@@ -1,49 +1,72 @@
+ion-header {
+  height: 100px;
+}
 ion-toolbar {
-    --background: linear-gradient(#f843956b, #f956a078), url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
+    --background: linear-gradient(#f843956b, #f956a078), url('../../assets/lotomania/beach.jpg') no-repeat center center / cover;
+    //--background: url('../../assets/lotomania/beach.jpg') no-repeat center center / cover;
     -webkit-background-size: cover;
     color: white;
     font-family: fantasy;
+    height: 100px;
     
   }
-  ion-content {
-    --background: url('../../assets/lotomania/simpatias.jpg') no-repeat center center / cover;
+ion-content {
+   --background: url('../../assets/lotomania/dinheiro.jpg') no-repeat center center / cover;
   }
   
-  ion-button {
+ion-button {
     width: -webkit-fill-available;
   }
 
-  ion-card {
-    --background: #f84395;
+ion-card {
+    --background: #f956a0;
     color: #fff;
     font-size: 15px;
     text-align: center;
   }
-  
-  .card {
-    
-    padding-bottom: 9px;
-  
+
+#ion-card-palpite {
+    --background: linear-gradient(#f843956b, #f956a078), url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
+    //--background: url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
+    color: #fff;
+    font-size: 15px;
+    text-align: center;
   }
-  #valor {
+h6{
+    margin-inline-start: 25px;
+    margin-top: 40px;
+    color: black
+  }
+.title-md {
+    padding-top: 10px
+  }
+.sc-ion-buttons-md-h {
+  margin-top: -55px;
+}
+.card {
+    padding-bottom: 9px;
+  }
+#valor {
     color: crimson;
     font-weight: bold;
     padding-top: 6px;
   }
-  #valor-card {
+#valor-card {
     color: crimson;
     font-weight: bold;
     padding-top: 15px;
   }
-  #dezena {
+#dezena {
     padding-top: 3px;
-    color: chartreuse;
+    color:white;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
   }
-  #apostas {
-    color: blue;
+#apostas {
+    color: black;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
   }
   
-  #fixas {
+#fixas {
     color: cyan;
   }
   

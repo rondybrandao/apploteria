@@ -1,9 +1,12 @@
-
+ion-header {
+  height: 100px;
+}
 ion-toolbar {
     --background: linear-gradient(#ff800073, #e0710073), url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
     -webkit-background-size: cover;
     color: white;
     font-family: fantasy;  
+    height: 100px;
 }
 
 ion-content {
@@ -12,7 +15,9 @@ ion-content {
   
 ion-button {
     width: -webkit-fill-available;
+    --margin-top: -45px;
 }
+
 
 ion-card {
     --background: #ff8000;
@@ -20,31 +25,41 @@ ion-card {
     font-size: 15px;
     text-align: center;
   }
-  
-  .card {
+.title-md {
+    padding-top: 10px
+  }
+.sc-ion-buttons-md-h {
+    margin-top: -49px;
+}
+.card {
     
     padding-bottom: 9px;
   
   }
-  #valor {
+#valor {
     color: crimson;
     font-weight: bold;
     padding-top: 6px;
   }
-  #valor-card {
+#valor-card {
     color: crimson;
     font-weight: bold;
     padding-top: 15px;
   }
-  #dezena {
+#dezena {
     padding-top: 3px;
     color: chartreuse;
   }
-  #apostas {
+#apostas {
     color: blue;
   }
   
-  #fixas {
+#fixas {
     color: cyan;
+  }
+#frase {
+    padding-top: 20px;
+    padding-inline-start: 20px;
+    color: black;
   }
   

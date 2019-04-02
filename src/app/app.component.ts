@@ -23,6 +23,10 @@ export class AppComponent {
     {
       title: 'Megasena',
       url: '/mega-sena'
+    },
+    {
+      title: 'Quadro de Vizualização',
+      url: '/quadro-vizualizacao'
     }
   ];
 

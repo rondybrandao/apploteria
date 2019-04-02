@@ -328,17 +328,44 @@
     </li>
   </ul>
   <ion-button *ngIf="fechamento12x6" size="large" color="primary" (click)="callService()">Gerar Combinações</ion-button>
-  <ion-button *ngIf="fechamneto18x3x9" size="large" color="primary" (click)="callServiceFechamento18x3x9()">Gerar Combinações</ion-button>
-  
+  <ion-button *ngIf="fechamento18x3x9" size="large" color="primary" (click)="callServiceFechamento18x3x9()">Gerar Combinações</ion-button>
+  <ion-button *ngIf="fechamento12x3x17" size="large" color="primary" (click)="callServiceFechamento12x3x17()">Gerar Combinações</ion-button>
+  <ion-button *ngIf="fechamento9x12" size="large" color="primary" (click)="callServiceFechamento9x12()">Gerar Combinações</ion-button>
+  <ion-button *ngIf="verificador" size="large" color="primary" (click)="verificarDezenas()">Verificar Aposta</ion-button>
+
   <ion-grid *ngIf="apostas.length > 0">
     <ion-row >
       <ion-col size="12">
-        <ion-list>
-          <ion-note class="contador" *ngFor="let aposta of apostas">
-            <div id="aposta"><div id="aposta-label">aposta <q></q>:{{aposta.concurso}}</div> <h5>{{aposta.num_usuario}}</h5></div>
-          </ion-note>
+        
+          <ion-card class="contador"  *ngFor="let aposta of apostas; index as i">
+            <div id="aposta">
+              <div id="aposta-label">
+                aposta <q></q>:
+                <h5>{{aposta.num_usuario}}</h5>
+                <table>
+                  <tr>
+                    <th id="table-header">Premio</th>
+                    <th id="table-header">Quantidade</th>
+                  </tr>
+                  <tr>
+                    <td id="sena">Sena</td>
+                    <td id="sena">{{aposta.sena}}</td>
+                  </tr>
+                  <tr>
+                    <td id="quina">Quina</td>
+                    <td id="quina">{{aposta.quina}}</td>
+                  </tr>
+                  <tr>
+                    <td id="quadra">Quadra</td>
+                    <td id="quadra">{{aposta.quadra}}</td>
+                  </tr>
+                </table>
+              </div> 
+        
+            </div>
+          </ion-card>
           <br>
-        </ion-list>
+        
       </ion-col>
     </ion-row>
   </ion-grid>

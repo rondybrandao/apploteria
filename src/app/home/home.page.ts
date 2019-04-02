@@ -24,5 +24,11 @@ export class HomePage {
   quina(){
     this.navCtrl.navigateForward('/quina')
   }
+  esoterico(){
+    this.navCtrl.navigateForward('/esoterico')
+  }
+  verificador(){
+    this.navCtrl.navigateForward('/verificador')
+  }
 
 }

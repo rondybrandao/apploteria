@@ -1,0 +1,25 @@
+ion-header {
+    height: 100px;
+  }
+ion-toolbar {
+    --background: url('../../assets/lotomania/mathematics2.jpg') no-repeat center center / cover;
+    -webkit-background-size: cover;
+    color: white;
+    font-family: fantasy;
+    height: 100px;
+    
+  }
+ion-content {
+    --background: url('../../assets/lotomania/dinheiro.jpg') no-repeat center center / cover;
+  }
+.title-md {
+    padding-top: 10px
+  }
+.sc-ion-buttons-md-h {
+    margin-top: -49px;
+}
+#frase {
+  padding-top: 20px;
+  padding-inline-start: 20px;
+  color: black;
+}

@@ -1,15 +1,61 @@
 
+ion-header {
+  height: 100px;
+}
 ion-toolbar {
-  --background: url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
+  --background: url('../../assets/lotomania/beach.jpg') no-repeat center center / cover;
   -webkit-background-size: cover;
   color: white;
   font-family: fantasy;
+  height: 100px;
   
 }
 ion-content {
-  --background: url('../../assets/lotomania/simpatias.jpg') no-repeat center center / cover;
+  --background: url('../../assets/lotomania/dinheiro.jpg') no-repeat center center / cover;
 }
 
 ion-button {
   width: -webkit-fill-available;
+}
+ion-menu-button {
+  margin-top: -75px;
+}
+ion-card {
+  margin-inline-start: 0px;
+  margin-top: -18px;
+}
+h6{
+  margin-inline-start: 25px;
+  margin-top: 45px;
+  color: black
+}
+#ion-card-palpite {
+  //--background: linear-gradient(#0c9c4573, #0b893d73), url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
+  --background: url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  width: 100%;
+  height: 55px;
+  padding-top: 20px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+
+#ion-card-analizar {
+  //--background: linear-gradient(#0c9c4573, #0b893d73), url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
+  --background: url('../../assets/lotomania/mathematics2.jpg') no-repeat center center / cover;
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  width: 100%;
+  height: 55px;
+  padding-top: 20px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+#frase-header {
+  margin-inline-start: 10px;
+  margin-top: 50px;
+}
+.card {
+  padding-bottom: 9px;
 }

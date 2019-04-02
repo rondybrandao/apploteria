@@ -1,6 +1,8 @@
 {
   "name": "loteria",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular",
   "proxies": [
     {
@@ -9,4 +11,3 @@
     }
   ]
 }
-

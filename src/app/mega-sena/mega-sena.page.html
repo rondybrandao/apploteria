@@ -1,11 +1,12 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-back-button  defaultHref="home"></ion-back-button>
     </ion-buttons>
     <ion-title>
       MEGA-SENA
     </ion-title>
+    <div id="frase">"Siga seus sonhos e ideais e lute enquanto a sorte faz o seu trabalho."</div>
   </ion-toolbar>
 </ion-header>
 
@@ -14,6 +15,14 @@
   <ion-button size="large" color="success" (click)="fechamneto18x3x9()">Fechamento 18-3-9</ion-button>-->
   
   <ion-grid>
+    <ion-col>
+        <ion-card class="card" id="ion-card-palpite" (click)="palpite()">
+          <div id="dezena">Palpite da Sorte</div>
+          <div id ="apostas">1 aposta</div>
+          <div id="valor-card">R$ 3,50</div>
+          <div></div>
+        </ion-card>
+      </ion-col>
     <ion-row>
       <ion-col>
         <ion-card class="card" (click)="escolherDezenas()">
@@ -24,11 +33,29 @@
         </ion-card>
       </ion-col>
       <ion-col>
-        <ion-card (click)="fechamneto18x3x9()">
+        <ion-card (click)="fechamento18x3x9()">
           <div id="dezena">18 dezenas</div>
           <div id="fixas">3 fixas</div>
           <div id="apostas">9 apostas</div>
           <div id="valor">R$ 31,50</div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col>
+        <ion-card (click)="fechamento12x3x17()">
+          <div id="dezena">12 dezenas</div>
+          <div id="fixas">3 fixas</div>
+          <div id="apostas">17 apostas</div>
+          <div id="valor">R$ 31,50</div>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card class="card" (click)="fechamento9x12()">
+          <div id="dezena">9 dezenas</div>
+          <div id="apostas">12 apostas</div>
+          <div id="valor-card">R$ 31,50</div>
         </ion-card>
       </ion-col>
     </ion-row>

@@ -14,6 +14,7 @@ export class DezenasLotomaniaPage implements OnInit {
   apostas = []
   fechamento_100x6
   fechamento_90x10x6
+  verificador
   fixas = []
   showFixas
 
@@ -141,7 +142,8 @@ export class DezenasLotomaniaPage implements OnInit {
     private route: ActivatedRoute,
   ) { 
     this.fechamento_100x6 = this.route.snapshot.paramMap.get('fechamento_100x6');
-    this.fechamento_90x10x6 = this.route.snapshot.paramMap.get('fechamento_90x10x6')
+    this.fechamento_90x10x6 = this.route.snapshot.paramMap.get('fechamento_90x10x6');
+    this.verificador = this.route.snapshot.paramMap.get('verificador')
   }
 
   ngOnInit() {
@@ -217,12 +219,33 @@ export class DezenasLotomaniaPage implements OnInit {
     });
     toast.present();
   }
-
+  async presentToastVerificador() {
+    const toast = await this.toastController.create({
+      message: 'ERRO!: ESCOLHA 6 DEZENAS!.',
+      duration: 3000,
+      position: "middle"
+    });
+    toast.present();
+  }
+  verificarDezenas(){
+    if (this.entrada_usuario.length == 20){
+      this.apiService.callVerificadorLotomania(this.entrada_usuario)
+      .then((result:any[])=>{
+        this.apostas = result;
+      })
+      .catch((error:any)=>{
+        console.log('error:',error)
+      });
+    }
+    else {
+      this.presentToastVerificador()
+    }
+  }
   callServiceLotomania_100x6(){
     
     if (this.entrada_usuario.length == 100){
       this.apiService.callServiceLotomania_100x6(this.entrada_usuario)
-        .then((result:any) => {
+        .then((result:any[]) => {
           this.apostas = result
         })
         .catch((error:any) => {
@@ -236,7 +259,7 @@ export class DezenasLotomaniaPage implements OnInit {
   callServiceLotomania_90x10x6(){
     if (this.entrada_usuario.length == 90){
       this.apiService.callServiceLotomania_90x10x6(this.entrada_usuario)
-        .then((result:any) => {
+        .then((result:any[]) => {
           this.apostas = result
         })
         .catch((error:any) => {

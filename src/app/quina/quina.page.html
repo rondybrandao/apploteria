@@ -1,19 +1,27 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+    <ion-buttons slot="start" (click)="voltar()">
+      <ion-icon size="large" name="arrow-back"></ion-icon>
     </ion-buttons>
     <ion-title>
       QUINA
     </ion-title>
-    <ion-buttons slot="end">
-     <ion-icon size="large" color="danger" name="notifications"></ion-icon>
-    </ion-buttons>
+    <div id="frase">"Siga seus sonhos e ideais e lute enquanto a sorte faz o seu trabalho."</div>
   </ion-toolbar>
 </ion-header>
 
+
+
 <ion-content padding>
   
+      <ion-col>
+        <ion-card class="card" id="ion-card-palpite" (click)="palpite()">
+          <div id="dezena">Palpite da Sorte</div>
+          <div id ="apostas">1 aposta</div>
+          <div id="valor">R$ 1,50</div>
+          <div></div>
+        </ion-card>
+      </ion-col>
   <ion-grid>
     <ion-row>
       <ion-col>

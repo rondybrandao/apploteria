@@ -13,6 +13,7 @@ export class DezenasQuinaPage implements OnInit {
   apostas = []
   fechamento_18x12x5x6
   fechamento_10x19
+  verificador
 
   mock = [['01','02','03','04','05','06'],
   ['01','02','03','04','05','06'],
@@ -114,7 +115,8 @@ export class DezenasQuinaPage implements OnInit {
     private route: ActivatedRoute,
   ) {
     this.fechamento_18x12x5x6 = this.route.snapshot.paramMap.get('fechamento_18x12x5x6');
-    this.fechamento_10x19 = this.route.snapshot.paramMap.get('fechamento_10x19')
+    this.fechamento_10x19 = this.route.snapshot.paramMap.get('fechamento_10x19');
+    this.verificador = this.route.snapshot.paramMap.get('verificador')
    }
 
   ngOnInit() {
@@ -143,7 +145,28 @@ export class DezenasQuinaPage implements OnInit {
     });
     toast.present();
   }
-
+  async presentToastVerificador() {
+    const toast = await this.toastController.create({
+      message: 'ERRO!: ESCOLHA 5 DEZENAS!.',
+      duration: 3000,
+      position: "middle"
+    });
+    toast.present();
+  }
+  verificarDezenas(){
+    if (this.entrada_usuario.length == 5){
+      this.apiService.callVerificadorQuina(this.entrada_usuario)
+      .then((result:any[])=>{
+        this.apostas = result;
+      })
+      .catch((error:any)=>{
+        console.log('error:',error)
+      });
+    }
+    else {
+      this.presentToastVerificador()
+    }
+  }
   callServiceQuina_18x12x5x6(){
     if (this.entrada_usuario.length == 18){
       this.apiService.callServiceQuina_18x12x5x6(this.entrada_usuario)

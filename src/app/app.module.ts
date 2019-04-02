@@ -13,6 +13,17 @@ import { MegasenaService } from './service/service';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
+import { environment } from '../environments/environment';
+
+import { ImageModalPageModule } from './image-modal/image-modal.module';
+
+//firebase
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
+
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -21,14 +32,19 @@ import { HttpClientModule } from '@angular/common/http';
     HttpModule,
     HttpClientModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    ImageModalPageModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     MegasenaService
+
   ],
   bootstrap: [AppComponent]
+  
 })
 export class AppModule {}

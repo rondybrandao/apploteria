@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -22,7 +22,16 @@ const routes: Routes = [
   { path: 'quina', loadChildren: './quina/quina.module#QuinaPageModule' },
   { path: 'dezenas-quina', loadChildren: './dezenas-quina/dezenas-quina.module#DezenasQuinaPageModule' },
   { path: 'lotomania', loadChildren: './lotomania/lotomania.module#LotomaniaPageModule' },
-  { path: 'dezenas-lotomania', loadChildren: './dezenas-lotomania/dezenas-lotomania.module#DezenasLotomaniaPageModule' }
+  { path: 'dezenas-lotomania', loadChildren: './dezenas-lotomania/dezenas-lotomania.module#DezenasLotomaniaPageModule' },
+  { path: 'esoterico', loadChildren: './esoterico/esoterico.module#EsotericoPageModule' },
+  { path: 'verificador', loadChildren: './verificador/verificador.module#VerificadorPageModule' },
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
+  { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
+  { path: 'palpite', loadChildren: './palpite/palpite.module#PalpitePageModule' },
+  { path: 'analize-aposta', loadChildren: './analize-aposta/analize-aposta.module#AnalizeApostaPageModule' },
+  { path: 'analize-lotofacil', loadChildren: './analize-lotofacil/analize-lotofacil.module#AnalizeLotofacilPageModule' },
+  { path: 'quadro-vizualizacao', loadChildren: './quadro-vizualizacao/quadro-vizualizacao.module#QuadroVizualizacaoPageModule' },
+  { path: 'image-modal', loadChildren: './image-modal/image-modal.module#ImageModalPageModule' }
 ];
 
 @NgModule({

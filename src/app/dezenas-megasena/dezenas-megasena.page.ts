@@ -1,15 +1,21 @@
-import { HttpModule } from '@angular/http';
 import { ApiService } from './../api.service';
 import { MegasenaService } from './../service/service';
 import { Component, OnInit } from '@angular/core';
 import { ToastController, NavController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { Observable, interval } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+export interface Concurso{
+  concurso:string,
+  pontos:string   
+}
 
 @Component({
   selector: 'app-dezenas-megasena',
   templateUrl: './dezenas-megasena.page.html',
-  styleUrls: ['./dezenas-megasena.page.scss'],
+  styleUrls: ['./dezenas-megasena.page.scss']
 })
 
 
@@ -18,15 +24,36 @@ export class DezenasMegasenaPage implements OnInit {
   dezenas = []
   apostas = []
   entrada_usuario = []
-  fechamneto18x3x9
+  fechamento18x3x9
   fechamento12x6
+  fechamento12x3x17
+  fechamento9x12
+  verificador
+  concurso_pontos = []
 
-  mock = [['01','02','03','04','05','06'],
+  message$: Observable<string>;
+
+  mock_dezenas = [['01','02','03','04','05','06'],
           ['01','02','03','04','05','06'],
           ['01','02','03','04','05','06'],
           ['01','02','03','04','05','06'],
           ['01','02','03','04','05','06'],
           ['01','02','03','04','05','06']]
+  
+  result_mock = [{
+    num_aposta:['01','02','03','04','05','06'],
+    concursos:[{concurso:'1', pontos:'6'}, 
+               {concurso:'2', pontos:'5'},
+               {concurso:'3', pontos:'5'} ]
+  }]
+
+  friends = [{name:'2', phone:'6'},
+             {name:'14', phone:'5'},
+             {name:'25', phone:'5'},
+             {name:'57', phone:'4'},
+             {name:'63', phone:'4'},
+             {name:'72', phone:'4'}]
+  
   
 
   public form = [
@@ -99,17 +126,24 @@ export class DezenasMegasenaPage implements OnInit {
     public toastController:ToastController,
     private router: Router,
     private route: ActivatedRoute) {
-      this.fechamneto18x3x9 = this.route.snapshot.paramMap.get('fechamneto18x3x9');
+      this.fechamento18x3x9 = this.route.snapshot.paramMap.get('fechamneto18x3x9');
       this.fechamento12x6 = this.route.snapshot.paramMap.get('fechamento12x6');
-  
+      this.fechamento12x3x17 = this.route.snapshot.paramMap.get('fechamento12x3x17');
+      this.fechamento9x12 = this.route.snapshot.paramMap.get('fechamento9x12');
+      this.verificador = this.route.snapshot.paramMap.get('verificador');
     }
 
   ngOnInit() {}
   notify(){
     //let checks = document.querySelectorAll("input[type='checkbox']");
-    
   }
-  
+  resend(){
+    this.message$ = interval(500).pipe(
+      map(i => this.message$[i])
+      
+    )
+  }
+
   onFilterChange(eve: any){
     console.log("id:",this.form[eve.id])
       this.form[eve.id].checked = !this.form[eve.id].checked
@@ -133,20 +167,35 @@ export class DezenasMegasenaPage implements OnInit {
     });
     toast.present();
   }
+  async presentToastVerificador() {
+    const toast = await this.toastController.create({
+      message: 'ERRO!: ESCOLHA 6 DEZENAS!.',
+      duration: 3000,
+      position: "middle"
+    });
+    toast.present();
+  }
+
+  verificarDezenas(){
+    if (this.entrada_usuario.length == 6){
+      this.apiService.callVerificadorMegasena(this.entrada_usuario)
+      .then((result:any[])=>{
+        this.apostas = result;
+      })
+      .catch((error:any)=>{
+        console.log('error:',error)
+      });
+    }
+    else {
+      this.presentToastVerificador()
+    }
+  }
   
   callService(){
     if (this.entrada_usuario.length == 12){
       this.apiService.callFechamento(this.entrada_usuario)
-      .then((result:any)=>{
+      .then((result:any[])=>{
         this.apostas = result;
-        for (var r of result){
-          Object.entries(r['concurso']).forEach(([key, value])=>{
-            console.log(key + ' ' + value);
-          })
-    
-        }
-        console.log('result callService:',result[0].concurso);
-        console.log('apostas::',this.apostas);
       })
       .catch((error:any)=>{
         console.log('error:',error)
@@ -161,9 +210,41 @@ export class DezenasMegasenaPage implements OnInit {
   callServiceFechamento18x3x9(){
     if (this.entrada_usuario.length == 18){
       this.apiService.callFechamento18x3x9(this.entrada_usuario)
-      .then((result:any)=>{
+      .then((result:any[])=>{
         this.apostas = result;
-        console.log('result callService:',result)
+        console.log('callServiceFechamento18x3x9:',result)
+      })
+      .catch((error:any)=>{
+        console.log('error:',error)
+      });
+    }
+    else {
+      this.presentToast()
+    }
+  }
+
+  callServiceFechamento12x3x17(){
+    if (this.entrada_usuario.length == 18){
+      this.apiService.callFechamento12x3x17(this.entrada_usuario)
+      .then((result:any[])=>{
+        this.apostas = result;
+        console.log('callServiceFechamento18x3x9:',result)
+      })
+      .catch((error:any)=>{
+        console.log('error:',error)
+      });
+    }
+    else {
+      this.presentToast()
+    }
+  }
+
+  callServiceFechamento9x12(){
+    if (this.entrada_usuario.length == 18){
+      this.apiService.callFechamento9x12(this.entrada_usuario)
+      .then((result:any[])=>{
+        this.apostas = result;
+        console.log('callServiceFechamento18x3x9:',result)
       })
       .catch((error:any)=>{
         console.log('error:',error)

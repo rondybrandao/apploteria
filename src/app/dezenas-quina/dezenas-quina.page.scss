@@ -24,15 +24,44 @@
   padding-inline-start: 50px;
 }
 
+#table-header {
+  color:cadetblue
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+table {
+  width:99%
+}
+td {
+  text-align: center
+}
+#sena {
+  color: #0c9c45
+}
+#quina {
+  color: blue
+}
+#quadra {
+  color: #f00
+}
+
+ion-header {
+  height: 100px;;
+}
+
 ion-toolbar {
   --background: linear-gradient(#633ce078, #5735c573), url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
   -webkit-background-size: cover;
   color: white;
   font-family: fantasy;
+  height: 100px;
   
 }
 ion-content {
-  --background: url('../../assets/lotomania/simpatias.jpg') no-repeat center center / cover;
+  --background: url('../../assets/lotomania/dinheiro.jpg') no-repeat center center / cover;
 }
 
 ion-button {
@@ -42,6 +71,10 @@ ion-button {
 ion-note {
   --color: #000000;
   font-family: fantasy;
+}
+
+ion-card {
+  --background: white
 }
 
 q::before {
@@ -59,9 +92,11 @@ h5 {
   color: black;
   font-family: fantasy;
   padding-top: 2px;
-  padding-bottom: 2px;
   margin-top: 5px;
+  margin-bottom: 0px;
+  text-align: center
 }
+
 
 #aposta {
   padding-left: 3px;
@@ -70,7 +105,7 @@ h5 {
 }
 
 #aposta-label {
-  color: #f00
+  color: cadetblue
 }
 
 

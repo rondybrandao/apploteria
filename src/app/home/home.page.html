@@ -1,14 +1,15 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <ion-buttons  slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
       ATRAÇÃO DA SORTE
     </ion-title>
-    <ion-buttons slot="end">
+    <!--<ion-buttons slot="end">
      <ion-icon size="large" color="danger" name="notifications"></ion-icon>
-    </ion-buttons>
+    </ion-buttons>-->
+    <h6>"A perseverança é a mãe da boa sorte."</h6>
   </ion-toolbar>
 </ion-header>
 
@@ -18,5 +19,17 @@
     <ion-button expand="block" size="large" color="lotofacil" (click)="lotofacil()">LOTOFACIL</ion-button>
     <ion-button expand="block" size="large" color="lotomania"(click)="lotomania()">LOTOMANIA</ion-button>
     <ion-button expand="block" size="large" color="tertiary" (click)="quina()">QUINA</ion-button>
+    <!--<ion-button expand="block" size="large" color="white" (click)="esoterico()">ATRAÇÃO DA SORTE</ion-button>-->
+    <!--<ion-button expand="block" size="large" color="white" (click)="verificador()">VERIFICADOR DE APOSTA</ion-button>-->
+    <ion-col>
+        <ion-card class="card" id="ion-card-analizar" (click)="verificador()">
+          <div id="dezena">ANALIZAR APOSTA</div>
+        </ion-card>
+      </ion-col>
+    <ion-col>
+        <ion-card class="card" id="ion-card-palpite" (click)="esoterico()">
+          <div id="dezena">ATRAÇÃO DA SORTE</div>
+        </ion-card>
+      </ion-col>
       
 </ion-content>

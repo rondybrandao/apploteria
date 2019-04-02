@@ -1,14 +1,12 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+    <ion-buttons slot="start" (click)="voltar()">
+      <ion-icon size="large" name="arrow-back"></ion-icon>
     </ion-buttons>
     <ion-title>
       LOTOFACIL
     </ion-title>
-    <ion-buttons slot="end">
-     <ion-icon size="large" color="danger" name="notifications"></ion-icon>
-    </ion-buttons>
+    <h6>"A perseverança é a mãe da boa sorte."</h6>
   </ion-toolbar>
 </ion-header>
 
@@ -18,9 +16,17 @@
   <ion-button size="large" color="lotofacil" >Fechamento 18-3-9</ion-button>-->
 
   <ion-grid>
+    <ion-col>
+        <ion-card class="card" id="ion-card-palpite" (click)="palpite()">
+          <div id="dezena">Palpite da Sorte</div>
+          <div id ="apostas">1 apostas</div>
+          <div id="valor">R$ 2,00</div>
+          <div></div>
+        </ion-card>
+      </ion-col>
     <ion-row>
       <ion-col>
-        <ion-card (click)="fechamento_22x8x6()">
+        <ion-card (click)="fechamento22x8x6()">
           <div id="dezena">22 dezenas</div>
           <div id="fixas">8 fixas</div>
           <div id ="apostas">6 apostas</div>
@@ -29,11 +35,10 @@
         </ion-card>
       </ion-col>
       <ion-col>
-        <ion-card (click)="fechamneto18x3x9()">
+        <ion-card class="card" (click)="fechamento18x6()">
           <div id="dezena">18 dezenas</div>
-          <div id="fixas">3 fixas</div>
-          <div id="apostas">9 apostas</div>
-          <div id="valor">R$ 18,00</div>
+          <div id="apostas">6 apostas</div>
+          <div id="valor-card">R$ 18,00</div>
         </ion-card>
       </ion-col>
     </ion-row>

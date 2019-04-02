@@ -14,6 +14,7 @@ export class DezenasLotofacilPage implements OnInit {
   apostas = []
   fechamento_22x8x6
   fechamento_10x19
+  verificador
 
   mock = [['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15'],
           ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15'],
@@ -55,7 +56,8 @@ export class DezenasLotofacilPage implements OnInit {
     private route: ActivatedRoute,
   ) { 
     this.fechamento_22x8x6 = this.route.snapshot.paramMap.get('fechamneto22x8x6');
-    this.fechamento_10x19 = this.route.snapshot.paramMap.get('fechamneto10x19')
+    this.fechamento_10x19 = this.route.snapshot.paramMap.get('fechamneto10x19');
+    this.verificador = this.route.snapshot.paramMap.get('verificador')
   }
 
   ngOnInit() {
@@ -84,11 +86,46 @@ export class DezenasLotofacilPage implements OnInit {
     });
     toast.present();
   }
-
+  async presentToastVerificador(){
+    const toast = await this.toastController.create({
+      message: 'ERRO!: ESCOLHA 15 DEZENAS!.',
+      duration: 2000,
+      position: "middle"
+    });
+    toast.present();
+  }
+  verificarDezenas(){
+    if (this.entrada_usuario.length == 6){
+      this.apiService.callVerificadorLotofacil(this.entrada_usuario)
+      .then((result:any[])=>{
+        this.apostas = result;
+      })
+      .catch((error:any)=>{
+        console.log('error:',error)
+      });
+    }
+    else {
+      this.presentToastVerificador()
+    }
+  }
   callServiceLotofacil_22x8x6(){
     if (this.entrada_usuario.length == 22){
       this.apiService.callServiceLotofacil_22x8x6(this.entrada_usuario)
-        .then((result:any) => {
+        .then((result:any[]) => {
+          this.apostas = result
+        })
+        .catch((error:any) => {
+          console.log('error', error)
+        });
+    } else {
+      this.presentToast()
+    }
+  }
+
+  callServiceLotofacil_18x6(){
+    if (this.entrada_usuario.length == 22){
+      this.apiService.callServiceLotofacil_18x6(this.entrada_usuario)
+        .then((result:any[]) => {
           this.apostas = result
         })
         .catch((error:any) => {

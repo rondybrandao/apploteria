@@ -14,11 +14,17 @@ export class QuinaPage implements OnInit {
 
   ngOnInit() {
   }
+  palpite() {
+    this.router.navigate(['palpite', {quina_visao: true}])
+  }
   fechamento_18x12x5x6(){
     this.router.navigate(['/dezenas-quina', { fechamento_18x12x5x6: true }]);
   }
 
   fechamento_10x19(){
     this.router.navigate(['/dezenas-quina', {fechamento_10x19: true}])
+  }
+  voltar(){
+    this.router.navigate(['/home'])
   }
 }

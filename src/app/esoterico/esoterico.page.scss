@@ -1,0 +1,81 @@
+ion-toolbar {
+    --background: linear-gradient(#0c9c4573, #0b893d73), url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
+    -webkit-background-size: cover;
+    color: white;
+    font-family: fantasy;  
+  }
+  
+ion-content {
+  --background: url('../../assets/lotomania/simpatias.jpg') no-repeat center center / cover;
+}
+  
+ion-note {
+  --color: #000000;
+  font-family: fantasy;
+}
+ion-button {
+  width: -webkit-fill-available;
+}
+
+ion-card {
+  --background: white;
+  color: black
+}
+
+.title-md {
+  padding-top: 10px
+}
+.sc-ion-buttons-md-h {
+  margin-top: -49px;
+}
+
+#table-header {
+  color:cadetblue
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+table {
+  width:99%
+}
+td {
+  text-align: center
+}
+#sena {
+  color: #0c9c45
+}
+#quina {
+  color: blue
+}
+#quadra {
+  color: #f00
+}
+#aposta {
+  padding-left: 3px;
+  padding-bottom: 3px;
+  letter-spacing: 3px;
+}
+
+#aposta-label {
+  color: cadetblue
+}
+
+#frase {
+  padding-top: 20px;
+  padding-inline-start: 20px;
+  color: black;
+}
+
+h5 {
+  color: black;
+  font-family: fantasy;
+  padding-top: 2px;
+  margin-top: 5px;
+  margin-bottom: 0px;
+  text-align: center
+}
+
+
+

@@ -17,14 +17,24 @@ export class MegaSenaPage implements OnInit {
 
   ngOnInit() {
   }
+  palpite(){
+    this.router.navigate(['/palpite',{megasena:true}]);
+  }
 
   escolherDezenas(){
-    //this.navCtrl.navigateForward('/dezenas-megasena');
     this.router.navigate(['/dezenas-megasena', { fechamento12x6: true }]);
   }
 
-  fechamneto18x3x9(){
-    this.router.navigate(['/dezenas-megasena', { fechamneto18x3x9: true }]);
+  fechamento18x3x9(){
+    this.router.navigate(['/dezenas-megasena', { fechamento18x3x9: true }]);
+  }
+
+  fechamento12x3x17(){
+    this.router.navigate(['/dezenas-megasena', { fechamento12x3x17: true }]);
+  }
+
+  fechamento9x12(){
+    this.router.navigate(['/dezenas-megasena', { fechamento9x12: true }]);
   }
 
 }

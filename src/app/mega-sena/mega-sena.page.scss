@@ -1,13 +1,25 @@
-
+ion-header {
+  height: 100px;
+}
 ion-toolbar {
-  --background: linear-gradient(#0c9c4573, #0b893d73), url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
+  --background: linear-gradient(#0c9c4573, #0b893d73), url('../../assets/lotomania/beach.jpg') no-repeat center center / cover;
+  //--background: url('../../assets/lotomania/beach-drink.jpg') no-repeat center center / cover;
   -webkit-background-size: cover;
   color: white;
   font-family: fantasy;  
+  height: 100px;
+}
+ion-back-button {
+  --margin-top: -45px;
+  --margin-end: 0px;
+  --padding-end: 0px;
+  --padding-start: 0px;
+  --icon-margin-end: 0px;
+  --icon-margin-start: 0px;
 }
 
 ion-content {
-  --background: url('../../assets/lotomania/simpatias.jpg') no-repeat center center / cover;
+  --background: url('../../assets/lotomania/dinheiro.jpg') no-repeat center center / cover;
 }
 
 ion-button {
@@ -15,16 +27,25 @@ ion-button {
 }
 
 ion-card {
-  --background: #0c9c45;
+  --background: #0c9c45de;
+  color: #fff;
+  font-size: 15px;
+  text-align: center;
+}
+#ion-card-palpite {
+  --background: linear-gradient(#0c9c4573, #0b893d73), url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
+  //--background: url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
   color: #fff;
   font-size: 15px;
   text-align: center;
 }
 
 .card {
-  
   padding-bottom: 9px;
-
+}
+.title-md {
+  padding-inline-start: 0px;
+  padding-top: 3px;
 }
 #valor {
   color: crimson;
@@ -38,13 +59,21 @@ ion-card {
 }
 #dezena {
   padding-top: 3px;
-  color: chartreuse;
+  color:white;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
 }
 #apostas {
-  color: blue;
+  color: black;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
 }
 
 #fixas {
   color: cyan;
+}
+
+#frase {
+  padding-top: 25px;
+  padding-inline-start: 20px;
+  color: black;
 }
   
