@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -20,7 +21,7 @@ import { ImageModalPageModule } from './image-modal/image-modal.module';
 //firebase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-
+import { AngularFireDatabase, AngularFireDatabaseModule } from 'angularfire2/database';
 
 
 
@@ -35,7 +36,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    ImageModalPageModule
+    ImageModalPageModule,
+    AngularFireDatabaseModule,
   ],
   providers: [
     StatusBar,

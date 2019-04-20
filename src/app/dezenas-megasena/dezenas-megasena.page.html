@@ -1,146 +1,51 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+    <ion-buttons slot="start" (click)="voltar()">
+      <ion-icon size="large" name="arrow-back"></ion-icon>
     </ion-buttons>
     <ion-title>
       MEGA-SENA
     </ion-title>
+    <div id="frase">"SIGA SEUS SONHOS E IDEAIS E LUTE ENQUANTO A SORTE FAZ SEU TRABALHO"</div>
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content padding>
-  <div id="arr">
-    <div class="arredondar" value="01">01</div>
-    <div class="arredondar" value="01">02</div>
-    <div class="arredondar" value="01">03</div>
-    <div class="arredondar" value="01">04</div>
-    <div class="arredondar" value="01">05</div>
-    <div class="arredondar" value="01">06</div>
-  </div>
-  <!--
-  <table>
-    <tr>
-      <td><div class="trapezio" (click)='selecionar("01")'>[ 01 ]</div></td>
-      <td><div class="trapezio" (click)='selecionar("02")'>[ 02 ]</div></td>
-      <td><div class="trapezio" (click)='selecionar("03")'>[ 03 ]</div></td>
-      <td><div class="trapezio" (click)='selecionar("04")'>[ 04 ]</div></td>
-      <td><div class="trapezio" (click)='selecionar("05")'>[ 05 ]</div></td>
-      <td><div class="trapezio" (click)='selecionar("06")'>[ 06 ]</div></td>
-      <td><div class="trapezio" (click)='selecionar("07")'>[ 07 ]</div></td>
-      <td><div class="trapezio" value="08">[ 08 ]</div></td>
-      <td><div class="trapezio" value="09">[ 09 ]</div></td>
-      <td><div class="trapezio" value="10">[ 10 ]</div></td>
-    </tr>
-    <tr>
-      <td><div class="trapezio" value="11">[ 11 ]</div></td>
-      <td><div class="trapezio" value="12">[ 12 ]</div></td>
-      <td><div class="trapezio" value="13">[ 13 ]</div></td>
-      <td><div class="trapezio" value="14">[ 14 ]</div></td>
-      <td><div class="trapezio" value="15">[ 15 ]</div></td>
-      <td><div class="trapezio" value="16">[ 16 ]</div></td>
-      <td><div class="trapezio" value="17">[ 17 ]</div></td>
-      <td><div class="trapezio" value="18">[ 18 ]</div></td>
-      <td><div class="trapezio" value="19">[ 19 ]</div></td>
-      <td><div class="trapezio" value="20">[ 20 ]</div></td>
-    </tr>
-    <tr>
-      <td><div class="trapezio" value="21">[ 21 ]</div></td>
-      <td><div class="trapezio" value="22">[ 22 ]</div></td>
-      <td><div class="trapezio" value="23">[ 23 ]</div></td>
-      <td><div class="trapezio" value="24">[ 24 ]</div></td>
-      <td><div class="trapezio" value="25">[ 25 ]</div></td>
-      <td><div class="trapezio" value="26">[ 26 ]</div></td>
-      <td><div class="trapezio" value="27">[ 27 ]</div></td>
-      <td><div class="trapezio" value="28">[ 28 ]</div></td>
-      <td><div class="trapezio" value="29">[ 29 ]</div></td>
-      <td><div class="trapezio" value="30">[ 30 ]</div></td>
-    </tr>
-    <tr>
-      <td><div class="trapezio" value="31">[ 31 ]</div></td>
-      <td><div class="trapezio" value="32">[ 32 ]</div></td>
-      <td><div class="trapezio" value="33">[ 33 ]</div></td>
-      <td><div class="trapezio" value="34">[ 34 ]</div></td>
-      <td><div class="trapezio" value="35">[ 35 ]</div></td>
-      <td><div class="trapezio" value="36">[ 36 ]</div></td>
-      <td><div class="trapezio" value="37">[ 37 ]</div></td>
-      <td><div class="trapezio" value="38">[ 38 ]</div></td>
-      <td><div class="trapezio" value="39">[ 39 ]</div></td>
-      <td><div class="trapezio" value="40">[ 40 ]</div></td>
-    </tr>
-    <tr>
-      <td><div class="trapezio" value="41">[ 41 ]</div></td>
-      <td><div class="trapezio" value="42">[ 42 ]</div></td>
-      <td><div class="trapezio" value="43">[ 43 ]</div></td>
-      <td><div class="trapezio" value="44">[ 44 ]</div></td>
-      <td><div class="trapezio" value="45">[ 45 ]</div></td>
-      <td><div class="trapezio" value="46">[ 46 ]</div></td>
-      <td><div class="trapezio" value="47">[ 47 ]</div></td>
-      <td><div class="trapezio" value="48">[ 48 ]</div></td>
-      <td><div class="trapezio" value="49">[ 49 ]</div></td>
-      <td><div class="trapezio" value="50">[ 50 ]</div></td>
-    </tr>
-    <tr>
-      <td><div class="trapezio" value="51">[ 51 ]</div></td>
-      <td><div class="trapezio" value="52">[ 52 ]</div></td>
-      <td><div class="trapezio" value="53">[ 53 ]</div></td>
-      <td><div class="trapezio" value="54">[ 54 ]</div></td>
-      <td><div class="trapezio" value="55">[ 55 ]</div></td>
-      <td><div class="trapezio" value="56">[ 56 ]</div></td>
-      <td><div class="trapezio" value="57">[ 57 ]</div></td>
-      <td><div class="trapezio" value="58">[ 58 ]</div></td>
-      <td><div class="trapezio" value="59">[ 59 ]</div></td>
-      <td><div class="trapezio" value="60">[ 60 ]</div></td>
-    </tr>
-  </table>
-  -->
-  <!--<ul>
-    <li><ion-checkbox  id="cb1" value="1" [checked]="notify()"></ion-checkbox>
-      <label for="cb1"><div class="trapezio" (click)='selecionar("01")'>[ 01 ]</div></label>
-    </li>
-    <li><ion-checkbox type="checkbox" id="cb2" value="2"></ion-checkbox>
-      <label for="cb2"><div class="trapezio" (click)='selecionar("02")'>[ 02 ]</div></label>
-    </li>
-    <li><input type="checkbox" id="cb3" value="3"/>
-      <label for="cb3"><div class="trapezio" (click)='selecionar("03")'>[ 03 ]</div></label>
-    </li>
-    <li><input type="checkbox" id="cb4" value="4"/>
-      <label for="cb4"><div class="trapezio" (click)='selecionar("04")'>[ 04 ]</div></label>
-    </li>
-    <li><input type="checkbox" id="cb5" value="5"/>
-      <label for="cb5"><div class="trapezio" (click)='selecionar("05")'>[ 05 ]</div></label>
-    </li>
-    <li><input type="checkbox" id="cb6" value="6"/>
-      <label for="cb6"><div class="trapezio" (click)='selecionar("06")'>[ 06 ]</div></label>
-    </li>
-    <li><input type="checkbox" id="cb7" value="7"/>
-      <label for="cb7"><div class="trapezio" (click)='selecionar("07")'>[ 07 ]</div></label>
-    </li>
-    <li><input type="checkbox" id="cb8" value="8"/>
-      <label for="cb8"><div class="trapezio" (click)='selecionar("08")'>[ 08 ]</div></label>
-    </li>
-    <li><input type="checkbox" id="cb9" value="9"/>
-      <label for="cb9"><div class="trapezio" (click)='selecionar("09")'>[ 09 ]</div></label>
-    </li>
-    <li><input type="checkbox" id="cb10" value="10"/>
-      <label for="cb10"><div class="trapezio" (click)='selecionar("10")'>[ 10 ]</div></label>
-    </li>
-    <li><input type="checkbox" id="cb11" value="11"/>
-      <label for="cb11"><div class="trapezio" (click)='selecionar("11")'>[ 11 ]</div></label>
-    </li>
-    <li><input type="checkbox" id="cb12" value="12"/>
-      <label for="cb12"><div class="trapezio" (click)='selecionar("12")'>[ 12 ]</div></label>
-    </li>
-  </ul>-->
   
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>MEGA-SENA</ion-card-subtitle>
+      <ion-card-title>Fechamento 12-6</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      Escolha 12 dezenas e click no botão GERAR COMBINAÇÕES o aplicativo
+      vai gerar 6 apostas fechadas e coferirar se houve premiações naquela aposta.
+    </ion-card-content>
+  </ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <div id="n_sorteio">sorteio Nº {{sorteio_corrente}}</div>
+        <div id="dezenas-corrente">
+          <div *ngFor="let dezenas of dezenas_corrente">
+            <div class="arredondar">{{dezenas}}</div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <br>
+  <br>
   <ion-grid>
     <ion-row>
       <ion-col size="12">
         <h5>Dezenas: {{  entrada_usuario.length }}</h5>
-        [<ion-note *ngFor="let entrada of entrada_usuario">
-          {{ entrada }}
-        </ion-note>]
+        <div id="palpite">
+          <ion-note *ngFor="let entrada of entrada_usuario">
+            {{ entrada }}
+          </ion-note>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -331,6 +236,8 @@
   <ion-button *ngIf="fechamento18x3x9" size="large" color="primary" (click)="callServiceFechamento18x3x9()">Gerar Combinações</ion-button>
   <ion-button *ngIf="fechamento12x3x17" size="large" color="primary" (click)="callServiceFechamento12x3x17()">Gerar Combinações</ion-button>
   <ion-button *ngIf="fechamento9x12" size="large" color="primary" (click)="callServiceFechamento9x12()">Gerar Combinações</ion-button>
+  <ion-button *ngIf="fechamento8x7" size="large" color="primary" (click)="callServiceFechamento8x7()">Gerar Combinações</ion-button>
+  <ion-button *ngIf="fechamento10x3" size="large" color="primary" (click)="callServiceFechamento10x3()">Gerar Combinações</ion-button>
   <ion-button *ngIf="verificador" size="large" color="primary" (click)="verificarDezenas()">Verificar Aposta</ion-button>
 
   <ion-grid *ngIf="apostas.length > 0">

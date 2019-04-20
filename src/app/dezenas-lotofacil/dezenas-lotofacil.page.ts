@@ -1,6 +1,6 @@
 import { ApiService } from './../api.service';
 import { Component, OnInit } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { ToastController, NavController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -13,7 +13,9 @@ export class DezenasLotofacilPage implements OnInit {
   entrada_usuario =[]
   apostas = []
   fechamento_22x8x6
-  fechamento_10x19
+  fechamento_18x6
+  fechamento_20x4
+  fechamento_21x5
   verificador
 
   mock = [['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15'],
@@ -54,15 +56,20 @@ export class DezenasLotofacilPage implements OnInit {
     public apiService: ApiService,
     public toastController:ToastController,
     private route: ActivatedRoute,
+    public navCtrl: NavController,
   ) { 
-    this.fechamento_22x8x6 = this.route.snapshot.paramMap.get('fechamneto22x8x6');
-    this.fechamento_10x19 = this.route.snapshot.paramMap.get('fechamneto10x19');
+    this.fechamento_22x8x6 = this.route.snapshot.paramMap.get('fechamento22x8x6');
+    this.fechamento_18x6 = this.route.snapshot.paramMap.get('fechamento18x6');
+    this.fechamento_20x4 = this.route.snapshot.paramMap.get('fechamento20x4');
+    this.fechamento_21x5 = this.route.snapshot.paramMap.get('fechamento21x5');
     this.verificador = this.route.snapshot.paramMap.get('verificador')
   }
 
   ngOnInit() {
   }
-
+  voltar() {
+    this.navCtrl.navigateBack('lotofacil');
+  }
   onFilterChange(eve: any){
     console.log("id:",this.form[eve.id])
       this.form[eve.id].checked = !this.form[eve.id].checked
@@ -125,6 +132,32 @@ export class DezenasLotofacilPage implements OnInit {
   callServiceLotofacil_18x6(){
     if (this.entrada_usuario.length == 22){
       this.apiService.callServiceLotofacil_18x6(this.entrada_usuario)
+        .then((result:any[]) => {
+          this.apostas = result
+        })
+        .catch((error:any) => {
+          console.log('error', error)
+        });
+    } else {
+      this.presentToast()
+    }
+  }
+  callServiceLotofacil_20x4(){
+    if (this.entrada_usuario.length == 22){
+      this.apiService.callServiceLotofacil_20x4(this.entrada_usuario)
+        .then((result:any[]) => {
+          this.apostas = result
+        })
+        .catch((error:any) => {
+          console.log('error', error)
+        });
+    } else {
+      this.presentToast()
+    }
+  }
+  callServiceLotofacil_21x5(){
+    if (this.entrada_usuario.length == 22){
+      this.apiService.callServiceLotofacil_21x5(this.entrada_usuario)
         .then((result:any[]) => {
           this.apostas = result
         })

@@ -9,7 +9,7 @@ ion-header {
 }
 ion-toolbar {
   //--background: linear-gradient(162deg, rgba(56, 70, 108, .8) 20%, rgba(56, 70, 108, .8) 100%), url('../../assets/lotomania/sorte-combo.jpg') bottom no-repeat;
-  --background: linear-gradient(#633ce078, #5735c573), url('../../assets/lotomania/beach.jpg') no-repeat center center / cover;
+  --background: linear-gradient(to left, rgba(99,60,224,1), rgba(99,60,224,0.5)), url('../../assets/lotomania/number.jpg') no-repeat center center / cover;
   color: white;
   font-family: fantasy;
   height: 100px;
@@ -23,7 +23,7 @@ ion-button {
 }
 
 ion-card {
-    --background: #633ce080;
+    --background: #633ce0;
     color: #fff;
     font-size: 15px;
     text-align: center;

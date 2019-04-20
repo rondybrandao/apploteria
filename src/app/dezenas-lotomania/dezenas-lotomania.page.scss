@@ -16,9 +16,9 @@
     display: inline-block;
     background: cornsilk;
     border: 1px solid #fff;
-    font-size: 12px;
-    height: 16px; 
-    width: 31px; 
+    font-size: 13px;
+    height: 17px; 
+    width: 33px; 
     font-weight: bold;
 }
 
@@ -40,7 +40,7 @@ ion-header {
   height: 100px;
 }
 ion-toolbar {
-  --background: linear-gradient(#ff800073, #e0710073), url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
+  --background: linear-gradient(to left,rgba(255,128,0,1), rgba(255,128,0,0.7)), url('../../assets/lotomania/number.jpg') no-repeat center center / cover;
   -webkit-background-size: cover;
   color: white;
   font-family: fantasy;  
@@ -55,12 +55,22 @@ ion-back-button {
   --icon-margin-start: 0px;
 }
 ion-content {
-  --background: url('../../assets/lotomania/simpatias.jpg') no-repeat center center / cover;
+  --background: url('../../assets/lotomania/dinheiro.jpg') no-repeat center center / cover;
+  --padding-start: 5px;
+  --padding-end: 0px;
 }
 
 ion-note {
   --color: #000000;
   font-family: fantasy;
+  font-size: 20px;
+  padding: 2px;
+}
+ion-card {
+  --background: white
+}
+ion-button {
+  align-self: auto;
 }
 
 h5 {
@@ -69,6 +79,7 @@ h5 {
   padding-top: 2px;
   padding-bottom: 2px;
   margin-top: 5px;
+  text-align: center
 }
 
 #aposta {
@@ -85,24 +96,36 @@ h5 {
   padding-inline-start: 20px;
   color: black;
 }
+#palpite {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: absolute;
+  padding-inline-start: 0px;
+}
+#n_sorteio {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
   
 
   ul {
     list-style-type: none;
     padding-inline-start: 5px;
     padding-inline-end: 0px;
+    padding-top: 50px;
   }
   
   li {
     display: inline-block;
+    padding: 1px;
   }
   
   input[type="checkbox"][id^="cb"] {
     display: none;
-  }
-  
-  ion-button {
-    align-self: auto;
   }
   
   label {

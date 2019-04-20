@@ -31,7 +31,10 @@ const routes: Routes = [
   { path: 'analize-aposta', loadChildren: './analize-aposta/analize-aposta.module#AnalizeApostaPageModule' },
   { path: 'analize-lotofacil', loadChildren: './analize-lotofacil/analize-lotofacil.module#AnalizeLotofacilPageModule' },
   { path: 'quadro-vizualizacao', loadChildren: './quadro-vizualizacao/quadro-vizualizacao.module#QuadroVizualizacaoPageModule' },
-  { path: 'image-modal', loadChildren: './image-modal/image-modal.module#ImageModalPageModule' }
+  { path: 'image-modal', loadChildren: './image-modal/image-modal.module#ImageModalPageModule' },
+  { path: 'palpite-quina', loadChildren: './palpite-quina/palpite-quina.module#PalpiteQuinaPageModule' },
+  { path: 'palpite-lotofacil', loadChildren: './palpite-lotofacil/palpite-lotofacil.module#PalpiteLotofacilPageModule' },
+  { path: 'analize-quina', loadChildren: './analize-quina/analize-quina.module#AnalizeQuinaPageModule' }
 ];
 
 @NgModule({

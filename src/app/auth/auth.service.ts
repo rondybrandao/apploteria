@@ -26,7 +26,7 @@ export class AuthService {
    async register(username: string, password: string){
     
     try {
-      const res = await this.afAuth.auth.createUserWithEmailAndPassword(username + '@email.com', password)
+      const res = await this.afAuth.auth.createUserWithEmailAndPassword(username, password)
       
       console.log(res)
     } catch (error) {

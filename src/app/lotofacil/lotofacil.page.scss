@@ -2,7 +2,7 @@ ion-header {
   height: 100px;
 }
 ion-toolbar {
-    --background: linear-gradient(#f843956b, #f956a078), url('../../assets/lotomania/beach.jpg') no-repeat center center / cover;
+    --background: linear-gradient(to left, rgba(255,0,204,1), rgba(255,0,204,0.2)), url('../../assets/lotomania/number.jpg') no-repeat center center / cover;
     //--background: url('../../assets/lotomania/beach.jpg') no-repeat center center / cover;
     -webkit-background-size: cover;
     color: white;

@@ -11,6 +11,19 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>LOTOMANIA</ion-card-subtitle>
+      <ion-card-title>Fechamento 100-6</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      Escolha 100 dezenas e click no botão GERAR COMBINAÇÕES o aplicativo
+      vai gerar 6 apostas fechadas e coferirar se houve premiações naquela aposta.
+    </ion-card-content>
+  </ion-card>
+
+  <div id="n_sorteio">sorteio Nº 1999</div>
   <div id="arr">
     <div class="arredondar" value="01">01</div>
     <div class="arredondar" value="01">02</div>
@@ -58,13 +71,21 @@
     <ion-row>
       <ion-col size="12">
         <h5>Dezenas: {{  entrada_usuario.length }}</h5>
-        [<ion-note *ngFor="let entrada of entrada_usuario">
-          {{ entrada }}
-        </ion-note>]
+        <div id="palpite">
+          <ion-note *ngFor="let entrada of entrada_usuario">
+            {{ entrada }}
+          </ion-note>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
-  
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
   <ul>
     <li><input type="checkbox" id="cb1" value="1" [checked]="form[0].checked" [ngModel]="form[0].checked"  (ngModelChange)="onFilterChange(form[0])" />
       <label for="cb1"><div class="trapezio" >[ 01 ]</div></label>

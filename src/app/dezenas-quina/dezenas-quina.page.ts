@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { ToastController } from '@ionic/angular';
+import { ToastController, NavController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -13,6 +13,8 @@ export class DezenasQuinaPage implements OnInit {
   apostas = []
   fechamento_18x12x5x6
   fechamento_10x19
+  fechamento_8x8
+  fechamento_10x2
   verificador
 
   mock = [['01','02','03','04','05','06'],
@@ -113,15 +115,20 @@ export class DezenasQuinaPage implements OnInit {
     public apiService: ApiService,
     public toastController:ToastController,
     private route: ActivatedRoute,
+    public navCtrl: NavController,
   ) {
     this.fechamento_18x12x5x6 = this.route.snapshot.paramMap.get('fechamento_18x12x5x6');
     this.fechamento_10x19 = this.route.snapshot.paramMap.get('fechamento_10x19');
+    this.fechamento_8x8 = this.route.snapshot.paramMap.get('fechamento_8x8');
+    this.fechamento_10x2 = this.route.snapshot.paramMap.get('fechamento_10x2');
     this.verificador = this.route.snapshot.paramMap.get('verificador')
    }
 
   ngOnInit() {
   }
-
+  voltar() {
+    this.navCtrl.navigateBack('quina');
+  }
   onFilterChange(eve: any){
     console.log("id:",this.form[eve.id])
       this.form[eve.id].checked = !this.form[eve.id].checked
@@ -184,6 +191,32 @@ export class DezenasQuinaPage implements OnInit {
   callServiceQuina_10x19(){
     if (this.entrada_usuario.length == 10){
       this.apiService.callServiceQuina_10x19(this.entrada_usuario)
+        .then((result:any) => {
+          this.apostas = result
+        })
+        .catch((error:any) => {
+          console.log('error', error)
+        });
+    } else {
+      this.presentToast()
+    }
+  }
+  callServiceQuina_8x8(){
+    if (this.entrada_usuario.length == 8){
+      this.apiService.callServiceQuina_8x8(this.entrada_usuario)
+        .then((result:any) => {
+          this.apostas = result
+        })
+        .catch((error:any) => {
+          console.log('error', error)
+        });
+    } else {
+      this.presentToast()
+    }
+  }
+  callServiceQuina_10x2(){
+    if (this.entrada_usuario.length == 10){
+      this.apiService.callServiceQuina_10x2(this.entrada_usuario)
         .then((result:any) => {
           this.apostas = result
         })

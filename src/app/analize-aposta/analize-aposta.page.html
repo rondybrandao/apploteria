@@ -6,11 +6,7 @@
     <ion-title>
       ANALIZAR APOSTA
     </ion-title>
-    <!--
-    <ion-buttons slot="end">
-     <ion-icon size="large" color="danger" name="notifications"></ion-icon>
-    </ion-buttons>
-    -->
+    <div id="frase">"Siga seus sonhos e ideais e lute enquanto a sorte faz o seu trabalho."</div>
   </ion-toolbar>
 </ion-header>
 
@@ -222,7 +218,6 @@
           <ion-card class="contador"  *ngFor="let aposta of apostas; index as i">
             <div id="aposta">
               <div id="aposta-label">
-                aposta <q></q>:
                 <h5>{{aposta.num_usuario}}</h5>
                 <table>
                   <tr>
@@ -251,28 +246,114 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-card *ngIf="dezena.length > 0">
+    <h2 id="charts">Total de saidas</h2>
+    <div style="padding-top: 10px;">
+      <canvas #chartLineAposta width="400" height="300"></canvas>
+    </div>
+  </ion-card>
   
-  <ion-card>
+  <!--<ion-card>
     <ion-item id="analize-mes"><div id="inner-analize-mes">Pares</div><ion-progress-bar color="primary" value="0.5"></ion-progress-bar>3</ion-item>
     <ion-item><div id="inner-analize-ultimos10">Impares</div><ion-progress-bar color="primary" value="0.5"></ion-progress-bar>3</ion-item>
   </ion-card>
-
+  
   <div id="arr" *ngFor="let e of entrada_usuario" >
     <ion-item>
       <div class="arredondar" >{{e}}</div>
       <ion-progress-bar color="primary" value="0.5">5</ion-progress-bar>
     </ion-item>
-  </div>
-  
+  </div>-->
+
+  <!--<ion-card>
   <ion-card>
-    <h2 id="charts">Dezenas sorteadas</h2>
-    <div style="padding-top: 10px;">
-      <canvas #chartLineAposta width="400" height="300"></canvas>
-    </div>
+    <table>
+          <tr>
+            <th></th>
+            <th>01/04</th>
+            <th>02/04</th>
+            <th>03/04</th>
+            <th>04/04</th>
+            <th>05/04</th>
+          </tr>
+          <tr *ngFor="let d of sorteio">
+            <td>{{d.dez}}</td>
+            <td><div class="arredondar" >{{d.dez}}</div></td>
+            <td><div class="arredondar" >{{d.dez}}</div></td>
+          </tr>
+          <tr>
+            <td *ngFor="let s of sorteio"><div class="arredondar" >{{s.dez}}</div></td>
+          </tr>
+          <tr>
+            <td>03</td>
+            <td></td>
+            <td><div class="arredondar" >03</div></td>
+            <td><div class="arredondar" >03</div></td>
+            <td></td>
+            <td></td>
+          </tr>
+    </table>
   </ion-card>
-  <ion-card>
+  <br>
     <div style="padding-top: 10px;">
-        <canvas #chartLineUltimasAposta width="400" height="300"></canvas>
+        <table>
+          <tr>
+            <th></th>
+            <th>01/04</th>
+            <th>02/04</th>
+            <th>03/04</th>
+            <th>04/04</th>
+            <th>05/04</th>
+          </tr>
+          <tr>
+            <td>01</td>
+            <td><div  class="arredondar" >01</div></td>
+            <td><div  class="arredondar" >01</div></td>
+            <td><div  class="arredondar" >01</div></td>
+            <td><div  class="arredondar" >01</div></td>
+            <td><div  class="arredondar" >01</div></td>
+          </tr>
+          <tr>
+            <td>02</td>
+            <td></td>
+            <td></td>
+            <td><div class="arredondar" >02</div></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>03</td>
+            <td></td>
+            <td><div class="arredondar" >03</div></td>
+            <td><div class="arredondar" >03</div></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>04</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><div class="arredondar" >04</div></td>
+          </tr>
+          <tr>
+            <td>05</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><div class="arredondar" >05</div></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>06</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><div class="arredondar" >06</div></td>
+          </tr>
+        </table>
     </div>
-  </ion-card>
+  </ion-card>-->
 </ion-content>

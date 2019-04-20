@@ -16,6 +16,8 @@ export class ApiService {
   private API_URL_lotofacil_22x8x6 = 'http://127.0.0.1:8000/lotofacil-22-8-6'
   private API_URL_qui_18x12x5x6 = 'http://127.0.0.1:8000/quina-18-12-5-6'
   private API_URL_qui_10x19 = 'http://127.0.0.1:8000/quina-10-19'
+  
+  private AWS_URL = 'http://apploteria.sa-east-1.elasticbeanstalk.com/core/'
 
   private URL = 'http://127.0.0.1:8000/'
   constructor(
@@ -29,7 +31,7 @@ export class ApiService {
             dezenas:dezenas
         };
         console.log('data:',data)
-        this.httpCliente.post(this.URL + 'megasena-12-6', data, httpOptions)
+        this.httpCliente.post(this.AWS_URL + 'megasena-12-6', data, httpOptions)
             .subscribe((result:any[])=>{
                 console.log('post:',result)
                 resolve(result)
@@ -68,6 +70,42 @@ export class ApiService {
         };
         console.log('data:',data)
         this.httpCliente.post(this.URL + 'megasena-9-12', data, httpOptions)
+            .subscribe((result:any[])=>{
+                console.log('post:',result)
+                resolve(result)
+            },
+            (error) => {
+                console.log('error:',error)
+                reject(error)
+            });
+    });
+  }
+  callFechamento8x7(dezenas:any){
+    console.log('dezenas:',dezenas)
+    return new Promise((resolve, reject)=>{
+        let data = {
+            dezenas:dezenas
+        };
+        console.log('data:',data)
+        this.httpCliente.post(this.URL + 'megasena-8-7', data, httpOptions)
+            .subscribe((result:any[])=>{
+                console.log('post:',result)
+                resolve(result)
+            },
+            (error) => {
+                console.log('error:',error)
+                reject(error)
+            });
+    });
+  }
+  callFechamento10x3(dezenas:any){
+    console.log('dezenas:',dezenas)
+    return new Promise((resolve, reject)=>{
+        let data = {
+            dezenas:dezenas
+        };
+        console.log('data:',data)
+        this.httpCliente.post(this.URL + 'megasena-10-3', data, httpOptions)
             .subscribe((result:any[])=>{
                 console.log('post:',result)
                 resolve(result)
@@ -135,6 +173,42 @@ export class ApiService {
             });
     });
   }
+  callServiceLotofacil_20x4(dezenas:any){
+    console.log('dezenas:',dezenas)
+    return new Promise((resolve, reject)=>{
+        let data = {
+            dezenas:dezenas
+        };
+        console.log('data:',data)
+        this.httpCliente.post(this.URL + 'lotofacil-20-4', data, httpOptions)
+            .subscribe((result:any[])=>{
+                console.log('post:',result)
+                resolve(result)
+            },
+            (error) => {
+                console.log('error:',error)
+                reject(error)
+            });
+    });
+  }
+  callServiceLotofacil_21x5(dezenas:any){
+    console.log('dezenas:',dezenas)
+    return new Promise((resolve, reject)=>{
+        let data = {
+            dezenas:dezenas
+        };
+        console.log('data:',data)
+        this.httpCliente.post(this.URL + 'lotofacil-21-5', data, httpOptions)
+            .subscribe((result:any[])=>{
+                console.log('post:',result)
+                resolve(result)
+            },
+            (error) => {
+                console.log('error:',error)
+                reject(error)
+            });
+    });
+  }
 
   callServiceQuina_18x12x5x6(dezenas:any){
     console.log('dezenas:',dezenas)
@@ -163,6 +237,42 @@ export class ApiService {
         };
         console.log('data:',data)
         this.httpCliente.post(this.API_URL_qui_10x19, data, httpOptions)
+            .subscribe((result:any[])=>{
+                console.log('post:',result)
+                resolve(result)
+            },
+            (error) => {
+                console.log('error:',error)
+                reject(error)
+            });
+    });
+  }
+  callServiceQuina_8x8(dezenas:any){
+    console.log('dezenas:',dezenas)
+    return new Promise((resolve, reject)=>{
+        let data = {
+            dezenas:dezenas
+        };
+        console.log('data:',data)
+        this.httpCliente.post(this.URL + 'quina-8-8', data, httpOptions)
+            .subscribe((result:any[])=>{
+                console.log('post:',result)
+                resolve(result)
+            },
+            (error) => {
+                console.log('error:',error)
+                reject(error)
+            });
+    });
+  }
+  callServiceQuina_10x2(dezenas:any){
+    console.log('dezenas:',dezenas)
+    return new Promise((resolve, reject)=>{
+        let data = {
+            dezenas:dezenas
+        };
+        console.log('data:',data)
+        this.httpCliente.post(this.URL +  'quina-10-2', data, httpOptions)
             .subscribe((result:any[])=>{
                 console.log('post:',result)
                 resolve(result)
@@ -221,7 +331,7 @@ export class ApiService {
             dezenas:dezenas
         };
         console.log('data:',data)
-        this.httpCliente.post(this.URL + 'megasenaverificador', data, httpOptions)
+        this.httpCliente.post(this.AWS_URL + 'verificarmegasena', data, httpOptions)
             .subscribe((result:any[])=>{
                 console.log('post verificador:',result)
                 resolve(result)
@@ -240,7 +350,7 @@ export class ApiService {
             dezenas:dezenas
         };
         console.log('data:',data)
-        this.httpCliente.post(this.URL + 'lotofacilverificador', data, httpOptions)
+        this.httpCliente.post(this.AWS_URL + 'verificarlotofacil', data, httpOptions)
             .subscribe((result:any[])=>{
                 console.log('lotofacil verificador:',result)
                 resolve(result)
@@ -258,7 +368,7 @@ export class ApiService {
             dezenas:dezenas
         };
         console.log('data:',data)
-        this.httpCliente.post(this.URL + 'quinaverificador', data, httpOptions)
+        this.httpCliente.post(this.AWS_URL + 'quina', data, httpOptions)
             .subscribe((result:any[])=>{
                 console.log('quina verificador:',result)
                 resolve(result)

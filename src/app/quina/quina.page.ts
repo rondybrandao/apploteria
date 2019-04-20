@@ -15,7 +15,7 @@ export class QuinaPage implements OnInit {
   ngOnInit() {
   }
   palpite() {
-    this.router.navigate(['palpite', {quina_visao: true}])
+    this.router.navigate(['palpite-quina'])
   }
   fechamento_18x12x5x6(){
     this.router.navigate(['/dezenas-quina', { fechamento_18x12x5x6: true }]);
@@ -23,6 +23,12 @@ export class QuinaPage implements OnInit {
 
   fechamento_10x19(){
     this.router.navigate(['/dezenas-quina', {fechamento_10x19: true}])
+  }
+  fechamento_8x8(){
+    this.router.navigate(['/dezenas-quina', {fechamento_8x8: true}])
+  }
+  fechamento_10x2(){
+    this.router.navigate(['/dezenas-quina', {fechamento_10x2: true}])
   }
   voltar(){
     this.router.navigate(['/home'])

@@ -91,6 +91,9 @@ export class EsotericoPage implements OnInit {
     let dezenas = []
     for (let i=1; i<=6; i++){
       al = this.gerar_megasena_aleatorio();
+      if (dezenas.includes(al)){
+        al = this.gerar_megasena_aleatorio();
+      }
       al = al + valor
       dezenas.push(al)
     }
@@ -104,6 +107,9 @@ export class EsotericoPage implements OnInit {
     let dezenas = []
     for (let i=1; i<=5; i++){
       al = this.gerar_quina_aleatorio();
+      if (dezenas.includes(al)){
+        al = this.gerar_quina_aleatorio();
+      }
       al = al + valor
       dezenas.push(al)
     }
@@ -117,6 +123,9 @@ export class EsotericoPage implements OnInit {
     let dezenas = []
     for (let i=1; i<=15; i++){
       al = this.gerar_lotofacil_aleatorio();
+      if (dezenas.includes(al)) {
+        al = this.gerar_lotofacil_aleatorio();
+      }
       al = al + valor
       dezenas.push(al)
     }

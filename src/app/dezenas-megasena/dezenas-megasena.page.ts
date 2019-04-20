@@ -1,8 +1,8 @@
 import { ApiService } from './../api.service';
-import { MegasenaService } from './../service/service';
+import { FirebaseService } from './../servicos/firebase.service'
 import { Component, OnInit } from '@angular/core';
 import { ToastController, NavController } from '@ionic/angular';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { Observable, interval } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -21,6 +21,8 @@ export interface Concurso{
 
 export class DezenasMegasenaPage implements OnInit {
   
+  sorteio_corrente
+  dezenas_corrente
   dezenas = []
   apostas = []
   entrada_usuario = []
@@ -28,33 +30,12 @@ export class DezenasMegasenaPage implements OnInit {
   fechamento12x6
   fechamento12x3x17
   fechamento9x12
+  fechamento8x7
+  fechamento10x3
   verificador
   concurso_pontos = []
 
   message$: Observable<string>;
-
-  mock_dezenas = [['01','02','03','04','05','06'],
-          ['01','02','03','04','05','06'],
-          ['01','02','03','04','05','06'],
-          ['01','02','03','04','05','06'],
-          ['01','02','03','04','05','06'],
-          ['01','02','03','04','05','06']]
-  
-  result_mock = [{
-    num_aposta:['01','02','03','04','05','06'],
-    concursos:[{concurso:'1', pontos:'6'}, 
-               {concurso:'2', pontos:'5'},
-               {concurso:'3', pontos:'5'} ]
-  }]
-
-  friends = [{name:'2', phone:'6'},
-             {name:'14', phone:'5'},
-             {name:'25', phone:'5'},
-             {name:'57', phone:'4'},
-             {name:'63', phone:'4'},
-             {name:'72', phone:'4'}]
-  
-  
 
   public form = [
     { id: 0, val: '01', checked: false },
@@ -121,21 +102,29 @@ export class DezenasMegasenaPage implements OnInit {
   ];
 
   constructor(
-    public service: MegasenaService,
+    public firebaseService: FirebaseService,
     public apiService: ApiService,
     public toastController:ToastController,
-    private router: Router,
-    private route: ActivatedRoute) {
-      this.fechamento18x3x9 = this.route.snapshot.paramMap.get('fechamneto18x3x9');
+    private route: ActivatedRoute,
+    public navCtrl: NavController,) {
+      this.fechamento18x3x9 = this.route.snapshot.paramMap.get('fechamento18x3x9');
       this.fechamento12x6 = this.route.snapshot.paramMap.get('fechamento12x6');
       this.fechamento12x3x17 = this.route.snapshot.paramMap.get('fechamento12x3x17');
       this.fechamento9x12 = this.route.snapshot.paramMap.get('fechamento9x12');
+      this.fechamento8x7 = this.route.snapshot.paramMap.get('fechamento8x7');
+      this.fechamento10x3 = this.route.snapshot.paramMap.get('fechamento10x3');
       this.verificador = this.route.snapshot.paramMap.get('verificador');
+
+      this.callServiceSorteioCorrente()
+      this.callServiceDezenasCorrente()
     }
 
   ngOnInit() {}
   notify(){
     //let checks = document.querySelectorAll("input[type='checkbox']");
+  }
+  voltar() {
+    this.navCtrl.navigateBack('mega-sena');
   }
   resend(){
     this.message$ = interval(500).pipe(
@@ -175,7 +164,24 @@ export class DezenasMegasenaPage implements OnInit {
     });
     toast.present();
   }
-
+  callServiceSorteioCorrente() {
+    this.firebaseService.getSorteioCorrente()
+      .then((result:any)=>{
+        this.sorteio_corrente = result
+      })
+      .catch((error:any)=>{
+        console.log('error:', error)
+      })  
+  }
+  callServiceDezenasCorrente() {
+    this.firebaseService.getDezenasCorrente()
+      .then((result:any) =>{
+        this.dezenas_corrente = result
+      })
+      .catch((error:any)=>{
+        console.log('error:', error)
+      })
+  }
   verificarDezenas(){
     if (this.entrada_usuario.length == 6){
       this.apiService.callVerificadorMegasena(this.entrada_usuario)
@@ -245,6 +251,37 @@ export class DezenasMegasenaPage implements OnInit {
       .then((result:any[])=>{
         this.apostas = result;
         console.log('callServiceFechamento18x3x9:',result)
+      })
+      .catch((error:any)=>{
+        console.log('error:',error)
+      });
+    }
+    else {
+      this.presentToast()
+    }
+  }
+
+  callServiceFechamento8x7(){
+    if (this.entrada_usuario.length == 18){
+      this.apiService.callFechamento8x7(this.entrada_usuario)
+      .then((result:any[])=>{
+        this.apostas = result;
+        console.log('callServiceFechamento8x7:',result)
+      })
+      .catch((error:any)=>{
+        console.log('error:',error)
+      });
+    }
+    else {
+      this.presentToast()
+    }
+  }
+  callServiceFechamento10x3(){
+    if (this.entrada_usuario.length == 18){
+      this.apiService.callFechamento10x3(this.entrada_usuario)
+      .then((result:any[])=>{
+        this.apostas = result;
+        console.log('callServiceFechamento10x3:',result)
       })
       .catch((error:any)=>{
         console.log('error:',error)

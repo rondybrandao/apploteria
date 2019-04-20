@@ -15,9 +15,9 @@
     display: inline-block;
     background: cornsilk;
     border: 1px solid #fff;
-    font-size: 12px;
-    height: 16px; 
-    width: 31px; 
+    font-size: 13px;
+    height: 17px; 
+    width: 33px; 
     font-weight: bold;
 }
 .title-md {
@@ -55,28 +55,33 @@ td {
 #quadra {
   color: #f00
 }
-#frase {
-  padding-top: 25px;
-  padding-inline-start: 20px;
-  color: black;
+#palpite {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: absolute;
+  padding-inline-start: 0px;
+}
+#n_sorteio {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+ion-header {
+  height: 100px;
 }
 ion-toolbar {
-  --background: linear-gradient(#f843956b, #f956a078), url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
+  //--background: linear-gradient(#f843956b, #f956a078), url('../../assets/lotomania/number.jpg') no-repeat center center / cover;
+  --background: linear-gradient(to left, rgba(255,0,204,1), rgba(255,0,204,0.2)), url('../../assets/lotomania/number.jpg') no-repeat center center / cover;
   -webkit-background-size: cover;
-  color: white;
+  color: black;
   font-family: fantasy;
-  
-}
-ion-back-button {
-  --margin-top: -45px;
-  --margin-end: 0px;
-  --padding-end: 0px;
-  --padding-start: 0px;
-  --icon-margin-end: 0px;
-  --icon-margin-start: 0px;
+  height: 100px;
 }
 ion-content {
-  --background: url('../../assets/lotomania/simpatias.jpg') no-repeat center center / cover;
+  --background: url('../../assets/lotomania/dinheiro.jpg') no-repeat center center / cover;
 }
 
 ion-button {
@@ -86,13 +91,26 @@ ion-button {
 ion-note {
   --color: #000000;
   font-family: fantasy;
+  font-size: 22px;
+  padding: 3px;
 }
 
 ion-card {
   --background: white
 }
 
+.title-md {
+  padding-top: 10px
+}
+.sc-ion-buttons-md-h {
+  margin-top: -55px;
+}
 
+h6{
+  margin-inline-start: 25px;
+  margin-top: 40px;
+  color: black
+}
 h5 {
   color: black;
   font-family: fantasy;
@@ -117,6 +135,7 @@ ul {
     padding-inline-start: 75px;
     padding-inline-end: 0px;
     padding-bottom: 0px;
+    padding-top: 25px;
   }
   
   li {

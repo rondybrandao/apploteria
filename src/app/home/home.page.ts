@@ -30,5 +30,8 @@ export class HomePage {
   verificador(){
     this.navCtrl.navigateForward('/verificador')
   }
+  quadro_vizualizacao(){
+    this.navCtrl.navigateForward('/quadro-vizualizacao')
+  }
 
 }

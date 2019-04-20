@@ -24,7 +24,7 @@ export class VerificadorPage implements OnInit {
     this.router.navigate(['/dezenas-lotomania', { verificador: true }]);
   }
   quina(){
-    this.router.navigate(['/dezenas-quina', { verificador: true }]);
+    this.router.navigate(['/analize-quina']);
   }
   voltar(){
     this.router.navigate(['home'])

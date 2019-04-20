@@ -69,7 +69,7 @@ ion-header {
     height: 100px;
 }
 ion-toolbar {
-  --background: linear-gradient(#0c9c4573, #0b893d73), url('../../assets/lotomania/mathematics2.jpg') no-repeat center center / cover;
+  --background:  url('../../assets/lotomania/grafico3.jpg') no-repeat center center / cover;
   -webkit-background-size: cover;
   color: white;
   font-family: fantasy;  
@@ -90,7 +90,6 @@ ion-button {
 ion-grid {
   padding-top: 0px;
 }
-
 ion-card {
   --background: white
 }
@@ -117,7 +116,12 @@ progress-bar {
   }
 
 }
-
+.title-md {
+  padding-top: 10px
+}
+.sc-ion-buttons-md-h {
+  margin-top: -49px;
+}
 h5 {
   color: black;
   font-family: fantasy;
@@ -127,6 +131,11 @@ h5 {
   text-align: center
 }
 
+#frase {
+  padding-top: 20px;
+  padding-inline-start: 20px;
+  color: black;
+}
 #aposta {
   padding-left: 3px;
   padding-bottom: 3px;

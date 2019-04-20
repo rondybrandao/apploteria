@@ -1,15 +1,15 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons  slot="start">
+    <!--<ion-buttons  slot="start">
       <ion-menu-button></ion-menu-button>
-    </ion-buttons>
+    </ion-buttons>-->
     <ion-title>
-      ATRAÇÃO DA SORTE
+      INICIO
     </ion-title>
     <!--<ion-buttons slot="end">
      <ion-icon size="large" color="danger" name="notifications"></ion-icon>
     </ion-buttons>-->
-    <h6>"A perseverança é a mãe da boa sorte."</h6>
+    <div id="frase">"A PERSEVERANÇA É A MÃE DA BOA SORTE."</div>
   </ion-toolbar>
 </ion-header>
 
@@ -28,8 +28,13 @@
       </ion-col>
     <ion-col>
         <ion-card class="card" id="ion-card-palpite" (click)="esoterico()">
-          <div id="dezena">ATRAÇÃO DA SORTE</div>
+          <div id="dezena">CABALA DA SORTE</div>
         </ion-card>
-      </ion-col>
+    </ion-col>
+    <ion-col>
+        <ion-card class="card" id="ion-card-vizualizacao" (click)="quadro_vizualizacao()">
+          <div id="dezena">QUADRO DE VIZUALIZAÇÕES</div>
+        </ion-card>
+    </ion-col>
       
 </ion-content>

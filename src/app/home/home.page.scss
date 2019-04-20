@@ -3,7 +3,7 @@ ion-header {
   height: 100px;
 }
 ion-toolbar {
-  --background: url('../../assets/lotomania/beach.jpg') no-repeat center center / cover;
+  --background: url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
   -webkit-background-size: cover;
   color: white;
   font-family: fantasy;
@@ -17,13 +17,31 @@ ion-content {
 ion-button {
   width: -webkit-fill-available;
 }
-ion-menu-button {
-  margin-top: -75px;
-}
+
 ion-card {
   margin-inline-start: 0px;
-  margin-top: -18px;
+  margin-top: -24px;
 }
+ion-menu-button {
+  padding-top: 17px;
+}
+.title-md {
+  padding-top: 10px;
+  color: black;
+  text-align: center;
+}
+.sc-ion-buttons-md-h {
+  margin-top: -49px;
+}
+h5 {
+  color: black;
+  font-family: fantasy;
+  padding-top: 2px;
+  margin-top: 5px;
+  margin-bottom: 0px;
+  text-align: center
+}
+
 h6{
   margin-inline-start: 25px;
   margin-top: 45px;
@@ -31,30 +49,49 @@ h6{
 }
 #ion-card-palpite {
   //--background: linear-gradient(#0c9c4573, #0b893d73), url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
-  --background: url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
+  --background: url('../../assets/lotomania/cabala.jpg') no-repeat center center / cover;
   color: #fff;
   font-size: 20px;
   text-align: center;
   width: 100%;
   height: 55px;
-  padding-top: 20px;
+  padding-top: 15px;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
 }
 
 #ion-card-analizar {
   //--background: linear-gradient(#0c9c4573, #0b893d73), url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
-  --background: url('../../assets/lotomania/mathematics2.jpg') no-repeat center center / cover;
+  --background: url('../../assets/lotomania/grafico3.jpg') no-repeat center center / cover;
   color: #fff;
   font-size: 20px;
   text-align: center;
   width: 100%;
   height: 55px;
   padding-top: 20px;
+  margin-top: -19px;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
 }
+#ion-card-vizualizacao {
+  //--background: linear-gradient(#0c9c4573, #0b893d73), url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
+  --background: url('../../assets/lotomania/olho-quantico.jpg') no-repeat center center / cover;
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  width: 100%;
+  height: 55px;
+  padding-top: 15px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+
 #frase-header {
   margin-inline-start: 10px;
   margin-top: 50px;
+}
+#frase {
+  padding-top: 20px;
+  text-align: center;
+  color: black;
+  font-size: 18px;
 }
 .card {
   padding-bottom: 9px;

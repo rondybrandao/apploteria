@@ -36,5 +36,11 @@ export class MegaSenaPage implements OnInit {
   fechamento9x12(){
     this.router.navigate(['/dezenas-megasena', { fechamento9x12: true }]);
   }
+  fechamento8x7(){
+    this.router.navigate(['/dezenas-megasena', { fechamento8x7: true }]);
+  }
+  fechamento10x3(){
+    this.router.navigate(['/dezenas-megasena', { fechamento10x3: true }]);
+  }
 
 }

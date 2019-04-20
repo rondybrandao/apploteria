@@ -34,12 +34,16 @@
   #quadra {
     color: #f00
   }
-  
+  iion-header {
+    height: 100px;
+  }
   ion-toolbar {
     --background: linear-gradient(#0c9c4573, #0b893d73), url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
+    //--background: url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
     -webkit-background-size: cover;
     color: white;
     font-family: fantasy;  
+    height: 100px;
   }
   
   ion-content {
@@ -84,6 +88,17 @@
   .arredondar,.arredondar-lotofacil,.arredondar-quina, .arredondar img {
     -webkit-clip-path: circle(50% at 50% 50%);
             clip-path: circle(50% at 50% 50%);
+  }
+  .title-md {
+    padding-top: 10px
+  }
+  .sc-ion-buttons-md-h {
+    margin-top: -49px;
+  }
+  #frase {
+    padding-top: 20px;
+    padding-inline-start: 20px;
+    color: black;
   }
 
   h5 {

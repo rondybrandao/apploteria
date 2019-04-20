@@ -24,9 +24,15 @@ export class LotofacilPage implements OnInit {
   fechamento18x6(){
     this.router.navigate(['/dezenas-lotofacil', { fechamento18x6: true }]);
   }
+  fechamento20x4(){
+    this.router.navigate(['/dezenas-lotofacil', { fechamento20x4: true }]);
+  }
+  fechamento21x5(){
+    this.router.navigate(['/dezenas-lotofacil', { fechamento21x5: true }]);
+  }
 
   palpite() {
-    this.router.navigate(['palpite', {lotofacil_visao: true}])
+    this.router.navigate(['palpite-lotofacil'])
   }
   voltar() {
     this.router.navigate(['home'])

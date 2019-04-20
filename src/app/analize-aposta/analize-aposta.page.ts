@@ -1,10 +1,11 @@
 import { FirebaseService } from './../servicos/firebase.service';
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { ApiService } from '../api.service';
-import { ToastController, NavController } from '@ionic/angular';
+import { ToastController, NavController, LoadingController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 
 import { Chart } from 'chart.js';
+
 
 @Component({
   selector: 'app-analize-aposta',
@@ -25,6 +26,17 @@ export class AnalizeApostaPage implements OnInit {
   apostas = []
   concurso_pontos = []
   entrada_usuario = []
+  data_dezenas = []
+  data_ultimas = []
+  ultimos_sorteios = []
+  sorteio = []
+  dezena = []
+  dez1 = []
+  dez2 = []
+  dez3 = []
+  dez4 = []
+  dez5 = []
+  dez6 = []
   
   public form = [
     { id: 0, val: '01', checked: false },
@@ -93,10 +105,38 @@ export class AnalizeApostaPage implements OnInit {
     public toastController:ToastController,
     private route: ActivatedRoute,
     public navCtrl: NavController,
-    public firebaseService: FirebaseService
-  ) {}
+    public firebaseService: FirebaseService,
+    public loadingController: LoadingController
+  ) {
+
+  }
 
   ngOnInit() {}
+  
+  // presentLoadingCustom() {
+  //   let loading = this.loadingCtrl.create({
+  //     spinner: 'dots',
+    
+  //     duration: 3000
+  //   });
+  
+  //   loading.onDidDismiss(() => {
+      
+  //     //this.showLineLucro();
+  //     //this.showLine();
+  //   });
+  //   loading.present();
+  // }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Analizando dezenas',
+      duration: 2000
+    });
+    await loading.present();
+    this.showLineAposta();
+    const { role, data } = await loading.onDidDismiss()
+  }
 
   onFilterChange(eve: any){
     console.log("id:",this.form[eve.id])
@@ -106,7 +146,7 @@ export class AnalizeApostaPage implements OnInit {
         this.entrada_usuario.push(eve.val)
       } else {
         let index = this.entrada_usuario.indexOf(eve.val);
-        console.log("index:",index);
+        //console.log("index:",index);
         this.entrada_usuario.splice(index, 1)
         
       }
@@ -121,14 +161,11 @@ export class AnalizeApostaPage implements OnInit {
     toast.present();
   }
   verificarDezenas(){
-    this.getDezenasMes();
-    this.showLineAposta();
-    this.showLineUltimasAposta();
     if (this.entrada_usuario.length == 6){
+      this.getDezenasMes2(this.entrada_usuario);
       this.apiService.callVerificadorMegasena(this.entrada_usuario)
       .then((result:any[])=>{
         this.apostas = result;
-        this.showLineAposta()
       })
       .catch((error:any)=>{
         console.log('error:',error)
@@ -141,55 +178,138 @@ export class AnalizeApostaPage implements OnInit {
   voltar(){
     this.navCtrl.navigateBack('verificador');
   }
-  getDezenasMes(){
-    this.firebaseService.getDezenasMes()
-      .then((result:any)=>{
-        console.log("result",result)
-      })
+
+  getConsulta(){
+    this.firebaseService.getDezenasMes().then((result:any)=>{
+      this.dez1 = result[0]
+      this.dez2 = result[1]
+      this.dez3 = result[2]
+      this.dez4 = result[3]
+      this.dez5 = result[4]
+      this.dez6 = result[5]
+    })
+    this.presentLoading()
   }
+  getDezenasMes2(entrada){
+    this.firebaseService.getDezenasMes2(entrada).then((result:any)=>{
+      //console.log(result)
+      this.dezena = result
+      //console.log(this.dezena[0].dezena)
+      this.dez1 = result[0].total
+      this.dez2 = result[1].total
+      this.dez3 = result[2].total
+      this.dez4 = result[3].total
+      this.dez5 = result[4].total
+      this.dez6 = result[5].total
+    })
+    this.presentLoading()
+  }
+  // getConsultaDezena(){
+  //   let res = this.firebaseService.getConsultaDezena().then((result:any)=>{
+  //     console.log(result);
+  //     result['marco'].chave.split(" ").forEach(dia => {
+  //         console.log(dia);
+  //         ["01","02","03","05","06","07"].forEach(el => {
+  //           result['marco'][dia].split(" ").forEach(element => {
+  //             if (element == el){
+  //               if (this.ultimos_sorteios[dia]) {
+  //                   this.ultimos_sorteios[dia].push(el)
+  //               } else {
+  //                 this.ultimos_sorteios[dia]=el;
+  //               }
+                
+  //               console.log(this.ultimos_sorteios)
+  //               this.sorteio.push({dia:dia, dez:el})
+              
+  //             }
+  //           });
+            
+  //         });
+       
+  //     });
+      
+  //   })
+  // }
+  // getDezenasMes() {
+  //   let cont = 0
+  //   const cons = this.firebaseService.getDezenasMes()
+  //     .then((result:any)=>{
+  //       console.log(result);
+  //       let res = result[1].chave;
+  //       let c = [];
+  //       c.push(res.split(" "));
+  //       c.forEach(element => {
+  //         this.data_dezenas.push(result['1'][element[0]])
+  //         this.data_dezenas.push(result['1'][element[1]])
+  //         this.data_dezenas.push(result['1'][element[2]])
+  //         this.data_dezenas.push(result['1'][element[3]])
+  //         this.data_dezenas.push(result['1'][element[4]])
+          
+  //       });
+  //       this.data_dezenas.forEach(element => {
+  //         console.log(element);
+  //         let e = element.split(" ");
+  //         console.log(e);
+  //         ["02", "04", "06", "08", "09", "10"].forEach(el => {
+  //           let index = ["02", "04", "06", "08", "09", "10"].indexOf(el);
+  //           e.forEach(e => {
+  //             if (e == el){
+  //               console.log(e + "=" + el)
+  //               this.data_ultimas.push(e);
+  //               let bol = []
+  //               bol[index] = cont++
+  //               console.log(bol)
+  //             }
+  //           });
+            
+  //         });
+          
+  //       });
+  
+  //     })
+  // }
+  
   showLineAposta(){
     this.lineChartAposta = new Chart(this.chartLineAposta.nativeElement, {
  
       type: 'line',
       data: {
-          labels: ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL'],
+          labels: ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN'],
           //labels: this.datas,
           datasets: [{
             backgroundColor: 'rgba(156, 195, 20, 1.0)',
             
-            data: [2,4,5,1,2,5,2],
-            hidden: false,
-            label: 'D0'
+            data: this.dez1,
+            label: this.dezena[0].dezena
           }, {
             backgroundColor:'rgba(176, 71, 33, 1.0)',
             
-            data:[3,5,9,4,2,5,6],
-            label: 'D1',
+            data:this.dez2,
+            label: this.dezena[1].dezena,
             fill: '-1'
           }, {
             backgroundColor:'rgba(182, 46, 235, 1.0)',
             
-            data: [5,3,2,6,4,2,1],
-            hidden: false,
-            label: 'D2',
+            data: this.dez3,
+            label: this.dezena[2].dezena,
             fill: 1
           }, {
             backgroundColor: 'rgba(47, 198, 67, 1.0)',
             
-            data: [1,2,5,4,6,2,3],
-            label: 'D3',
+            data: this.dez4,
+            label: this.dezena[3].dezena,
             fill: '-1'
           }, {
             backgroundColor: 'rgba(81, 46, 34, 1.0)',
             
-            data: [3,5,2,1,6,4,7],
-            label: 'D4',
+            data: this.dez5,
+            label: this.dezena[4].dezena,
             fill: '-1'
           }, {
             backgroundColor: 'rgba(255, 159, 64, 0.2)',
             
-            data: [2,1,3,2,1,4,2],
-            label: 'D5',
+            data: this.dez6,
+            label: this.dezena[5].dezena,
             fill: '+2'
           }]
       },
@@ -225,77 +345,77 @@ export class AnalizeApostaPage implements OnInit {
   });
 }
 
-showLineUltimasAposta(){
-  this.lineChartAposta = new Chart((this.chartLineUltimasAposta.nativeElement).getContext('2d'), {
+// showLineUltimasAposta(){
+//   this.lineChartAposta = new Chart((this.chartLineUltimasAposta.nativeElement).getContext('2d'), {
 
-    type: 'line',
-    data: {
-        labels: ['03/01', '03/03', '03/05', '03/07', '03/10', '03/12', '03/15', '03/18', '03/21', '03/25'],
-        //labels: this.datas,
-        datasets: [{
-          backgroundColor: 'rgba(156, 195, 20, 1.0)',
-          pointRadius: 10,
-					pointHoverRadius: 15,
-					showLine: false, // no line shown
-          data: [4,5,1,2,5,2],
-          label: 'D0',
-          fill: false
-        }, {
-          backgroundColor:'rgba(176, 71, 33, 1.0)',
-          pointRadius: 10,
-					pointHoverRadius: 15,
-					showLine: false, // no line shown
-          data:[2,5,6, , , ,5,23],
-          label: 'D1',
-          fill: false
-        }, {
-          backgroundColor:'rgba(182, 46, 235, 1.0)',
+//     type: 'line',
+//     data: {
+//         labels: ['03/01', '03/03', '03/05', '03/07', '03/10'],
+//         //labels: this.datas,
+//         datasets: [{
+//           backgroundColor: 'rgba(156, 195, 20, 1.0)',
+//           pointRadius: 10,
+// 					pointHoverRadius: 15,
+// 					showLine: false, // no line shown
+//           data: [parseInt(this.data_ultimas[0])],
+//           label: 'D0',
+//           fill: false
+//         }, {
+//           backgroundColor:'rgba(176, 71, 33, 1.0)',
+//           pointRadius: 10,
+// 					pointHoverRadius: 15,
+// 					showLine: false, // no line shown
+//           data:[],
+//           label: 'D1',
+//           fill: false
+//         }, {
+//           backgroundColor:'rgba(182, 46, 235, 1.0)',
           
-					showLine: false, // no line shown
-          data: [],
-          pointRadius: 10,
-					pointHoverRadius: 15,
-          label: 'D2',
-          fill: false
-        }, {
-          backgroundColor: 'rgba(47, 198, 67, 1.0)',
-          pointRadius: 10,
-					pointHoverRadius: 15,
-					showLine: false, // no line shown
-          data: [1,2, ,2,3],
-          label: 'D3',
-          fill: false
-        }, {
-          backgroundColor: 'rgba(81, 46, 34, 1.0)',
-          pointRadius: 10,
-					pointHoverRadius: 15,
-					showLine: false, // no line shown
-          data: [3,5,2,1,6,4,7],
-          label: 'D4',
-          fill: false
-        }, {
-          backgroundColor: 'rgba(255, 159, 64, 0.2)',
-          pointRadius: 10,
-					pointHoverRadius: 15,
-					showLine: false, // no line shown
-          data: [2,1,3,2,1],
-          label: 'D5',
-          fill: false,
-          pointStyle: 'triangle'
-        }]
-    },
-    options: {
-      maintainAspectRatio: false,
-      spanGaps: false,
-      elements: {
-        point: {
-          pointStyle: 'circle'
-        }
-      },
+// 					showLine: false, // no line shown
+//           data: [],
+//           pointRadius: 10,
+// 					pointHoverRadius: 15,
+//           label: 'D2',
+//           fill: false
+//         }, {
+//           backgroundColor: 'rgba(47, 198, 67, 1.0)',
+//           pointRadius: 10,
+// 					pointHoverRadius: 15,
+// 					showLine: false, // no line shown
+//           data: [],
+//           label: 'D3',
+//           fill: false
+//         }, {
+//           backgroundColor: 'rgba(81, 46, 34, 1.0)',
+//           pointRadius: 10,
+// 					pointHoverRadius: 15,
+// 					showLine: false, // no line shown
+//           data: [],
+//           label: 'D4',
+//           fill: false
+//         }, {
+//           backgroundColor: 'rgba(255, 159, 64, 0.2)',
+//           pointRadius: 10,
+// 					pointHoverRadius: 15,
+// 					showLine: false, // no line shown
+//           data: [],
+//           label: 'D5',
+//           fill: false,
+//           pointStyle: 'triangle'
+//         }]
+//     },
+//     options: {
+//       maintainAspectRatio: false,
+//       spanGaps: false,
+//       elements: {
+//         point: {
+//           pointStyle: 'circle'
+//         }
+//       },
       
-    }
+//     }
 
-});
-}
+// });
+// }
 
 }
