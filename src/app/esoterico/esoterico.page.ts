@@ -1,3 +1,4 @@
+import { LoadingController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
@@ -49,7 +50,8 @@ export class EsotericoPage implements OnInit {
   }
   constructor(
     public apiService: ApiService,
-    private router: Router
+    private router: Router,
+    private loadingController: LoadingController
 
   ) { 
   }
@@ -194,10 +196,22 @@ export class EsotericoPage implements OnInit {
     this.quina_aleatorio(num_cabala)
   }
 
-  lotofacil(f: NgForm){
+  // lotofacil(f: NgForm){
+  //   let num_cabala;
+  //   num_cabala = this.numerologia_cabala(f.value.assinatura);
+  //   this.lotofacil_aleatorio(num_cabala)
+  // }
+  async lotofacil(f:NgForm) {
     let num_cabala;
+    const loading = await this.loadingController.create({
+      message: 'Assinando numero Cabalistico',
+      duration: 3000
+    });
+    await loading.present();
     num_cabala = this.numerologia_cabala(f.value.assinatura);
     this.lotofacil_aleatorio(num_cabala)
+    
+    
   }
 
   megasena(f: NgForm){

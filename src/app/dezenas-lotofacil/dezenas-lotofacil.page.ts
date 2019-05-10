@@ -1,7 +1,10 @@
 import { ApiService } from './../api.service';
 import { Component, OnInit } from '@angular/core';
-import { ToastController, NavController } from '@ionic/angular';
+import { ToastController, NavController, LoadingController, ModalController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
+import { FirebaseService } from '../servicos/firebase.service';
+import { ModalFechamentosPage } from '../modal-fechamentos/modal-fechamentos.page';
+import { ModalFechamentosLotofacilPage } from '../modal-fechamentos-lotofacil/modal-fechamentos-lotofacil.page';
 
 @Component({
   selector: 'app-dezenas-lotofacil',
@@ -17,13 +20,10 @@ export class DezenasLotofacilPage implements OnInit {
   fechamento_20x4
   fechamento_21x5
   verificador
+  sorteio_corrente
+  dezenas_corrente
 
-  mock = [['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15'],
-          ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15'],
-          ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15'],
-          ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15'],
-          ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15'],
-          ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15']]
+
 
   public form = [
     { id: 0, val: '01', checked: false },
@@ -57,12 +57,18 @@ export class DezenasLotofacilPage implements OnInit {
     public toastController:ToastController,
     private route: ActivatedRoute,
     public navCtrl: NavController,
+    public firebaseService: FirebaseService,
+    private loadingController: LoadingController,
+    private modalController: ModalController
   ) { 
     this.fechamento_22x8x6 = this.route.snapshot.paramMap.get('fechamento22x8x6');
     this.fechamento_18x6 = this.route.snapshot.paramMap.get('fechamento18x6');
     this.fechamento_20x4 = this.route.snapshot.paramMap.get('fechamento20x4');
     this.fechamento_21x5 = this.route.snapshot.paramMap.get('fechamento21x5');
     this.verificador = this.route.snapshot.paramMap.get('verificador')
+    
+    this.callServiceSorteioCorrente()
+    this.callServiceDezenasCorrente()
   }
 
   ngOnInit() {
@@ -93,6 +99,38 @@ export class DezenasLotofacilPage implements OnInit {
     });
     toast.present();
   }
+  async presentToast_20_4(){
+    const toast = await this.toastController.create({
+      message: 'ERRO!: ESCOLHA 20 DEZENAS!.',
+      duration: 2000,
+      position: "middle"
+    });
+    toast.present();
+  }
+  async presentToast_21_5(){
+    const toast = await this.toastController.create({
+      message: 'ERRO!: ESCOLHA 21 DEZENAS!.',
+      duration: 2000,
+      position: "middle"
+    });
+    toast.present();
+  }
+  async presentToast_22_8_6(){
+    const toast = await this.toastController.create({
+      message: 'ERRO!: ESCOLHA 22 DEZENAS!.',
+      duration: 2000,
+      position: "middle"
+    });
+    toast.present();
+  }
+  async presentToast_18_6(){
+    const toast = await this.toastController.create({
+      message: 'ERRO!: ESCOLHA 18 DEZENAS!.',
+      duration: 2000,
+      position: "middle"
+    });
+    toast.present();
+  }
   async presentToastVerificador(){
     const toast = await this.toastController.create({
       message: 'ERRO!: ESCOLHA 15 DEZENAS!.',
@@ -101,8 +139,26 @@ export class DezenasLotofacilPage implements OnInit {
     });
     toast.present();
   }
+  callServiceSorteioCorrente() {
+    this.firebaseService.getSorteioCorrenteLoteria('lotofacil')
+      .then((result:any)=>{
+        this.sorteio_corrente = result
+      })
+      .catch((error:any)=>{
+        console.log('error:', error)
+      })  
+  }
+  callServiceDezenasCorrente() {
+    this.firebaseService.getDezenasCorrenteLoteria('lotofacil')
+      .then((result:any) =>{
+        this.dezenas_corrente = result
+      })
+      .catch((error:any)=>{
+        console.log('error:', error)
+      })
+  }
   verificarDezenas(){
-    if (this.entrada_usuario.length == 6){
+    if (this.entrada_usuario.length == 15){
       this.apiService.callVerificadorLotofacil(this.entrada_usuario)
       .then((result:any[])=>{
         this.apostas = result;
@@ -117,55 +173,101 @@ export class DezenasLotofacilPage implements OnInit {
   }
   callServiceLotofacil_22x8x6(){
     if (this.entrada_usuario.length == 22){
-      this.apiService.callServiceLotofacil_22x8x6(this.entrada_usuario)
-        .then((result:any[]) => {
-          this.apostas = result
-        })
-        .catch((error:any) => {
-          console.log('error', error)
-        });
+      this.loadingFechamento_22x8x6()
     } else {
-      this.presentToast()
+      this.presentToast_22_8_6()
     }
   }
-
+  async loadingFechamento_22x8x6() {
+    const loading = await this.loadingController.create({
+      message: 'Analizando Fechamentos',
+      duration: 3000
+    });
+    await loading.present();
+    this.apiService.callServiceLotofacil_22x8x6(this.entrada_usuario)
+      .then((result:any[])=> {
+        this.apostas = result
+      })
+      .catch((error:any)=>{
+        console.log('error', error)
+      })
+  }
+  
+  modalPage() {
+    this.modalController.create({
+      component: ModalFechamentosLotofacilPage,
+      componentProps: {
+        entrada: this.entrada_usuario,
+        fechamento: "18x6"
+      }
+    }).then(modal => {
+      modal.present();
+    })
+    .catch((error:any)=>{
+      console.log('error:', error)
+    })
+  }
   callServiceLotofacil_18x6(){
-    if (this.entrada_usuario.length == 22){
-      this.apiService.callServiceLotofacil_18x6(this.entrada_usuario)
-        .then((result:any[]) => {
-          this.apostas = result
-        })
-        .catch((error:any) => {
-          console.log('error', error)
-        });
+    if (this.entrada_usuario.length == 18){
+      this.loadingFechamento_18x6()
     } else {
-      this.presentToast()
+      this.presentToast_18_6()
     }
+  }
+  async loadingFechamento_18x6() {
+    const loading = await this.loadingController.create({
+      message: 'Analizando Fechamentos',
+      duration: 3000
+    });
+    await loading.present();
+    this.apiService.callServiceLotofacil_18x6(this.entrada_usuario)
+      .subscribe((result:any[])=> {
+        this.apostas = result
+        this.modalPage()
+      })
   }
   callServiceLotofacil_20x4(){
-    if (this.entrada_usuario.length == 22){
-      this.apiService.callServiceLotofacil_20x4(this.entrada_usuario)
-        .then((result:any[]) => {
-          this.apostas = result
-        })
-        .catch((error:any) => {
-          console.log('error', error)
-        });
+    if (this.entrada_usuario.length == 20){
+      this.loadingFechamento_20x4()
     } else {
-      this.presentToast()
+      this.presentToast_20_4()
     }
   }
+  async loadingFechamento_20x4() {
+    const loading = await this.loadingController.create({
+      message: 'Analizando Fechamentos',
+      duration: 3000
+    });
+    await loading.present();
+    this.apiService.callServiceLotofacil_20x4(this.entrada_usuario)
+      .then((result:any[])=> {
+        this.apostas = result
+        this.modalPage()
+      })
+      .catch((error:any)=>{
+        console.log('error', error)
+      })
+  }
   callServiceLotofacil_21x5(){
-    if (this.entrada_usuario.length == 22){
-      this.apiService.callServiceLotofacil_21x5(this.entrada_usuario)
-        .then((result:any[]) => {
-          this.apostas = result
-        })
-        .catch((error:any) => {
-          console.log('error', error)
-        });
+    if (this.entrada_usuario.length == 21){
+      this.loadingFechamento_21x5()
     } else {
-      this.presentToast()
+      this.presentToast_21_5()
     }
+  }
+  async loadingFechamento_21x5() {
+    const loading = await this.loadingController.create({
+      message: 'Analizando Fechamentos',
+      duration: 3000
+    });
+    await loading.present();
+    this.apiService.callServiceLotofacil_21x5(this.entrada_usuario)
+      .then((result:any[])=> {
+        this.apostas = result
+        this.modalPage()
+      })
+      .catch((error:any)=>{
+        console.log('error', error)
+      })
   }
 }

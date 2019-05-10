@@ -33,8 +33,10 @@ q::before {
   counter-reset: meuContador;
 }
 .title-md {
-  padding-inline-start: 0px;
-  padding-top: 3px;
+  margin-top: 10px;
+}
+.sc-ion-buttons-md-h {
+  margin-top: -49px;
 }
 ion-header {
   height: 100px;
@@ -81,6 +83,9 @@ h5 {
   margin-top: 5px;
   text-align: center
 }
+span {
+  font-family: 'Courier New', Courier, monospace;
+}
 
 #aposta {
   padding-left: 3px;
@@ -92,9 +97,10 @@ h5 {
   color: #f00
 }
 #frase {
-  padding-top: 25px;
-  padding-inline-start: 20px;
-  color: black;
+  padding-top: 20px;
+  text-align: center;
+  color: white;
+  font-size: 16px;
 }
 #palpite {
   align-items: center;
@@ -114,7 +120,7 @@ h5 {
 
   ul {
     list-style-type: none;
-    padding-inline-start: 5px;
+    padding-inline-start: 3px;
     padding-inline-end: 0px;
     padding-top: 50px;
   }

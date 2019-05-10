@@ -23,25 +23,27 @@ ion-button {
 }
 
 ion-card {
-    --background: #633ce0;
-    color: #fff;
-    font-size: 15px;
-    text-align: center;
-  }
+  --background: #633ce0;
+  color: #fff;
+  font-size: 15px;
+  text-align: center;
+}
 .title-md {
-    padding-top: 10px
+  padding-top: 10px
   }
 .sc-ion-buttons-md-h {
-    margin-top: -49px;
+  margin-top: -49px;
 }
 .card {
-    
-    padding-bottom: 9px;
-  
-  }
+  padding-bottom: 9px;
+}
+span {
+  font-family: 'Courier New', Courier, monospace;
+  padding-left: 50%;
+}
 #ion-card-palpite {
     // --background: linear-gradient(#0c9c4573, #0b893d73), url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
-    --background: linear-gradient(#633ce078, #5735c573), url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
+    --background: linear-gradient( rgba(99,60,224,0.5), rgba(99,60,224,0.5)), url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
     color: #fff;
     font-size: 15px;
     text-align: center;
@@ -70,7 +72,8 @@ ion-card {
     color: white;
   }
 #frase {
-    padding-top: 20px;
-    padding-inline-start: 20px;
-    color: black;
+    padding-top: 6px;
+    text-align: center;
+    color: white;
+    font-size: 16px;
   }

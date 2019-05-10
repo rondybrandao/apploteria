@@ -1,21 +1,23 @@
 import { FirebaseService } from './../servicos/firebase.service';
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { ApiService } from '../api.service';
-import { ToastController, NavController, LoadingController } from '@ionic/angular';
+import { ToastController, NavController, LoadingController, ModalController } from '@ionic/angular';
 
 import { Chart } from 'chart.js';
+import { ModalAnalizeQuinaPage } from '../modal-analize-quina/modal-analize-quina.page';
+
 @Component({
   selector: 'app-analize-quina',
   templateUrl: './analize-quina.page.html',
   styleUrls: ['./analize-quina.page.scss'],
 })
 export class AnalizeQuinaPage implements OnInit {
+  
   @ViewChild('chartLineAposta') chartLineAposta;
-  @ViewChild('chartLineUltimasAposta') chartLineUltimasAposta;
-
+  @ViewChild('verificar') verificar;
+  
+  
   lineChartAposta: any;
-  lineChartUltimasAposta: any;
-
   dezenas = []
   apostas = []
   concurso_pontos = []
@@ -120,11 +122,15 @@ export class AnalizeQuinaPage implements OnInit {
     public toastController:ToastController,
     public navCtrl: NavController,
     public firebaseService: FirebaseService,
-    public loadingController: LoadingController
-  )  { }
+    public loadingController: LoadingController,
+    private modalController: ModalController
+  )  { 
+
+  }
 
   ngOnInit() {
   }
+
   voltar(){
     this.navCtrl.navigateBack('verificador');
   }
@@ -136,6 +142,14 @@ export class AnalizeQuinaPage implements OnInit {
     await loading.present();
     this.showLineAposta();
     const { role, data } = await loading.onDidDismiss()
+  }
+
+  async modalPage() {
+    const modal = await this.modalController.create({
+      component: ModalAnalizeQuinaPage,
+      componentProps: {value: this.verificar, dezena: this.dezena}
+    });
+    return await modal.present();
   }
 
   onFilterChange(eve: any){
@@ -162,35 +176,72 @@ export class AnalizeQuinaPage implements OnInit {
     toast.present();
   }
   
-  getDezenasMes2(entrada){
+  getDezenasQuinaMes(entrada){
     this.firebaseService.getDezenasMes2(entrada).then((result:any)=>{
       //console.log(result)
       this.dezena = result
       //console.log(this.dezena[0].dezena)
-      this.dez1 = result[0].total
-      this.dez2 = result[1].total
-      this.dez3 = result[2].total
-      this.dez4 = result[3].total
-      this.dez5 = result[4].total
-      this.dez6 = result[5].total
+      // this.dez1 = result[0].total
+      // this.dez2 = result[1].total
+      // this.dez3 = result[2].total
+      // this.dez4 = result[3].total
+      // this.dez5 = result[4].total
     })
-    this.presentLoading()
   }
-
   verificarDezenas(){
     if (this.entrada_usuario.length == 5){
-      this.getDezenasMes2(this.entrada_usuario);
-      this.apiService.callVerificadorMegasena(this.entrada_usuario)
+      //this.getDezenasQuinaMes(this.entrada_usuario);
+      this.apiService.callVerificadorQuina(this.entrada_usuario)
       .then((result:any[])=>{
-        this.apostas = result;
+        //this.modalPage(result)
+        
+        //this.showLineAposta();
       })
       .catch((error:any)=>{
         console.log('error:',error)
+      });
+    
+    }
+    else {
+      this.presentToastVerificador()
+    }
+  }
+  verificarDezenas2(){
+    
+    if (this.entrada_usuario.length == 5){
+      this.loadingVerificar()
+      this.modalController.create({
+        component: ModalAnalizeQuinaPage,
+        componentProps: {
+          fechamento: this.verificar,
+          dezena: this.dezena 
+        }
+      }).then(modal => {
+        modal.present();
       });
     }
     else {
       this.presentToastVerificador()
     }
+  }
+  async loadingVerificar() {
+    const loading = await this.loadingController.create({
+      message: 'Analizando dezenas',
+      duration: 3000
+    });
+    await loading.present();
+    this.firebaseService.getDezenasMes2(this.entrada_usuario).then((result:any)=>{
+      this.dezena = result
+    })
+
+    this.apiService.callVerificadorQuina(this.entrada_usuario)
+      .then((result:any[])=>{
+        this.verificar = result;
+        //this.modalPage()
+      })
+      .catch((error:any)=>{
+        console.log('error:',error)
+      }); 
   }
 
   showLineAposta(){
@@ -198,7 +249,7 @@ export class AnalizeQuinaPage implements OnInit {
  
       type: 'line',
       data: {
-          labels: ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN'],
+          labels: ['JAN', 'FEV', 'MAR', 'ABR'],
           //labels: this.datas,
           datasets: [{
             backgroundColor: 'rgba(156, 195, 20, 1.0)',
@@ -229,12 +280,6 @@ export class AnalizeQuinaPage implements OnInit {
             data: this.dez5,
             label: this.dezena[4].dezena,
             fill: '-1'
-          }, {
-            backgroundColor: 'rgba(255, 159, 64, 0.2)',
-            
-            data: this.dez6,
-            label: this.dezena[5].dezena,
-            fill: '+2'
           }]
       },
       options: {

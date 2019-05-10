@@ -1,0 +1,68 @@
+
+ion-toolbar {
+  --background:  url('../../assets/lotomania/grafico3.jpg') no-repeat center center / cover;
+  -webkit-background-size: cover;
+  color: white;
+  font-family: fantasy;  
+  
+}
+
+ion-content {
+  --background: url('../../assets/lotomania/dinheiro.jpg') no-repeat center center / cover;
+  --padding-start: 5px;
+  --padding-end: 0px;
+}
+ion-card {
+  --background: white
+  }
+
+.title-md {
+    padding-top: 10px
+  }
+.sc-ion-buttons-md-h {
+    margin-top: -30px;
+  }
+.close-fake {
+    --background: transparent;
+    ion-icon {
+        font-size: 2rem;
+    }
+    margin-top: 0px;
+}
+h5 {
+    color: black;
+    font-family: fantasy;
+    padding-top: 2px;
+    padding-right: 3PX;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    text-align: center
+  }
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+table {
+    width:99%
+  }
+td {
+    text-align: center
+  }
+#table-header {
+    color:cadetblue
+  }
+#sena {
+    color: #0c9c45
+  }
+#quina {
+    color: blue
+  }
+#quadra {
+    color: #f00
+  }
+#frase {
+    padding-top: 15px;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+  }

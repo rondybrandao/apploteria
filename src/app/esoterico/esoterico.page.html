@@ -6,7 +6,8 @@
     <ion-title>
       ATRAÇÃO da SORTE
     </ion-title>
-    <div id="frase">"Siga seus sonhos e ideais e lute enquanto a sorte faz o seu trabalho."</div>
+    <div id="frase">"A IMAGINAÇÃO É TUDO. É A PREVIA DAS ATRAÇÕES FUTURAS DA VIDA"</div>
+    <span>- Albert Einstein</span>
   </ion-toolbar>
 </ion-header>
 
@@ -32,11 +33,11 @@
     </ion-card-header>
 
     <ion-card-content>
-      Segundo a cabala, tradição mística judaica, as 304 805 letras hebraicas da Torá 
-      também contêm significados ocultos sobre Deus e as leis do Universo.
-      O segredo da cabala é relacionar palavras e números da Torá de uma maneira específica.
-      O princípio é que cada uma das 22 letras do alfabeto, do A ao Z, possui um valor numérico.
-      A cabala diz que não existe o acaso, e sim a lei de causa e efeito. Tudo o que acontece na nossa vida fomos nós que criamos de alguma forma
+      Para saber qual é o seu numero Cabalistico digite seu nome no campo abaixo e escolha uma loteria para ter seu numero
+      somado as dezenas geradas para a respectiva loteria.
+      Dessa maneira voce "assinará" seu nome nas dezenas geradas.
+      Voce pode também assinar uma palavra ou uma frase assinar e enviar para o universo.
+      Ex:"PROSPERIDADE", "SORTE", "EU SOU O GANHADOR DA LOTERIA"
     </ion-card-content>
     <form #f="ngForm" novalidade>
       <ion-item>
@@ -109,15 +110,23 @@
                         </tr>
                         <tr>
                           <td id="sena">15 pontos</td>
-                          <td id="sena">{{aposta.quinze}}</td>
+                          <td id="sena">{{aposta[0].quinze}}</td>
                         </tr>
                         <tr>
                           <td id="quina">14 pontos</td>
-                          <td id="quina">{{aposta.quatoze}}</td>
+                          <td id="quina">{{aposta[0].quatoze}}</td>
                         </tr>
                         <tr>
                           <td id="quadra">13 pontos</td>
-                          <td id="quadra">{{aposta.treze}}</td>
+                          <td id="quadra">{{aposta[0].treze}}</td>
+                        </tr>
+                        <tr>
+                          <td id="quadra">12 pontos</td>
+                          <td id="quadra">{{aposta[0].doze}}</td>
+                        </tr>
+                        <tr>
+                          <td id="quadra">11 pontos</td>
+                          <td id="quadra">{{aposta[0].onze}}</td>
                         </tr>
                       </table>
                     </div> 

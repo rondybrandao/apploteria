@@ -15,9 +15,9 @@
     display: inline-block;
     background: cornsilk;
     border: 1px solid #fff;
-    font-size: 13px;
-    height: 17px; 
-    width: 33px; 
+    font-size: 17px;
+    height: 21px;
+    width: 42px; 
     font-weight: bold;
 }
 .title-md {
@@ -74,7 +74,7 @@ ion-header {
 }
 ion-toolbar {
   //--background: linear-gradient(#f843956b, #f956a078), url('../../assets/lotomania/number.jpg') no-repeat center center / cover;
-  --background: linear-gradient(to left, rgba(255,0,204,1), rgba(255,0,204,0.2)), url('../../assets/lotomania/number.jpg') no-repeat center center / cover;
+  --background: linear-gradient(to left, rgba(249,86,160,0.6), rgba(249,86,160,0.6)), url('../../assets/lotomania/number.jpg') no-repeat center center / cover;
   -webkit-background-size: cover;
   color: black;
   font-family: fantasy;
@@ -119,7 +119,16 @@ h5 {
   margin-bottom: 0px;
   text-align: center
 }
-
+#frase {
+  padding-top: 15px;
+  text-align: center;
+  color: white;
+  font-size: 18px;
+}
+span {
+  font-family: 'Courier New', Courier, monospace;
+  
+}
 #aposta {
   padding-left: 3px;
   padding-bottom: 3px;
@@ -132,10 +141,10 @@ h5 {
 
 ul {
     list-style-type: none;
-    padding-inline-start: 75px;
+    padding-inline-start: 55px;
     padding-inline-end: 0px;
     padding-bottom: 0px;
-    padding-top: 25px;
+    padding-top: 10px;
   }
   
   li {
@@ -156,6 +165,7 @@ ul {
     display: block;
     position: relative;
     margin: 0px;
+    margin-left: 10x;
     cursor: pointer;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -183,12 +193,12 @@ ul {
     transform: scale(0);
   }
   
-  label img {
-    height: 100px;
-    width: 100px;
-    transition-duration: 0.2s;
-    transform-origin: 50% 50%;
-  }
+  //label img {
+    //height: 500px;
+    //width: 500px;
+    //transition-duration: 0.2s;
+    //transform-origin: 50% 50%;
+  //}
   
   :checked+label {
     border-color: #ddd;

@@ -17,6 +17,9 @@ export class MegaSenaPage implements OnInit {
 
   ngOnInit() {
   }
+  voltar() {
+    this.router.navigate(['/home']);
+  }
   palpite(){
     this.router.navigate(['/palpite',{megasena:true}]);
   }

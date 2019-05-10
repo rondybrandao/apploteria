@@ -1,4 +1,3 @@
-
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -17,17 +16,23 @@ import { HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
 
 import { ImageModalPageModule } from './image-modal/image-modal.module';
-
+import { ModalAnalizeQuinaPageModule } from './modal-analize-quina/modal-analize-quina.module';
+import { ModalFechamentosPageModule } from './modal-fechamentos/modal-fechamentos.module';
+import { ModalAnalizeLotofacilPageModule } from './modal-analize-lotofacil/modal-analize-lotofacil.module';
+import { ModalFechamentoQuinaPageModule } from './modal-fechamento-quina/modal-fechamento-quina.module';
+import { ModalFechamentosLotofacilPageModule } from './modal-fechamentos-lotofacil/modal-fechamentos-lotofacil.module';
 //firebase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireDatabase, AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 
 
 @NgModule({
   declarations: [AppComponent],
-  entryComponents: [],
+  entryComponents: [
+  
+  ],
   imports: [
     BrowserModule,
     HttpModule,
@@ -37,6 +42,11 @@ import { AngularFireDatabase, AngularFireDatabaseModule } from 'angularfire2/dat
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     ImageModalPageModule,
+    ModalAnalizeQuinaPageModule,
+    ModalFechamentosPageModule,
+    ModalAnalizeLotofacilPageModule,
+    ModalFechamentoQuinaPageModule,
+    ModalFechamentosLotofacilPageModule,
     AngularFireDatabaseModule,
   ],
   providers: [

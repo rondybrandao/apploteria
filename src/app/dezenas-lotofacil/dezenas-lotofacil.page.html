@@ -6,42 +6,79 @@
     <ion-title>
       LOTOFACIL
     </ion-title>
-    <h6>"A perseverança é a mãe da boa sorte."</h6>
+    <div id="frase">"TUDO O QUE SOMOS É RESULTADO DO QUE PENSAMOS" <span>-Buda</span></div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
 
-  <ion-card>
+  <ion-card *ngIf="fechamento_22x8x6">
     <ion-card-header>
       <ion-card-subtitle>LOTOFACIL</ion-card-subtitle>
-      <ion-card-title>Fechamento 22-6</ion-card-title>
+      <ion-card-title>Fechamento 22-8-6</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
       Escolha 22 dezenas e click no botão GERAR COMBINAÇÕES o aplicativo
-      vai gerar 6 apostas fechadas e coferirar se houve premiações naquela aposta.
+      fixará as 8 primeiras dezenas que você selecionou e vai gerar 12 apostas fechadas 
+      e vai conferir se houve premiações naquela aposta.
     </ion-card-content>
   </ion-card>
 
-  <div id="n_sorteio">sorteio Nº 1999</div>
-  <div class="arredondar" value="01">01</div>
-  <div class="arredondar" value="01">02</div>
-  <div class="arredondar" value="01">03</div>
-  <div class="arredondar" value="01">04</div>
-  <div class="arredondar" value="01">05</div>
-  <div class="arredondar" value="01">06</div>
-  <div class="arredondar" value="01">07</div>
-  <div class="arredondar" value="01">08</div>
-  <div class="arredondar" value="01">09</div>
-  <div class="arredondar" value="01">10</div>
-  <div class="arredondar" value="01">11</div>
-  <div class="arredondar" value="01">12</div>
-  <div class="arredondar" value="01">13</div>
-  <div class="arredondar" value="01">14</div>
-  <div class="arredondar" value="01">15</div>
-  <br>
+  <ion-card *ngIf="fechamento_18x6">
+    <ion-card-header>
+      <ion-card-subtitle>LOTOFACIL</ion-card-subtitle>
+      <ion-card-title>Fechamento 18-6</ion-card-title>
+    </ion-card-header>
 
+    <ion-card-content>
+      Escolha 18 dezenas e click no botão GERAR COMBINAÇÕES o aplicativo
+      vai gerar 6 apostas fechadas e vai conferir se houve premiações naquela aposta.
+      Acertando 15 dezenas você garantirá 13 pontos
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="fechamento_20x4">
+    <ion-card-header>
+      <ion-card-subtitle>LOTOFACIL</ion-card-subtitle>
+      <ion-card-title>Fechamento 20-4</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      Escolha 20 dezenas e click no botão GERAR COMBINAÇÕES o aplicativo
+      vai gerar 4 apostas fechadas e vai conferir se houve premiações naquela aposta.
+      Acertando 15 dezenas você garantirá 12 pontos
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="fechamento_21x5">
+    <ion-card-header>
+      <ion-card-subtitle>LOTOFACIL</ion-card-subtitle>
+      <ion-card-title>Fechamento 21-5</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      Escolha 21 dezenas e click no botão GERAR COMBINAÇÕES o aplicativo
+      vai gerar 5 apostas fechadas e vai conferir se houve premiações naquela aposta.
+      Acertando 15 dezenas você garantirá 12 pontos
+    </ion-card-content>
+  </ion-card>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <div id="n_sorteio">sorteio Nº {{sorteio_corrente}}</div>
+        <div id="palpite">
+          <div *ngFor="let dezenas of dezenas_corrente">
+            <div class="arredondar">{{dezenas}}</div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <br>
+  <br>
+  <br>
   <ion-grid>
     <ion-row>
       <ion-col size="12">
@@ -54,6 +91,8 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <br>
+  <br>
   <br>
   <ul>
     <li><input type="checkbox" id="cb1" value="1" [checked]="form[0].checked" [ngModel]="form[0].checked"  (ngModelChange)="onFilterChange(form[0])" />
@@ -162,23 +201,23 @@
                   </tr>
                   <tr>
                     <td id="sena">15 pontos</td>
-                    <td id="sena">{{aposta.sena}}</td>
+                    <td id="sena">{{aposta.quinze}}</td>
                   </tr>
                   <tr>
                     <td id="quina">14 pontos</td>
-                    <td id="quina">{{aposta.quina}}</td>
+                    <td id="quina">{{aposta.quatoze}}</td>
                   </tr>
                   <tr>
                     <td id="quadra">13 pontos</td>
-                    <td id="quadra">{{aposta.quadra}}</td>
+                    <td id="quadra">{{aposta.treze}}</td>
                   </tr>
                   <tr>
                     <td id="quadra">12 pontos</td>
-                    <td id="quadra">{{aposta.quadra}}</td>
+                    <td id="quadra">{{aposta.doze}}</td>
                   </tr>
                   <tr>
                     <td id="quadra">11 pontos</td>
-                    <td id="quadra">{{aposta.quadra}}</td>
+                    <td id="quadra">{{aposta.onze}}</td>
                   </tr>
                 </table>
               </div> 

@@ -15,10 +15,21 @@
     display: inline-block;
     background: cornsilk;
     border: 1px solid #fff;
-    font-size: 12px;
-    height: 16px; 
-    width: 31px; 
+    font-size: 15px;
+    height: 20px; 
+    width: 38px; 
     font-weight: bold;
+}
+.title-md {
+  padding-top: 10px
+}
+.sc-ion-buttons-md-h {
+  margin-top: -30px;
+}
+#frase {
+padding-top: 15px;
+text-align: center;
+color: white;
 }
 
 #table-header {
@@ -57,7 +68,7 @@ ion-header {
     height: 100px;
 }
 ion-toolbar {
-  --background: linear-gradient(#f843956b, #f956a078), url('../../assets/lotomania/grafico3.jpg') no-repeat center center / cover;
+  --background: linear-gradient(to left, rgba(255,0,204,1), rgba(255,0,204,0.2)), url('../../assets/lotomania/number.jpg') no-repeat center center / cover;
   -webkit-background-size: cover;
   color: white;
   font-family: fantasy;  
@@ -103,13 +114,14 @@ h5 {
 }
 ul {
     list-style-type: none;
-    padding-inline-start: 85px;
+    padding-inline-start: 65px;
     padding-inline-end: 0px;
     padding-bottom: 0px;
   }
   
   li {
     display: inline-block;
+    padding: 1px
   }
   
   input[type="checkbox"][id^="cb"] {

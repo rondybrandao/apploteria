@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -50,7 +51,7 @@ export class ApiService {
             dezenas:dezenas
         };
         console.log('data:',data)
-        this.httpCliente.post(this.API_URL_18x3x9, data, httpOptions)
+        this.httpCliente.post(this.AWS_URL + 'megasena-18-3-9', data, httpOptions)
             .subscribe((result:any[])=>{
                 console.log('post:',result)
                 resolve(result)
@@ -69,7 +70,7 @@ export class ApiService {
             dezenas:dezenas
         };
         console.log('data:',data)
-        this.httpCliente.post(this.URL + 'megasena-9-12', data, httpOptions)
+        this.httpCliente.post(this.AWS_URL + 'megasena-9-12', data, httpOptions)
             .subscribe((result:any[])=>{
                 console.log('post:',result)
                 resolve(result)
@@ -87,7 +88,7 @@ export class ApiService {
             dezenas:dezenas
         };
         console.log('data:',data)
-        this.httpCliente.post(this.URL + 'megasena-8-7', data, httpOptions)
+        this.httpCliente.post(this.AWS_URL + 'megasena-8-7', data, httpOptions)
             .subscribe((result:any[])=>{
                 console.log('post:',result)
                 resolve(result)
@@ -105,7 +106,7 @@ export class ApiService {
             dezenas:dezenas
         };
         console.log('data:',data)
-        this.httpCliente.post(this.URL + 'megasena-10-3', data, httpOptions)
+        this.httpCliente.post(this.AWS_URL + 'megasena-10-3', data, httpOptions)
             .subscribe((result:any[])=>{
                 console.log('post:',result)
                 resolve(result)
@@ -116,6 +117,18 @@ export class ApiService {
             });
     });
   }
+  callFechamento10x3_2(dezenas:any){
+    let data = {
+        dezenas:dezenas
+    }
+    const fechamentoObservable = new Observable(observer => {
+        this.httpCliente.post(this.AWS_URL + 'megasena-10-3', data, httpOptions)
+            .subscribe((result:any[])=>{
+                observer.next(result)
+            })
+    })
+    return fechamentoObservable;
+  }
 
   callFechamento12x3x17(dezenas:any){
     console.log('dezenas:',dezenas)
@@ -124,7 +137,7 @@ export class ApiService {
             dezenas:dezenas
         };
         console.log('data:',data)
-        this.httpCliente.post(this.URL + 'megasena-12-3-17', data, httpOptions)
+        this.httpCliente.post(this.AWS_URL + 'megasena-12-3-17', data, httpOptions)
             .subscribe((result:any[])=>{
                 console.log('post:',result)
                 resolve(result)
@@ -143,7 +156,7 @@ export class ApiService {
             dezenas:dezenas
         };
         console.log('data:',data)
-        this.httpCliente.post(this.API_URL_lotofacil_22x8x6, data, httpOptions)
+        this.httpCliente.post(this.AWS_URL + 'lotofacil-22-8-12', data, httpOptions)
             .subscribe((result:any[])=>{
                 console.log('post:',result)
                 resolve(result)
@@ -155,24 +168,38 @@ export class ApiService {
     });
   }
 
+//   callServiceLotofacil_18x6(dezenas:any){
+//     console.log('dezenas:',dezenas)
+//     return new Promise((resolve, reject)=>{
+//         let data = {
+//             dezenas:dezenas
+//         };
+//         console.log('data:',data)
+//         this.httpCliente.post(this.AWS_URL + 'lotofacil-18-6', data, httpOptions)
+//             .subscribe((result:any[])=>{
+//                 console.log('post:',result)
+//                 resolve(result)
+//             },
+//             (error) => {
+//                 console.log('error:',error)
+//                 reject(error)
+//             });
+//     });
+//   }
+
   callServiceLotofacil_18x6(dezenas:any){
-    console.log('dezenas:',dezenas)
-    return new Promise((resolve, reject)=>{
-        let data = {
-            dezenas:dezenas
-        };
-        console.log('data:',data)
-        this.httpCliente.post(this.URL + 'lotofacil-18-6', data, httpOptions)
+    let data = {
+        dezenas:dezenas
+    }
+    const fechamentoObservable = new Observable(observer => {
+        this.httpCliente.post(this.AWS_URL + 'lotofacil-18-6', data, httpOptions)
             .subscribe((result:any[])=>{
-                console.log('post:',result)
-                resolve(result)
-            },
-            (error) => {
-                console.log('error:',error)
-                reject(error)
-            });
-    });
+                observer.next(result)
+            })
+    })
+    return fechamentoObservable;
   }
+
   callServiceLotofacil_20x4(dezenas:any){
     console.log('dezenas:',dezenas)
     return new Promise((resolve, reject)=>{
@@ -180,7 +207,7 @@ export class ApiService {
             dezenas:dezenas
         };
         console.log('data:',data)
-        this.httpCliente.post(this.URL + 'lotofacil-20-4', data, httpOptions)
+        this.httpCliente.post(this.AWS_URL + 'lotofacil-20-4', data, httpOptions)
             .subscribe((result:any[])=>{
                 console.log('post:',result)
                 resolve(result)
@@ -198,7 +225,7 @@ export class ApiService {
             dezenas:dezenas
         };
         console.log('data:',data)
-        this.httpCliente.post(this.URL + 'lotofacil-21-5', data, httpOptions)
+        this.httpCliente.post(this.AWS_URL + 'lotofacil-21-5', data, httpOptions)
             .subscribe((result:any[])=>{
                 console.log('post:',result)
                 resolve(result)
@@ -217,7 +244,7 @@ export class ApiService {
             dezenas:dezenas
         };
         console.log('data:',data)
-        this.httpCliente.post(this.API_URL_qui_18x12x5x6, data, httpOptions)
+        this.httpCliente.post(this.AWS_URL + 'lotofacil-18-12-5-6', data, httpOptions)
             .subscribe((result:any[])=>{
                 console.log('post:',result)
                 resolve(result)
@@ -236,7 +263,7 @@ export class ApiService {
             dezenas:dezenas
         };
         console.log('data:',data)
-        this.httpCliente.post(this.API_URL_qui_10x19, data, httpOptions)
+        this.httpCliente.post(this.AWS_URL + 'quina-10-19', data, httpOptions)
             .subscribe((result:any[])=>{
                 console.log('post:',result)
                 resolve(result)
@@ -247,24 +274,41 @@ export class ApiService {
             });
     });
   }
+//   callServiceQuina_8x8(dezenas:any){
+//     console.log('dezenas:',dezenas)
+//     return new Promise((resolve, reject)=>{
+//         let data = {
+//             dezenas:dezenas
+//         };
+//         console.log('data:',data)
+//         this.httpCliente.post(this.AWS_URL + 'quina-8-8', data, httpOptions)
+//             .subscribe((result:any[])=>{
+//                 console.log('post:',result)
+//                 resolve(result)
+//             },
+//             (error) => {
+//                 console.log('error:',error)
+//                 reject(error)
+//             });
+//     });
+//   }
+
+
+
   callServiceQuina_8x8(dezenas:any){
-    console.log('dezenas:',dezenas)
-    return new Promise((resolve, reject)=>{
-        let data = {
-            dezenas:dezenas
-        };
-        console.log('data:',data)
-        this.httpCliente.post(this.URL + 'quina-8-8', data, httpOptions)
+    let data = {
+        dezenas:dezenas
+    }
+    const fechamentoObservable = new Observable(observer => {
+        this.httpCliente.post(this.AWS_URL + 'quina-8-8', data, httpOptions)
             .subscribe((result:any[])=>{
-                console.log('post:',result)
-                resolve(result)
-            },
-            (error) => {
-                console.log('error:',error)
-                reject(error)
-            });
-    });
+                observer.next(result)
+            })
+    })
+    return fechamentoObservable;
   }
+
+
   callServiceQuina_10x2(dezenas:any){
     console.log('dezenas:',dezenas)
     return new Promise((resolve, reject)=>{
@@ -272,7 +316,7 @@ export class ApiService {
             dezenas:dezenas
         };
         console.log('data:',data)
-        this.httpCliente.post(this.URL +  'quina-10-2', data, httpOptions)
+        this.httpCliente.post(this.AWS_URL +  'quina-10-2', data, httpOptions)
             .subscribe((result:any[])=>{
                 console.log('post:',result)
                 resolve(result)
@@ -291,7 +335,7 @@ export class ApiService {
             dezenas:dezenas
         };
         console.log('data:',data)
-        this.httpCliente.post(this.URL + 'lotomania-100-6', data, httpOptions)
+        this.httpCliente.post(this.AWS_URL + 'lotomania-100-6', data, httpOptions)
             .subscribe((result:any[])=>{
                 console.log('post:',result)
                 resolve(result)
@@ -310,7 +354,7 @@ export class ApiService {
             dezenas:dezenas
         };
         console.log('data:',data)
-        this.httpCliente.post(this.URL + 'lotomania-90-10-6', data, httpOptions)
+        this.httpCliente.post(this.AWS_URL + 'lotomania-90-10-6', data, httpOptions)
             .subscribe((result:any[])=>{
                 console.log('post:',result)
                 resolve(result)
@@ -368,7 +412,7 @@ export class ApiService {
             dezenas:dezenas
         };
         console.log('data:',data)
-        this.httpCliente.post(this.AWS_URL + 'quina', data, httpOptions)
+        this.httpCliente.post(this.AWS_URL + 'verificarquina', data, httpOptions)
             .subscribe((result:any[])=>{
                 console.log('quina verificador:',result)
                 resolve(result)

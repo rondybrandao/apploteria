@@ -1,10 +1,9 @@
-import { element } from 'protractor';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { map } from 'rxjs/operators';
-import * as firebase from 'Firebase';
-import { resolve } from 'url';
-import { promises } from 'fs';
+//import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
+
 
 @Injectable({
   providedIn: 'root'
@@ -44,13 +43,34 @@ export class FirebaseService {
     let r = []
     return new Promise<any>((resolve, reject)=>{
       let mega = this.db.list('megasena/');
-      //console.log(mega)
+      console.log(mega)
       mega.valueChanges().subscribe(res => {
-        let re = res[0];
+        console.log(res[0])
+        let re = res[1];
         entrada.forEach(element => {
-          //console.log(element);
+          console.log(element);
           let d = toInt(re[element]);
-          let e
+          r.push({dezena:element, total:d})
+          console.log(r);
+          result.push(r)
+        });
+      resolve(r)
+      })
+    })
+  }
+  getDezenasQuinaMes(entrada: any) {
+    console.log(entrada)
+    let result = []
+    let r = []
+    return new Promise<any>((resolve, reject)=>{
+      let mega = this.db.list('quina/');
+      console.log(mega)
+      mega.valueChanges().subscribe(res => {
+        console.log(res[0])
+        let re = res[1];
+        entrada.forEach(element => {
+          console.log(element);
+          let d = toInt(re[element]);
           r.push({dezena:element, total:d})
           console.log(r);
           result.push(r)
@@ -96,6 +116,25 @@ getDezenasCorrente() {
     })
   })
 }
+
+getSorteioCorrenteLoteria(loteria) {
+  return new Promise<any>((resolve, reject)=>{
+    firebase.database().ref(loteria + '/sorteio-corrente/').on('value', resp => {
+      let res = snapshotToDezena(resp);
+      console.log(res)
+      resolve(res)
+    })
+  })
+}
+getDezenasCorrenteLoteria(loteria) {
+  return new Promise<any>((resolve, reject)=>{
+    firebase.database().ref(loteria + '/dezenas-corrente/').on('value', resp =>{
+      let res = toIntDezenasCorrente(resp)
+      console.log(res)
+      resolve(res)
+    })
+  })
+}
   
 }
 export const snapshotToObject = snapshot => {
@@ -109,9 +148,9 @@ export const snapshotToDezena = snapshot => {
   return item;
 }
 export const toInt = snapshot => {
-  //console.log(snapshot)
+  console.log(snapshot);
   let item = snapshot.split(",")
-  let res = []
+  let res = [];
   item.forEach(element => {
     res.push(parseInt(element))
   });

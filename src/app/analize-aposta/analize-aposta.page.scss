@@ -16,9 +16,9 @@
     display: inline-block;
     background: cornsilk;
     border: 1px solid #fff;
-    font-size: 12px;
-    height: 16px; 
-    width: 31px; 
+    font-size: 13px;
+    height: 17px; 
+    width: 33px; 
     font-weight: bold;
 }
 
@@ -78,6 +78,8 @@ ion-toolbar {
 
 ion-content {
   --background: url('../../assets/lotomania/dinheiro.jpg') no-repeat center center / cover;
+  --padding-start: 5px;
+  --padding-end: 0px;
 }
 
 ion-note {
@@ -120,7 +122,7 @@ progress-bar {
   padding-top: 10px
 }
 .sc-ion-buttons-md-h {
-  margin-top: -49px;
+  margin-top: -30px;
 }
 h5 {
   color: black;
@@ -132,9 +134,10 @@ h5 {
 }
 
 #frase {
-  padding-top: 20px;
-  padding-inline-start: 20px;
-  color: black;
+  padding-top: 15px;
+  text-align: center;
+  color: white;
+  font-size: 20px;
 }
 #aposta {
   padding-left: 3px;
@@ -147,38 +150,37 @@ h5 {
 }
 ul {
     list-style-type: none;
-    padding-inline-start: 10px;
+    padding-inline-start: 0px;
     padding-inline-end: 0px;
-    position: unset;
+  
   }
   
-  li {
-    display: inline-block;
-  }
+li {
+  display: inline-block;
+  padding: 1px
+}
   
-  input[type="checkbox"][id^="cb"] {
-    display: none;
-  }
+input[type="checkbox"][id^="cb"] {
+  display: none;
+}
   
-  ion-checkbox[id^="cb"] {
-    display: none;
-  }
-  
-  label {
-    border: 0px solid #fff;
-    padding: 0px;
-    display: block;
-    position: relative;
-    margin: 0px;
-    cursor: pointer;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-  
+ion-checkbox[id^="cb"] {
+  display: none;
+}  
+label {
+  border: 0px solid #fff;
+  padding: 0px;
+  display: block;
+  position: relative;
+  margin: 0px;
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}  
   label::before {
     background-color: white;
     color: white;

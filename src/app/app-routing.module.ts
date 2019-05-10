@@ -34,7 +34,12 @@ const routes: Routes = [
   { path: 'image-modal', loadChildren: './image-modal/image-modal.module#ImageModalPageModule' },
   { path: 'palpite-quina', loadChildren: './palpite-quina/palpite-quina.module#PalpiteQuinaPageModule' },
   { path: 'palpite-lotofacil', loadChildren: './palpite-lotofacil/palpite-lotofacil.module#PalpiteLotofacilPageModule' },
-  { path: 'analize-quina', loadChildren: './analize-quina/analize-quina.module#AnalizeQuinaPageModule' }
+  { path: 'analize-quina', loadChildren: './analize-quina/analize-quina.module#AnalizeQuinaPageModule' },
+  { path: 'modal-analize-quina', loadChildren: './modal-analize-quina/modal-analize-quina.module#ModalAnalizeQuinaPageModule' },
+  { path: 'modal-fechamentos', loadChildren: './modal-fechamentos/modal-fechamentos.module#ModalFechamentosPageModule' },
+  { path: 'modal-fechamentos-lotofacil', loadChildren: './modal-fechamentos-lotofacil/modal-fechamentos-lotofacil.module#ModalFechamentosLotofacilPageModule' },
+  { path: 'modal-analize-lotofacil', loadChildren: './modal-analize-lotofacil/modal-analize-lotofacil.module#ModalAnalizeLotofacilPageModule' },
+  { path: 'modal-fechamento-quina', loadChildren: './modal-fechamento-quina/modal-fechamento-quina.module#ModalFechamentoQuinaPageModule' }
 ];
 
 @NgModule({

@@ -38,7 +38,7 @@
     height: 100px;
   }
   ion-toolbar {
-    --background: linear-gradient(#633ce078, #5735c573), url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
+    --background: linear-gradient(to left, rgba(99,60,224,1), rgba(99,60,224,0.5)), url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
     -webkit-background-size: cover;
     color: white;
     font-family: fantasy;  
@@ -92,12 +92,12 @@
     padding-top: 10px
   }
   .sc-ion-buttons-md-h {
-    margin-top: -49px;
+    margin-top: -25px;
   }
   #frase {
-    padding-top: 20px;
-    padding-inline-start: 20px;
-    color: black;
+    padding-top: 15px;
+    text-align: center;
+    color: white;
   }
 
   h5 {

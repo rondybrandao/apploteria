@@ -1,7 +1,7 @@
 ion-toolbar {
     --background: url('../../assets/lotomania/cabala.jpg') no-repeat center center / cover;
     -webkit-background-size: cover;
-    color: white;
+    color: black;
     font-family: fantasy;  
   }
   
@@ -21,12 +21,15 @@ ion-card {
   --background: white;
   color: black
 }
-
+span {
+  padding-inline-start: 145px;
+  font-family: 'Courier New', Courier, monospace;
+}
 .title-md {
   padding-top: 10px
 }
 .sc-ion-buttons-md-h {
-  margin-top: -49px;
+  margin-top: -65px;
 }
 
 #table-header {
@@ -64,7 +67,7 @@ td {
 
 #frase {
   padding-top: 20px;
-  padding-inline-start: 20px;
+  text-align: center;
   color: black;
 }
 

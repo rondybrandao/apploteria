@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>modal-analize-lotofacil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <h5>{{fechamentos['0'].num_usuario}}</h5>
+  <ion-card class="contador">
+            <div id="aposta">
+              <div id="aposta-label">
+                <table>
+                  <tr>
+                    <th id="table-header">Premio</th>
+                    <th id="table-header">Quantidade</th>
+                  </tr>
+                  <tr>
+                    <td id="sena">15 pontos</td>
+                    <td id="sena">{{fechamentos['0'].quinze}}</td>
+                  </tr>
+                  <tr>
+                    <td id="quina">14 pontos</td>
+                    <td id="quina">{{fechamentos['0'].quatoze}}</td>
+                  </tr>
+                  <tr>
+                    <td id="quadra">13 pontos</td>
+                    <td id="quadra">{{fechamentos['0'].treze}}</td>
+                  </tr>
+                  <tr>
+                    <td id="quadra">12 pontos</td>
+                    <td id="quadra">{{fechamentos['0'].doze}}</td>
+                  </tr>
+                  <tr>
+                    <td id="quadra">11 pontos</td>
+                    <td id="quadra">{{fechamentos['0'].onze}}</td>
+                  </tr>
+                </table>
+              </div> 
+            </div>
+          </ion-card>
+          <br>
+
+</ion-content>

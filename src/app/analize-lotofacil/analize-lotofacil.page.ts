@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../api.service';
-import { ToastController, NavController } from '@ionic/angular';
-import { ActivatedRoute } from '@angular/router';
+import { ToastController, NavController, LoadingController, ModalController } from '@ionic/angular';
+import { Chart } from 'chart.js';
+import { ModalAnalizeLotofacilPage } from '../modal-analize-lotofacil/modal-analize-lotofacil.page';
 
 @Component({
   selector: 'app-analize-lotofacil',
@@ -9,7 +10,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./analize-lotofacil.page.scss'],
 })
 export class AnalizeLotofacilPage implements OnInit {
-
+  @ViewChild('chartLineAposta') chartLineAposta;
+  
+  lineChartAposta: any;
   entrada_usuario =[]
   apostas = []
   concurso_pontos = []
@@ -43,7 +46,9 @@ export class AnalizeLotofacilPage implements OnInit {
   constructor(
     public apiService: ApiService,
     public toastController:ToastController,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    public loadingController: LoadingController,
+    private modalController: ModalController
     
   ) { }
 
@@ -85,9 +90,43 @@ export class AnalizeLotofacilPage implements OnInit {
       this.presentToastVerificador()
     }
   }
+  modalPage(result) {
+    console.log('result:', result)
+    this.modalController.create({
+      component: ModalAnalizeLotofacilPage,
+      componentProps: {
+        fechamentos: result,
+      }
+    }).then(modal => {
+      modal.present();
+    })
+    .catch((error:any)=>{
+      console.log('error:', error)
+    })
+  }
+  verificarDezenas2(){
+    if (this.entrada_usuario.length == 15){
+      this.loadingController.create({
+        message: 'Analizando Fechamentos',
+        duration: 3000
+      }).then(modal => {
+        modal.present()
+        this.apiService.callVerificadorLotofacil(this.entrada_usuario)
+          .then((result:any[])=>{
+            this.modalPage(result);
+            console.log('VerificarDezenas2:',result)
+          })
+          .catch((error:any)=>{
+            console.log('error:',error)
+        });
+      })
+    }
+    else {
+      this.presentToastVerificador()
+    }
+  }
   voltar() {
     this.navCtrl.navigateBack('verificador')
   }
-
 
 }

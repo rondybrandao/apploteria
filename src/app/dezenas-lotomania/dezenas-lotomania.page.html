@@ -1,17 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button  defaultHref="lotomania"></ion-back-button>
+    <ion-buttons slot="start" (click)="voltar()">
+      <ion-icon size="large" name="arrow-back"></ion-icon>
     </ion-buttons>
     <ion-title>
       LOTOMANIA
     </ion-title>
-    <div id="frase">"Siga seus sonhos e ideais e lute enquanto a sorte faz o seu trabalho."</div>
+    <div id="frase">"NADA É, A MENOS QUE NOSSO PENSAMENTO O FAÇA" <span>-Shakespeare</span></div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-card>
+  <ion-card *ngIf="fechamento_100x6">
     <ion-card-header>
       <ion-card-subtitle>LOTOMANIA</ion-card-subtitle>
       <ion-card-title>Fechamento 100-6</ion-card-title>
@@ -23,33 +23,37 @@
     </ion-card-content>
   </ion-card>
 
-  <div id="n_sorteio">sorteio Nº 1999</div>
-  <div id="arr">
-    <div class="arredondar" value="01">01</div>
-    <div class="arredondar" value="01">02</div>
-    <div class="arredondar" value="01">03</div>
-    <div class="arredondar" value="01">04</div>
-    <div class="arredondar" value="01">05</div>
+  <ion-card *ngIf="fechamento_90x10x6">
+    <ion-card-header>
+      <ion-card-subtitle>LOTOMANIA</ion-card-subtitle>
+      <ion-card-title>Fechamento 90-10-6</ion-card-title>
+    </ion-card-header>
 
-    <div class="arredondar" value="01">06</div>
-    <div class="arredondar" value="01">07</div>
-    <div class="arredondar" value="01">08</div>
-    <div class="arredondar" value="01">09</div>
-    <div class="arredondar" value="01">10</div>
+    <ion-card-content>
+      Escolha 90 dezenas e click no botão GERAR COMBINAÇÕES o aplicativo
+      vai gerar 6 apostas fechadas e coferirar se houve premiações naquela aposta.
+      Acertando 20 dezenas garantia de 20 pontos.
+    </ion-card-content>
+  </ion-card>
 
-    <div class="arredondar" value="01">11</div>
-    <div class="arredondar" value="01">12</div>
-    <div class="arredondar" value="01">13</div>
-    <div class="arredondar" value="01">14</div>
-    <div class="arredondar" value="01">15</div>
-
-    <div class="arredondar" value="01">16</div>
-    <div class="arredondar" value="01">17</div>
-    <div class="arredondar" value="01">18</div>
-    <div class="arredondar" value="01">19</div>
-    <div class="arredondar" value="01">20</div>
-  </div>
-
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <div id="n_sorteio">sorteio Nº {{sorteio_corrente}}</div>
+        <div id="palpite">
+          <div *ngFor="let dezenas of dezenas_corrente">
+            <div class="arredondar">{{dezenas}}</div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
   <ion-grid *ngIf="fechamento_90x10x6">
     <ion-row>
     <ion-col size="4">

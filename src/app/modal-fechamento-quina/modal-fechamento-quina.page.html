@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="close()">
+      <ion-icon size="large" name="arrow-back"></ion-icon>
+    </ion-buttons>
+    <ion-title>
+      FECHAMENTOS QUINA
+    </ion-title>
+    <div id="frase">"O MELHOR AMULETO DA SORTE É A FÉ"</div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+   <ion-card class="contador"  *ngFor="let aposta of apostas; index as i">
+            <div id="aposta">
+              <div id="aposta-label">
+                aposta <q></q>:
+                <h5>{{aposta.num_usuario}}</h5>
+                <table>
+                  <tr>
+                    <th id="table-header">Premio</th>
+                    <th id="table-header">Quantidade</th>
+                  </tr>
+                  <tr>
+                    <td id="sena">Quina</td>
+                    <td id="sena">{{aposta.quina}}</td>
+                  </tr>
+                  <tr>
+                    <td id="quina">Quadra</td>
+                    <td id="quina">{{aposta.quadra}}</td>
+                  </tr>
+                  <tr>
+                    <td id="quadra">Terno</td>
+                    <td id="quadra">{{aposta.terno}}</td>
+                  </tr>
+                </table>
+              </div> 
+        
+            </div>
+          </ion-card>
+
+</ion-content>

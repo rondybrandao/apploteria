@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { ToastController, NavController } from '@ionic/angular';
+import { ToastController, NavController, ModalController, LoadingController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
+import { FirebaseService } from '../servicos/firebase.service';
+import { ModalFechamentoQuinaPage } from '../modal-fechamento-quina/modal-fechamento-quina.page';
 
 @Component({
   selector: 'app-dezenas-quina',
@@ -16,16 +18,8 @@ export class DezenasQuinaPage implements OnInit {
   fechamento_8x8
   fechamento_10x2
   verificador
-
-  mock = [['01','02','03','04','05','06'],
-  ['01','02','03','04','05','06'],
-  ['01','02','03','04','05','06'],
-  ['01','02','03','04','05','06'],
-  ['01','02','03','04','05','06'],
-  ['01','02','03','04','05','06'],
-  ['01','02','03','04','05','06'],
-  ['01','02','03','04','05','06'],
-  ['01','02','03','04','05','06']]
+  sorteio_corrente
+  dezenas_corrente
 
   public form = [
     { id: 0, val: '01', checked: false },
@@ -116,13 +110,19 @@ export class DezenasQuinaPage implements OnInit {
     public toastController:ToastController,
     private route: ActivatedRoute,
     public navCtrl: NavController,
+    public firebaseService: FirebaseService,
+    private modalController: ModalController,
+    public loadingController: LoadingController,
   ) {
     this.fechamento_18x12x5x6 = this.route.snapshot.paramMap.get('fechamento_18x12x5x6');
     this.fechamento_10x19 = this.route.snapshot.paramMap.get('fechamento_10x19');
     this.fechamento_8x8 = this.route.snapshot.paramMap.get('fechamento_8x8');
     this.fechamento_10x2 = this.route.snapshot.paramMap.get('fechamento_10x2');
     this.verificador = this.route.snapshot.paramMap.get('verificador')
-   }
+    
+    this.callServiceSorteioCorrente()
+    this.callServiceDezenasCorrente()
+  }
 
   ngOnInit() {
   }
@@ -160,6 +160,24 @@ export class DezenasQuinaPage implements OnInit {
     });
     toast.present();
   }
+  callServiceSorteioCorrente() {
+    this.firebaseService.getSorteioCorrenteLoteria('quina')
+      .then((result:any)=>{
+        this.sorteio_corrente = result
+      })
+      .catch((error:any)=>{
+        console.log('error:', error)
+      })  
+  }
+  callServiceDezenasCorrente() {
+    this.firebaseService.getDezenasCorrenteLoteria('quina')
+      .then((result:any) =>{
+        this.dezenas_corrente = result
+      })
+      .catch((error:any)=>{
+        console.log('error:', error)
+      })
+  }
   verificarDezenas(){
     if (this.entrada_usuario.length == 5){
       this.apiService.callVerificadorQuina(this.entrada_usuario)
@@ -174,6 +192,7 @@ export class DezenasQuinaPage implements OnInit {
       this.presentToastVerificador()
     }
   }
+  
   callServiceQuina_18x12x5x6(){
     if (this.entrada_usuario.length == 18){
       this.apiService.callServiceQuina_18x12x5x6(this.entrada_usuario)
@@ -201,31 +220,59 @@ export class DezenasQuinaPage implements OnInit {
       this.presentToast()
     }
   }
+  // callServiceQuina_8x8(){
+  //   if (this.entrada_usuario.length == 8){
+  //     this.apiService.callServiceQuina_8x8(this.entrada_usuario)
+  //       .then((result:any) => {
+  //         this.apostas = result
+  //       })
+  //       .catch((error:any) => {
+  //         console.log('error', error)
+  //       });
+  //   } else {
+  //     this.presentToast()
+  //   }
+  // }
+
+
   callServiceQuina_8x8(){
     if (this.entrada_usuario.length == 8){
       this.apiService.callServiceQuina_8x8(this.entrada_usuario)
-        .then((result:any) => {
-          this.apostas = result
+        .subscribe((result:any) => {
+          this.apostas = result;
+          this.modalFechamento()
         })
-        .catch((error:any) => {
-          console.log('error', error)
-        });
-    } else {
-      this.presentToast()
-    }
-  }
-  callServiceQuina_10x2(){
-    if (this.entrada_usuario.length == 10){
-      this.apiService.callServiceQuina_10x2(this.entrada_usuario)
-        .then((result:any) => {
-          this.apostas = result
-        })
-        .catch((error:any) => {
-          console.log('error', error)
-        });
     } else {
       this.presentToast()
     }
   }
 
+  callServiceQuina_10x2(){
+    if (this.entrada_usuario.length == 10){
+      this.loadingFechamento()
+    } else {
+      this.presentToast()
+    }
+  }
+  async loadingFechamento() {
+    const loading = await this.loadingController.create({
+      message: 'Analizando fechamentos',
+      duration: 3000
+    });
+    await loading.present();
+    const fechamento = this.apiService.callServiceQuina_10x2(this.entrada_usuario)
+      .then((result:any[])=>{
+        this.apostas = result
+        this.modalFechamento();
+      })
+  }
+  async modalFechamento() {
+    const modal = await this.modalController.create({
+      component: ModalFechamentoQuinaPage,
+      componentProps: {
+        apostas: this.apostas
+      }
+    })
+    await modal.present()
+  }
 }

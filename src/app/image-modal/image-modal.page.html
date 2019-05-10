@@ -1,19 +1,11 @@
-<ion-header>
-  <ion-toolbar>
-      <ion-buttons slot="start" (click)="close()">
-        <ion-icon name="arrow-back"></ion-icon>
-      </ion-buttons>
-    <ion-title>Quadro de Vizualização</ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content fullscreen>
-  <!--<ion-item class="close-fake" lines="none" text-center>
+  <ion-item class="close-fake" lines="none" text-center>
     <ion-button (click)="close()" fill="clear" color="light">
       <ion-icon name="close" slot="start"></ion-icon>
-      Back
+      Fechar
     </ion-button>
-
+  <!--
     <ion-button (click)="zoom(true)" fill="clear" color="light">
       <ion-icon name="add" slot="start"></ion-icon>
       aumentar
@@ -23,7 +15,9 @@
       <ion-icon name="remove" slot="start"></ion-icon>
       diminuir
     </ion-button>
-  </ion-item>-->
+    -->
+  </ion-item>
+  
   <ion-slides [options]="sliderOpts" #slider>
     <ion-slide>
       <div class="swiper-zoom-container">

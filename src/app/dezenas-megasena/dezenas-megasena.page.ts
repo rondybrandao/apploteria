@@ -1,7 +1,8 @@
+import { ModalFechamentosPage } from './../modal-fechamentos/modal-fechamentos.page';
 import { ApiService } from './../api.service';
 import { FirebaseService } from './../servicos/firebase.service'
 import { Component, OnInit } from '@angular/core';
-import { ToastController, NavController } from '@ionic/angular';
+import { ToastController, NavController, LoadingController, ModalController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 
 import { Observable, interval } from 'rxjs';
@@ -34,7 +35,7 @@ export class DezenasMegasenaPage implements OnInit {
   fechamento10x3
   verificador
   concurso_pontos = []
-
+  chamada
   message$: Observable<string>;
 
   public form = [
@@ -105,8 +106,11 @@ export class DezenasMegasenaPage implements OnInit {
     public firebaseService: FirebaseService,
     public apiService: ApiService,
     public toastController:ToastController,
+    public loadingController: LoadingController,
     private route: ActivatedRoute,
-    public navCtrl: NavController,) {
+    public navCtrl: NavController,
+    private modalController: ModalController) 
+    {
       this.fechamento18x3x9 = this.route.snapshot.paramMap.get('fechamento18x3x9');
       this.fechamento12x6 = this.route.snapshot.paramMap.get('fechamento12x6');
       this.fechamento12x3x17 = this.route.snapshot.paramMap.get('fechamento12x3x17');
@@ -156,6 +160,7 @@ export class DezenasMegasenaPage implements OnInit {
     });
     toast.present();
   }
+
   async presentToastVerificador() {
     const toast = await this.toastController.create({
       message: 'ERRO!: ESCOLHA 6 DEZENAS!.',
@@ -164,6 +169,55 @@ export class DezenasMegasenaPage implements OnInit {
     });
     toast.present();
   }
+  async presentToast_10_3() {
+    const toast = await this.toastController.create({
+      message: 'ERRO!: ESCOLHA 10 DEZENAS!.',
+      duration: 3000,
+      position: "middle"
+    });
+    toast.present();
+  }
+  async presentToast_18_3_9() {
+    const toast = await this.toastController.create({
+      message: 'ERRO!: ESCOLHA 18 DEZENAS!.',
+      duration: 3000,
+      position: "middle"
+    });
+    toast.present();
+  }
+  async presentToast_12_3_17() {
+    const toast = await this.toastController.create({
+      message: 'ERRO!: ESCOLHA 18 DEZENAS!.',
+      duration: 3000,
+      position: "middle"
+    });
+    toast.present();
+  }
+  async presentToast_9_12() {
+    const toast = await this.toastController.create({
+      message: 'ERRO!: ESCOLHA 9 DEZENAS!.',
+      duration: 3000,
+      position: "middle"
+    });
+    toast.present();
+  }
+  async presentToast_8_7() {
+    const toast = await this.toastController.create({
+      message: 'ERRO!: ESCOLHA 8 DEZENAS!.',
+      duration: 3000,
+      position: "middle"
+    });
+    toast.present();
+  }
+  // async modalPage(result) {
+  //   console.log('result:', result)
+  //   const modal = await this.modalController.create({
+  //     component: ModalFechamentosPage,
+  //     componentProps: {fechamentos: result, apostas: this.apostas}
+  //   });
+  //   return await modal.present();
+  // }
+
   callServiceSorteioCorrente() {
     this.firebaseService.getSorteioCorrente()
       .then((result:any)=>{
@@ -196,12 +250,38 @@ export class DezenasMegasenaPage implements OnInit {
       this.presentToastVerificador()
     }
   }
-  
+  modalPage() {
+    this.modalController.create({
+      component: ModalFechamentosPage,
+      componentProps: {
+        apostas: this.apostas,
+        entrada: this.entrada_usuario
+      }
+    }).then(modal => {
+      modal.present();
+    })
+    .catch((error:any)=>{
+      console.log('error:', error)
+    })
+  }
+  async modal(result) {
+    const modal = await this.modalController.create({
+      component: ModalFechamentosPage,
+      componentProps: {
+        apostas: this.apostas,
+        fechamento:result,
+        entrada: this.entrada_usuario
+      }
+    })
+    await modal.present()
+  }
   callService(){
     if (this.entrada_usuario.length == 12){
       this.apiService.callFechamento(this.entrada_usuario)
       .then((result:any[])=>{
-        this.apostas = result;
+        if (result) {
+          this.modal(result)
+        }
       })
       .catch((error:any)=>{
         console.log('error:',error)
@@ -210,86 +290,211 @@ export class DezenasMegasenaPage implements OnInit {
     else {
       this.presentToast()
     }
-    
+  }
+  async loadingFechamento12x6() {
+    const loading = await this.loadingController.create({
+      message: 'Analizando fechamentos',
+      duration: 3000
+    });
+    await loading.present();
+    this.apiService.callFechamento(this.entrada_usuario)
+      .then((result:any[])=>{
+        this.apostas = result;
+        this.modalPage();
+        console.log('callServiceFechamento12x6:',result)
+      })
+      .catch((error:any)=>{
+        console.log('error:',error)
+    });
   }
 
   callServiceFechamento18x3x9(){
     if (this.entrada_usuario.length == 18){
-      this.apiService.callFechamento18x3x9(this.entrada_usuario)
+      //this.loadingFechamento_18_3_9()
+      this.modalController.create({
+        component: ModalFechamentosPage,
+        componentProps: {
+          entrada: this.entrada_usuario,
+          tag: true
+        }
+      }).then(modal => {
+        modal.present()
+      })
+    }
+    else {
+      this.presentToast_18_3_9()
+    }
+  }
+  async loadingFechamento_18_3_9() {
+    const loading = await this.loadingController.create({
+      message: 'Analizando fechamentos',
+      duration: 3000
+    });
+    await loading.present();
+    this.apiService.callFechamento18x3x9(this.entrada_usuario)
       .then((result:any[])=>{
         this.apostas = result;
         console.log('callServiceFechamento18x3x9:',result)
       })
       .catch((error:any)=>{
         console.log('error:',error)
-      });
-    }
-    else {
-      this.presentToast()
-    }
+    });
+
+    return this.modalPage()
+    
   }
 
   callServiceFechamento12x3x17(){
-    if (this.entrada_usuario.length == 18){
-      this.apiService.callFechamento12x3x17(this.entrada_usuario)
+    if (this.entrada_usuario.length == 12){
+      this.loadingFechamento12x3x17()
+    }
+    else {
+      this.presentToast_12_3_17()
+    }
+  }
+  async loadingFechamento12x3x17() {
+    const loading = await this.loadingController.create({
+      message: 'Analizando fechamentos',
+      duration: 3000
+    });
+    await loading.present();
+    this.apiService.callFechamento12x3x17(this.entrada_usuario)
       .then((result:any[])=>{
         this.apostas = result;
-        console.log('callServiceFechamento18x3x9:',result)
+        console.log('callServiceFechamento12x3x17:',result)
       })
       .catch((error:any)=>{
         console.log('error:',error)
       });
-    }
-    else {
-      this.presentToast()
-    }
+    return this.modalPage()
+    
   }
 
   callServiceFechamento9x12(){
-    if (this.entrada_usuario.length == 18){
-      this.apiService.callFechamento9x12(this.entrada_usuario)
-      .then((result:any[])=>{
-        this.apostas = result;
-        console.log('callServiceFechamento18x3x9:',result)
-      })
-      .catch((error:any)=>{
-        console.log('error:',error)
-      });
+    if (this.entrada_usuario.length == 9){
+      this.loadingFechamento9x12()
+      this.modalPage()
     }
     else {
-      this.presentToast()
+      this.presentToast_9_12()
     }
   }
-
-  callServiceFechamento8x7(){
-    if (this.entrada_usuario.length == 18){
-      this.apiService.callFechamento8x7(this.entrada_usuario)
-      .then((result:any[])=>{
-        this.apostas = result;
-        console.log('callServiceFechamento8x7:',result)
-      })
-      .catch((error:any)=>{
-        console.log('error:',error)
-      });
-    }
-    else {
-      this.presentToast()
-    }
-  }
-  callServiceFechamento10x3(){
-    if (this.entrada_usuario.length == 18){
-      this.apiService.callFechamento10x3(this.entrada_usuario)
+  async loadingFechamento9x12() {
+    const loading = await this.loadingController.create({
+      message: 'Analizando fechamentos',
+      duration: 3000
+    });
+    await loading.present();
+    this.apiService.callFechamento9x12(this.entrada_usuario)
       .then((result:any[])=>{
         this.apostas = result;
         console.log('callServiceFechamento10x3:',result)
       })
       .catch((error:any)=>{
         console.log('error:',error)
-      });
+    });
+    
+  }
+
+  callServiceFechamento8x7(){
+    let fechamento
+    if (this.entrada_usuario.length == 8){
+      this.modalController.create({
+        component: ModalFechamentosPage,
+        componentProps: {
+          fechamentos: fechamento, 
+          apostas: this.apostas
+        }
+      }).then(modal => {
+        this.apiService.callFechamento8x7(this.entrada_usuario)
+          .then((result:any[])=>{
+            fechamento = result;
+            console.log('callServiceFechamento8x7:',result)
+          })
+          .catch((error:any)=>{
+            console.log('error:',error)
+          }); 
+      modal.present();     
+      })
+      .catch((error:any)=>{
+        console.log('error:', error)
+      })
     }
     else {
-      this.presentToast()
+      this.presentToast_8_7()
     }
+  }
+  async loadingFechamento_8x7() {
+    const loading = await this.loadingController.create({
+      message: 'Analizando fechamentos',
+      duration: 3000
+    });
+    await loading.present();
+    this.apiService.callFechamento8x7(this.entrada_usuario)
+      .then((result:any[])=>{
+        this.apostas = result;
+        this.modalPage();
+        console.log('callServiceFechamento8x7:',result)
+      })
+      .catch((error:any)=>{
+        console.log('error:',error)
+    });
+    
+  }
+  // callServiceFechamento10x3(){
+  //   if (this.entrada_usuario.length == 10){
+  //     this.apiService.callFechamento10x3(this.entrada_usuario)
+  //     .then((result:any[])=>{
+  //       this.apostas = result;
+  //       console.log('callServiceFechamento10x3:',result)
+  //     })
+  //     .catch((error:any)=>{
+  //       console.log('error:',error)
+  //     });
+  //   }
+  //   else {
+  //     this.presentToast_10_3()
+  //   }
+  // }
+  callServiceFechamento10x3(){
+    if (this.entrada_usuario.length == 10){
+      this.loadingFechamento_2()
+    }
+    else {
+      this.presentToast_10_3()
+    }
+  }
+  async loadingFechamento_2() {
+    const loading = await this.loadingController.create({
+      message: 'Analizando fechamentos',
+      duration: 3000
+    });
+    await loading.present();
+    const fechamento = this.apiService.callFechamento10x3_2(this.entrada_usuario)
+      .subscribe((result:any[])=>{
+        //this.apostas = result;
+        this.modal(result);
+        //this.modalPage(result);
+        console.log('callServiceFechamento10x3:',result)
+      })
+  }
+  async loadingFechamento() {
+    const loading = await this.loadingController.create({
+      message: 'Analizando fechamentos',
+      duration: 3000
+    });
+    this.apiService.callFechamento10x3(this.entrada_usuario)
+      .then((result:any[])=>{
+        this.apostas = result;
+        //this.modalPage(result);
+        console.log('callServiceFechamento10x3:',result)
+      })
+      .catch((error:any)=>{
+        console.log('error:',error)
+    });
+    await loading.present();
+    return this.modalPage()
+    
   }
 
 }

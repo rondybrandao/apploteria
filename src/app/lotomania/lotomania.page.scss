@@ -9,34 +9,31 @@ ion-toolbar {
     font-family: fantasy;  
     height: 100px;
 }
-
 ion-content {
     --background: url('../../assets/lotomania/dinheiro.jpg') no-repeat center center / cover;
-}
-  
+} 
 ion-button {
     width: -webkit-fill-available;
     --margin-top: -45px;
 }
-
-
 ion-card {
-    --background: #ff8000;
-    color: #fff;
-    font-size: 15px;
-    text-align: center;
-  }
+  --background: #ff8000;
+  color: #fff;
+  font-size: 15px;
+  text-align: center;
+}
 .title-md {
-    padding-top: 10px
+  padding-top: 10px
   }
 .sc-ion-buttons-md-h {
-    margin-top: -49px;
+  margin-top: -49px;
 }
 .card {
-    
-    padding-bottom: 9px;
-  
-  }
+  padding-bottom: 9px;
+}
+span {
+  font-family: 'Courier New', Courier, monospace;
+}
 #valor {
     color: crimson;
     font-weight: bold;
@@ -59,8 +56,9 @@ ion-card {
     color: cyan;
   }
 #frase {
-    padding-top: 20px;
-    padding-inline-start: 20px;
-    color: black;
-  }
+  padding-top: 20px;
+  text-align: center;
+  color: white;
+  font-size: 16px;
+}
   

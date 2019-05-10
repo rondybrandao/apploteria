@@ -6,7 +6,7 @@
     <ion-title>
       ANALIZAR APOSTA
     </ion-title>
-    <div id="frase">"Siga seus sonhos e ideais e lute enquanto a sorte faz o seu trabalho."</div>
+    <div id="frase">"O MELHOR AMULETO DA SORTE É A FÉ"</div>
   </ion-toolbar>
 </ion-header>
 
@@ -210,12 +210,15 @@
   </ul>
   
   <ion-button  size="large" color="primary" (click)="verificarDezenas()">Analizar Aposta</ion-button>
-
-  <ion-grid *ngIf="apostas.length > 0">
+  
+  apostas:{{apostas.length}}
+  apostas:{{apostas}}
+  
+  <!--<ion-grid>
     <ion-row >
       <ion-col size="12">
         
-          <ion-card class="contador"  *ngFor="let aposta of apostas; index as i">
+          <ion-card class="contador"  *ngFor="let aposta of apostas">
             <div id="aposta">
               <div id="aposta-label">
                 <h5>{{aposta.num_usuario}}</h5>
@@ -245,115 +248,37 @@
         
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid>-->
+   <ion-card class="contador"  *ngFor="let aposta of apostas">
+            <div id="aposta">
+              <div id="aposta-label">
+                <h5>{{aposta.num_usuario}}</h5>
+                <table>
+                  <tr>
+                    <th id="table-header">Premio</th>
+                    <th id="table-header">Quantidade</th>
+                  </tr>
+                  <tr>
+                    <td id="sena">Sena</td>
+                    <td id="sena">{{aposta.sena}}</td>
+                  </tr>
+                  <tr>
+                    <td id="quina">Quina</td>
+                    <td id="quina">{{aposta.quina}}</td>
+                  </tr>
+                  <tr>
+                    <td id="quadra">Quadra</td>
+                    <td id="quadra">{{aposta.quadra}}</td>
+                  </tr>
+                </table>
+              </div> 
+        
+            </div>
+          </ion-card>
   <ion-card *ngIf="dezena.length > 0">
     <h2 id="charts">Total de saidas</h2>
     <div style="padding-top: 10px;">
       <canvas #chartLineAposta width="400" height="300"></canvas>
     </div>
   </ion-card>
-  
-  <!--<ion-card>
-    <ion-item id="analize-mes"><div id="inner-analize-mes">Pares</div><ion-progress-bar color="primary" value="0.5"></ion-progress-bar>3</ion-item>
-    <ion-item><div id="inner-analize-ultimos10">Impares</div><ion-progress-bar color="primary" value="0.5"></ion-progress-bar>3</ion-item>
-  </ion-card>
-  
-  <div id="arr" *ngFor="let e of entrada_usuario" >
-    <ion-item>
-      <div class="arredondar" >{{e}}</div>
-      <ion-progress-bar color="primary" value="0.5">5</ion-progress-bar>
-    </ion-item>
-  </div>-->
-
-  <!--<ion-card>
-  <ion-card>
-    <table>
-          <tr>
-            <th></th>
-            <th>01/04</th>
-            <th>02/04</th>
-            <th>03/04</th>
-            <th>04/04</th>
-            <th>05/04</th>
-          </tr>
-          <tr *ngFor="let d of sorteio">
-            <td>{{d.dez}}</td>
-            <td><div class="arredondar" >{{d.dez}}</div></td>
-            <td><div class="arredondar" >{{d.dez}}</div></td>
-          </tr>
-          <tr>
-            <td *ngFor="let s of sorteio"><div class="arredondar" >{{s.dez}}</div></td>
-          </tr>
-          <tr>
-            <td>03</td>
-            <td></td>
-            <td><div class="arredondar" >03</div></td>
-            <td><div class="arredondar" >03</div></td>
-            <td></td>
-            <td></td>
-          </tr>
-    </table>
-  </ion-card>
-  <br>
-    <div style="padding-top: 10px;">
-        <table>
-          <tr>
-            <th></th>
-            <th>01/04</th>
-            <th>02/04</th>
-            <th>03/04</th>
-            <th>04/04</th>
-            <th>05/04</th>
-          </tr>
-          <tr>
-            <td>01</td>
-            <td><div  class="arredondar" >01</div></td>
-            <td><div  class="arredondar" >01</div></td>
-            <td><div  class="arredondar" >01</div></td>
-            <td><div  class="arredondar" >01</div></td>
-            <td><div  class="arredondar" >01</div></td>
-          </tr>
-          <tr>
-            <td>02</td>
-            <td></td>
-            <td></td>
-            <td><div class="arredondar" >02</div></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>03</td>
-            <td></td>
-            <td><div class="arredondar" >03</div></td>
-            <td><div class="arredondar" >03</div></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>04</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><div class="arredondar" >04</div></td>
-          </tr>
-          <tr>
-            <td>05</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><div class="arredondar" >05</div></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>06</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><div class="arredondar" >06</div></td>
-          </tr>
-        </table>
-    </div>
-  </ion-card>-->
 </ion-content>

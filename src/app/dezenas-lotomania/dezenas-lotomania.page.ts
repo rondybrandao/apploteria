@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { ToastController } from '@ionic/angular';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FirebaseService } from '../servicos/firebase.service';
 
 @Component({
   selector: 'app-dezenas-lotomania',
@@ -17,22 +18,9 @@ export class DezenasLotomaniaPage implements OnInit {
   verificador
   fixas = []
   showFixas
+  sorteio_corrente
+  dezenas_corrente
 
-  mock = [['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50'],
-  ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50'],
-  ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50'],
-  ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50'],
-  ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50'],
-  ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50']]
-  public form2 = [
-    { id: 0, fixa: false, val: '01', checked: false },
-    { id: 1, fixa: false, val: '02', checked: false },
-    { id: 2, fixa: false, val: '03', checked: false },
-    { id: 3, fixa: false, val: '04', checked: false },
-    { id: 4, fixa: false, val: '05', checked: false },
-    { id: 5, fixa: false, val: '06', checked: false },
-    { id: 6, fixa: false, val: '07', checked: false }
-  ]
   public form = [
     { id: 0, fixa: false, val: '01', checked: false },
     { id: 1, fixa: false, val: '02', checked: false },
@@ -140,13 +128,21 @@ export class DezenasLotomaniaPage implements OnInit {
     public apiService: ApiService,
     public toastController:ToastController,
     private route: ActivatedRoute,
+    public firebaseService: FirebaseService,
+    private router: Router
   ) { 
     this.fechamento_100x6 = this.route.snapshot.paramMap.get('fechamento_100x6');
     this.fechamento_90x10x6 = this.route.snapshot.paramMap.get('fechamento_90x10x6');
     this.verificador = this.route.snapshot.paramMap.get('verificador')
+    
+    this.callServiceSorteioCorrente()
+    this.callServiceDezenasCorrente()
   }
 
   ngOnInit() {
+  }
+  voltar() {
+    this.router.navigate(['/lotomania'])
   }
 
   // onFilterChange(eve: any){
@@ -209,6 +205,24 @@ export class DezenasLotomaniaPage implements OnInit {
       position: "middle"
     });
     toast.present();
+  }
+  callServiceSorteioCorrente() {
+    this.firebaseService.getSorteioCorrenteLoteria('lotomania')
+      .then((result:any)=>{
+        this.sorteio_corrente = result
+      })
+      .catch((error:any)=>{
+        console.log('error:', error)
+      })  
+  }
+  callServiceDezenasCorrente() {
+    this.firebaseService.getDezenasCorrenteLoteria('lotomania')
+      .then((result:any) =>{
+        this.dezenas_corrente = result
+      })
+      .catch((error:any)=>{
+        console.log('error:', error)
+      })
   }
 
   async presentToast_90_10_6(){

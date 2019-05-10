@@ -2,9 +2,9 @@ import { FirebaseService } from './../servicos/firebase.service';
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { ApiService } from '../api.service';
 import { ToastController, NavController, LoadingController } from '@ionic/angular';
-import { ActivatedRoute } from '@angular/router';
 
 import { Chart } from 'chart.js';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,11 +18,13 @@ export class AnalizeApostaPage implements OnInit {
 
   @ViewChild('chartLineAposta') chartLineAposta;
   @ViewChild('chartLineUltimasAposta') chartLineUltimasAposta;
+  @ViewChild('verificar') verificar
 
   lineChartAposta: any;
   lineChartUltimasAposta: any;
-
+  apos = []
   dezenas = []
+  
   apostas = []
   concurso_pontos = []
   entrada_usuario = []
@@ -103,10 +105,10 @@ export class AnalizeApostaPage implements OnInit {
   constructor(
     public apiService: ApiService,
     public toastController:ToastController,
-    private route: ActivatedRoute,
     public navCtrl: NavController,
     public firebaseService: FirebaseService,
-    public loadingController: LoadingController
+    public loadingController: LoadingController,
+    private router: Router
   ) {
 
   }
@@ -127,21 +129,22 @@ export class AnalizeApostaPage implements OnInit {
   //   });
   //   loading.present();
   // }
-
-  async presentLoading() {
+  voltar(){
+    this.navCtrl.navigateBack('verificador');
+  }
+  async presentLoading(result) {
     const loading = await this.loadingController.create({
       message: 'Analizando dezenas',
       duration: 2000
     });
     await loading.present();
+    this.apostas = result;
     this.showLineAposta();
-    const { role, data } = await loading.onDidDismiss()
+  
   }
 
   onFilterChange(eve: any){
-    console.log("id:",this.form[eve.id])
       this.form[eve.id].checked = !this.form[eve.id].checked
-      console.log('evento:',eve)
       if (eve.checked){
         this.entrada_usuario.push(eve.val)
       } else {
@@ -150,8 +153,8 @@ export class AnalizeApostaPage implements OnInit {
         this.entrada_usuario.splice(index, 1)
         
       }
-      console.log('entrada_usuario:', this.entrada_usuario)
   }
+
   async presentToastVerificador() {
     const toast = await this.toastController.create({
       message: 'ERRO!: ESCOLHA 6 DEZENAS!.',
@@ -160,12 +163,13 @@ export class AnalizeApostaPage implements OnInit {
     });
     toast.present();
   }
+
   verificarDezenas(){
     if (this.entrada_usuario.length == 6){
-      this.getDezenasMes2(this.entrada_usuario);
       this.apiService.callVerificadorMegasena(this.entrada_usuario)
       .then((result:any[])=>{
-        this.apostas = result;
+        this.verificarLoading(result)
+        //this.router.navigate(['analize-aposta'])
       })
       .catch((error:any)=>{
         console.log('error:',error)
@@ -175,8 +179,18 @@ export class AnalizeApostaPage implements OnInit {
       this.presentToastVerificador()
     }
   }
-  voltar(){
-    this.navCtrl.navigateBack('verificador');
+
+  async verificarLoading(result) {
+    const loading = await this.loadingController.create({
+      message: 'Analizando dezenas',
+      duration: 2000
+    });
+    await loading.present();
+    this.apostas=result;
+  }
+
+  teste_analize(){
+    console.log(this.getDezenasMes2(this.entrada_usuario))
   }
 
   getConsulta(){
@@ -188,11 +202,12 @@ export class AnalizeApostaPage implements OnInit {
       this.dez5 = result[4]
       this.dez6 = result[5]
     })
-    this.presentLoading()
+    //this.presentLoading()
   }
   getDezenasMes2(entrada){
+    
     this.firebaseService.getDezenasMes2(entrada).then((result:any)=>{
-      //console.log(result)
+      console.log(result)
       this.dezena = result
       //console.log(this.dezena[0].dezena)
       this.dez1 = result[0].total
@@ -202,7 +217,8 @@ export class AnalizeApostaPage implements OnInit {
       this.dez5 = result[4].total
       this.dez6 = result[5].total
     })
-    this.presentLoading()
+    this.presentLoading(this.apos)
+    
   }
   // getConsultaDezena(){
   //   let res = this.firebaseService.getConsultaDezena().then((result:any)=>{
@@ -274,7 +290,7 @@ export class AnalizeApostaPage implements OnInit {
  
       type: 'line',
       data: {
-          labels: ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN'],
+          labels: ['JAN', 'FEV', 'MAR', 'ABR'],
           //labels: this.datas,
           datasets: [{
             backgroundColor: 'rgba(156, 195, 20, 1.0)',
@@ -418,4 +434,10 @@ export class AnalizeApostaPage implements OnInit {
 // });
 // }
 
+}
+
+export const snapshot = result => {
+  let item = result;
+  
+  return item;
 }
