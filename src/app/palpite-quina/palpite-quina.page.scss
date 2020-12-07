@@ -1,9 +1,37 @@
+ion-toolbar {
+  --background: linear-gradient(to left, rgba(99,60,224,1), rgba(99,60,224,0.5)), url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
+  -webkit-background-size: cover;
+  color: white;
+  font-family: GOLSansTextBold,'Trebuchet MS',Arial,sans-serif;
+  font-size: 22px;
+}
+
+ion-content {
+  --background: url('../../assets/lotomania/simpatias.jpg') no-repeat center center / cover;
+}
+
+ion-button {
+  width: -webkit-fill-available;
+}
+ion-grid {
+  padding-top: 0px;
+}
+
+ion-card {
+  --background: white;
+  margin: 0px;
+  padding: 11px;
+  font-size: large;
+}
+
+
 #palpite {
     align-items: center;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 15px;
   }
   #arr {
     display: inline-block;
@@ -34,32 +62,7 @@
   #quadra {
     color: #f00
   }
-  ion-header {
-    height: 100px;
-  }
-  ion-toolbar {
-    --background: linear-gradient(to left, rgba(99,60,224,1), rgba(99,60,224,0.5)), url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
-    -webkit-background-size: cover;
-    color: white;
-    font-family: fantasy;  
-    height: 100px;
-  }
   
-  ion-content {
-    --background: url('../../assets/lotomania/simpatias.jpg') no-repeat center center / cover;
-  }
-
-  ion-button {
-    width: -webkit-fill-available;
-  }
-  ion-grid {
-    padding-top: 0px;
-  }
-  
-  ion-card {
-    --background: white
-  }
-
   .arredondar {
     
     background-color: #0c9c45;
@@ -89,13 +92,22 @@
             clip-path: circle(50% at 50% 50%);
   }
   .title-md {
-    padding-top: 10px
+    padding-top: 10px;
+    text-align: center;
+    font-weight: bold;
+
   }
   .sc-ion-buttons-md-h {
-    margin-top: -25px;
+    margin-top: -45px;
+  }
+
+  .filtro {
+    margin-top: 69px;
+    display: contents;
+    position: absolute;
   }
   #frase {
-    padding-top: 15px;
+    padding-top: 13px;
     text-align: center;
     color: white;
   }

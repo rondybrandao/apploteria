@@ -1,3 +1,5 @@
+import { Keyboard } from '@ionic-native/keyboard/ngx';
+import { ModalLotomaniaPageModule } from './dezenas-lotomania/modal-lotomania/modal-lotomania.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -21,17 +23,22 @@ import { ModalFechamentosPageModule } from './modal-fechamentos/modal-fechamento
 import { ModalAnalizeLotofacilPageModule } from './modal-analize-lotofacil/modal-analize-lotofacil.module';
 import { ModalFechamentoQuinaPageModule } from './modal-fechamento-quina/modal-fechamento-quina.module';
 import { ModalFechamentosLotofacilPageModule } from './modal-fechamentos-lotofacil/modal-fechamentos-lotofacil.module';
+import { ModalLotomaniaPage } from './dezenas-lotomania/modal-lotomania/modal-lotomania.page';
+
 //firebase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
+//media
+
+import { NativeAudio } from '@ionic-native/native-audio/ngx';
 
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [
-  
+    
   ],
   imports: [
     BrowserModule,
@@ -47,14 +54,16 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     ModalAnalizeLotofacilPageModule,
     ModalFechamentoQuinaPageModule,
     ModalFechamentosLotofacilPageModule,
+    ModalLotomaniaPageModule,
     AngularFireDatabaseModule,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    MegasenaService
-
+    MegasenaService,
+    NativeAudio,
+    Keyboard
   ],
   bootstrap: [AppComponent]
   

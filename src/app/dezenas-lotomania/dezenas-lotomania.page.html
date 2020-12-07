@@ -6,12 +6,12 @@
     <ion-title>
       LOTOMANIA
     </ion-title>
-    <div id="frase">"NADA É, A MENOS QUE NOSSO PENSAMENTO O FAÇA" <span>-Shakespeare</span></div>
+    <div id="frase">"O DINHEIRO SÓ TRAZ FELICIDADE PARA MINHA VIDA</div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-card *ngIf="fechamento_100x6">
+  <ion-card *ngIf="fechamento === '100x6'">
     <ion-card-header>
       <ion-card-subtitle>LOTOMANIA</ion-card-subtitle>
       <ion-card-title>Fechamento 100-6</ion-card-title>
@@ -19,40 +19,36 @@
 
     <ion-card-content>
       Escolha 100 dezenas e click no botão GERAR COMBINAÇÕES o aplicativo
-      vai gerar 6 apostas fechadas e coferirar se houve premiações naquela aposta.
+      vai gerar um desdobramento em 6 apostas. <strong>Fé e Boa sorte.</strong>
     </ion-card-content>
   </ion-card>
 
-  <ion-card *ngIf="fechamento_90x10x6">
+  <ion-card *ngIf="fechamento === '60x12'">
     <ion-card-header>
       <ion-card-subtitle>LOTOMANIA</ion-card-subtitle>
-      <ion-card-title>Fechamento 90-10-6</ion-card-title>
+      <ion-card-title>Fechamento 60x12</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      Escolha 90 dezenas e click no botão GERAR COMBINAÇÕES o aplicativo
-      vai gerar 6 apostas fechadas e coferirar se houve premiações naquela aposta.
-      Acertando 20 dezenas garantia de 20 pontos.
+      Escolha 60 dezenas e click no botão GERAR COMBINAÇÕES o aplicativo
+      vai gerar um desdobramento em 12 apostas.
+      Acertando 18 dezenas garantia de premiação. <strong>Fé e Boa sorte.</strong>
     </ion-card-content>
   </ion-card>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col size="12">
-        <div id="n_sorteio">sorteio Nº {{sorteio_corrente}}</div>
-        <div id="palpite">
-          <div *ngFor="let dezenas of dezenas_corrente">
-            <div class="arredondar">{{dezenas}}</div>
-          </div>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
+  <ion-card *ngIf="fechamento === '60x6'">
+    <ion-card-header>
+      <ion-card-subtitle>LOTOMANIA</ion-card-subtitle>
+      <ion-card-title>Fechamento 60-6</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      Escolha 60 dezenas e click no botão GERAR COMBINAÇÕES o aplicativo
+      vai gerar um desdobramento em 6 apostas.
+      Acertando 18 dezenas garantia de premiação. <strong>Fé e Boa sorte.</strong>
+    </ion-card-content>
+  </ion-card>
+  
   <br>
   <ion-grid *ngIf="fechamento_90x10x6">
     <ion-row>
@@ -69,6 +65,19 @@
       </ion-note>
     </ion-col>
   </ion-row>
+  </ion-grid>
+  
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <h5>Dezenas: {{  entrada_usuario.length }}</h5>
+        <div id="palpite">
+          <ion-note *ngFor="let entrada of entrada_usuario">
+            {{ entrada }}
+          </ion-note>
+        </div>
+      </ion-col>
+    </ion-row>
   </ion-grid>
   
   <ion-grid *ngIf="fechamento_100x6">
@@ -392,11 +401,13 @@
     <li><input type="checkbox" id="cb00" value="00" [checked]="form[99].checked" [ngModel]="form[99].checked"  (ngModelChange)="onFilterChange(form[99])"/>
       <label for="cb00"><div class="trapezio" >[ 00 ]</div></label>
   </ul>
-  <ion-button expand="block" *ngIf="fechamento_100x6" size="large" color="primary" (click)="callServiceLotomania_100x6()">Gerar Combinações</ion-button>
-  <ion-button expand="block" *ngIf="fechamento_90x10x6" size="large" color="primary" (click)="callServiceLotomania_90x10x6()">Gerar Combinações</ion-button>
-  <ion-button expand="block" *ngIf="verificador" size="large" color="primary" (click)="verificarDezenas()">VERIFICAR</ion-button>
   
-  <ion-grid *ngIf="apostas.length > 0">
+  <ion-button expand="block" size="large" color="primary" (click)="callFechamento()">Gerar Combinações</ion-button>
+  
+  
+  <ion-button expand="block" *ngIf="verificador" size="large" color="primary" (click)="verificarDezenas()">VERIFICAR</ion-button>
+ 
+  <!--<ion-grid *ngIf="apostas.length > 0">
     <ion-row>
       <ion-col size="12">
         <ion-card class="contador"  *ngFor="let aposta of apostas">
@@ -440,5 +451,5 @@
           <br>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid>-->
 </ion-content>

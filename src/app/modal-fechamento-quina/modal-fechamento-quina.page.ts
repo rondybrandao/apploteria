@@ -22,18 +22,5 @@ export class ModalFechamentoQuinaPage implements OnInit {
   close() {
     this.modalController.dismiss()
   }
-  callServiceQuina_10x2(){
-    if (this.entrada_usuario.length == 10){
-      this.apiService.callServiceQuina_10x2(this.entrada_usuario)
-        .then((result:any) => {
-          this.apostas = result
-        })
-        .catch((error:any) => {
-          console.log('error', error)
-        });
-    } else {
-      console.log("e agora!?")
-    }
-  }
 
 }

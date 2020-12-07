@@ -1,3 +1,61 @@
+
+ion-toolbar {
+  //--background: linear-gradient(#f843956b, #f956a078), url('../../assets/lotomania/number.jpg') no-repeat center center / cover;
+  --background: linear-gradient(to left, rgba(249,86,160,0.6), rgba(249,86,160,0.6)), url('../../assets/lotomania/number.jpg') no-repeat center center / cover;
+  -webkit-background-size: cover;
+  color: white;
+  font-family: GOLSansTextBold,'Trebuchet MS',Arial,sans-serif;
+  font-size: 22px;
+  
+}
+ion-content {
+  --background: url('../../assets/lotomania/dinheiro.jpg') no-repeat center center / cover;
+}
+
+ion-button {
+  width: -webkit-fill-available;
+}
+
+ion-note {
+  --color: #000000;
+  font-family: fantasy;
+  font-size: 22px;
+  padding: 3px;
+}
+
+ion-card {
+  --background: white
+}
+
+.title-md {
+  padding-top: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+.sc-ion-buttons-md-h {
+  margin-top: -84px;
+}
+
+h6{
+  margin-inline-start: 25px;
+  margin-top: 40px;
+  color: black
+}
+h5 {
+  color: black;
+  font-family: fantasy;
+  padding-top: 2px;
+  margin-top: 5px;
+  margin-bottom: 0px;
+  text-align: center
+}
+#frase {
+  padding-top: 15px;
+  text-align: center;
+  color: white;
+  font-size: 21px;
+}
+
 .arredondar {
     display: inline-block;
     background-color:#f84395;
@@ -69,62 +127,7 @@ td {
   display: flex;
   justify-content: center;
 }
-ion-header {
-  height: 100px;
-}
-ion-toolbar {
-  //--background: linear-gradient(#f843956b, #f956a078), url('../../assets/lotomania/number.jpg') no-repeat center center / cover;
-  --background: linear-gradient(to left, rgba(249,86,160,0.6), rgba(249,86,160,0.6)), url('../../assets/lotomania/number.jpg') no-repeat center center / cover;
-  -webkit-background-size: cover;
-  color: black;
-  font-family: fantasy;
-  height: 100px;
-}
-ion-content {
-  --background: url('../../assets/lotomania/dinheiro.jpg') no-repeat center center / cover;
-}
 
-ion-button {
-  width: -webkit-fill-available;
-}
-
-ion-note {
-  --color: #000000;
-  font-family: fantasy;
-  font-size: 22px;
-  padding: 3px;
-}
-
-ion-card {
-  --background: white
-}
-
-.title-md {
-  padding-top: 10px
-}
-.sc-ion-buttons-md-h {
-  margin-top: -55px;
-}
-
-h6{
-  margin-inline-start: 25px;
-  margin-top: 40px;
-  color: black
-}
-h5 {
-  color: black;
-  font-family: fantasy;
-  padding-top: 2px;
-  margin-top: 5px;
-  margin-bottom: 0px;
-  text-align: center
-}
-#frase {
-  padding-top: 15px;
-  text-align: center;
-  color: white;
-  font-size: 18px;
-}
 span {
   font-family: 'Courier New', Courier, monospace;
   

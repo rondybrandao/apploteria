@@ -1,3 +1,4 @@
+import { FechamentosService } from './../servicos/fechamentos.service';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { ToastController, NavController, ModalController, LoadingController } from '@ionic/angular';
@@ -13,13 +14,8 @@ import { ModalFechamentoQuinaPage } from '../modal-fechamento-quina/modal-fecham
 export class DezenasQuinaPage implements OnInit {
   entrada_usuario =[]
   apostas = []
-  fechamento_18x12x5x6
-  fechamento_10x19
-  fechamento_8x8
-  fechamento_10x2
+  fechamento
   verificador
-  sorteio_corrente
-  dezenas_corrente
 
   public form = [
     { id: 0, val: '01', checked: false },
@@ -113,15 +109,10 @@ export class DezenasQuinaPage implements OnInit {
     public firebaseService: FirebaseService,
     private modalController: ModalController,
     public loadingController: LoadingController,
+    public fechamentoService: FechamentosService
   ) {
-    this.fechamento_18x12x5x6 = this.route.snapshot.paramMap.get('fechamento_18x12x5x6');
-    this.fechamento_10x19 = this.route.snapshot.paramMap.get('fechamento_10x19');
-    this.fechamento_8x8 = this.route.snapshot.paramMap.get('fechamento_8x8');
-    this.fechamento_10x2 = this.route.snapshot.paramMap.get('fechamento_10x2');
-    this.verificador = this.route.snapshot.paramMap.get('verificador')
-    
-    this.callServiceSorteioCorrente()
-    this.callServiceDezenasCorrente()
+    this.fechamento = this.route.snapshot.paramMap.get('fechamento')
+    console.log(this.fechamento)
   }
 
   ngOnInit() {
@@ -144,14 +135,6 @@ export class DezenasQuinaPage implements OnInit {
       console.log('entrada_usuario:', this.entrada_usuario)
   }
 
-  async presentToast(){
-    const toast = await this.toastController.create({
-      message: 'ERRO!: ESCOLHA 18 DEZENAS!.',
-      duration: 2000,
-      position: "middle"
-    });
-    toast.present();
-  }
   async presentToastVerificador() {
     const toast = await this.toastController.create({
       message: 'ERRO!: ESCOLHA 5 DEZENAS!.',
@@ -160,24 +143,8 @@ export class DezenasQuinaPage implements OnInit {
     });
     toast.present();
   }
-  callServiceSorteioCorrente() {
-    this.firebaseService.getSorteioCorrenteLoteria('quina')
-      .then((result:any)=>{
-        this.sorteio_corrente = result
-      })
-      .catch((error:any)=>{
-        console.log('error:', error)
-      })  
-  }
-  callServiceDezenasCorrente() {
-    this.firebaseService.getDezenasCorrenteLoteria('quina')
-      .then((result:any) =>{
-        this.dezenas_corrente = result
-      })
-      .catch((error:any)=>{
-        console.log('error:', error)
-      })
-  }
+
+  
   verificarDezenas(){
     if (this.entrada_usuario.length == 5){
       this.apiService.callVerificadorQuina(this.entrada_usuario)
@@ -192,37 +159,163 @@ export class DezenasQuinaPage implements OnInit {
       this.presentToastVerificador()
     }
   }
-  
-  callServiceQuina_18x12x5x6(){
-    if (this.entrada_usuario.length == 18){
-      this.apiService.callServiceQuina_18x12x5x6(this.entrada_usuario)
-        .then((result:any) => {
-          this.apostas = result
-        })
-        .catch((error:any) => {
-          console.log('error', error)
-        });
-    } else {
-      this.presentToast()
+
+  modalPage() {
+    this.modalController.create({
+      component: ModalFechamentoQuinaPage,
+      componentProps: {
+        apostas: this.apostas,
+        fechamento: this.apostas
+      }
+    }).then(modal => {
+      modal.present();
+    })
+    .catch((error:any)=>{
+      console.log('error:', error)
+    })
+  }
+
+  async showToast() {
+    if (this.fechamento=='8x8'){
+      const toast = await this.toastController.create({
+        message: 'ERRO!: ESCOLHA 8 DEZENAS!.',
+        duration: 2000,
+        position: "middle"
+      });
+      toast.present();
+    } else if (this.fechamento=='15x16') {
+      const toast = await this.toastController.create({
+        message: 'ERRO!: ESCOLHA 15 DEZENAS!.',
+        duration: 2000,
+        position: "middle"
+      });
+      toast.present();
+    } else if (this.fechamento=='9x15') {
+      const toast = await this.toastController.create({
+        message: 'ERRO!: ESCOLHA 9 DEZENAS!.',
+        duration: 2000,
+        position: "middle"
+      });
+      toast.present();
+    } else if (this.fechamento=='7x21') {
+      const toast = await this.toastController.create({
+        message: 'ERRO!: ESCOLHA 7 DEZENAS!.',
+        duration: 2000,
+        position: "middle"
+      });
+      toast.present();
     }
   }
 
-  callServiceQuina_10x19(){
-    if (this.entrada_usuario.length == 10){
-      this.apiService.callServiceQuina_10x19(this.entrada_usuario)
-        .then((result:any) => {
-          this.apostas = result
-        })
-        .catch((error:any) => {
-          console.log('error', error)
-        });
+  callFechamento(){
+    if (this.entrada_usuario.length == 8 && this.fechamento == '8x8'){
+      this.loadingFechamento_8x8()
+
+    } else if (this.entrada_usuario.length == 15 && this.fechamento == '15x16') {
+      this.loadingFechamento_15x16()
+
+    } else if (this.entrada_usuario.length == 9 && this.fechamento == '9x15') {
+      this.loadingFechamento_9x15()
+      
+    } else if (this.entrada_usuario.length == 7 && this.fechamento == '7x21'){
+      this.loadingFechamento_7x21()
+      
+    } else if (this.entrada_usuario.length == 10 && this.fechamento == '10x2') {
+      this.loadingFechamento_10x2() 
+    
     } else {
-      this.presentToast()
+      this.showToast()
     }
   }
-  // callServiceQuina_8x8(){
-  //   if (this.entrada_usuario.length == 8){
-  //     this.apiService.callServiceQuina_8x8(this.entrada_usuario)
+
+  async loadingFechamento_10x2() {
+    const loading = await this.loadingController.create({
+      message: 'Criando fechamentos',
+      duration: 2000
+    });
+    await loading.present();
+    this.fechamentoService.callFechamentoQuina_10x2(this.entrada_usuario)
+      .then((result:any[])=>{
+        console.log(result)
+        this.apostas = result;
+        this.modalPage();
+      })
+      .catch((error:any)=>{
+        console.log('error:',error)
+    });
+  }
+
+  async loadingFechamento_8x8() {
+    const loading = await this.loadingController.create({
+      message: 'Criando fechamentos',
+      duration: 2000
+    });
+    await loading.present();
+    this.fechamentoService.callFechamentoQuina_8x8(this.entrada_usuario)
+      .then((result:any[])=>{
+        console.log(result)
+        this.apostas = result;
+        this.modalPage();
+      })
+      .catch((error:any)=>{
+        console.log('error:',error)
+    });
+  }
+
+  async loadingFechamento_15x16() {
+    const loading = await this.loadingController.create({
+      message: 'Criando fechamentos',
+      duration: 2000
+    });
+    await loading.present();
+    this.fechamentoService.callFechamentoQuina_15x16(this.entrada_usuario)
+      .then((result:any[])=>{
+        console.log(result)
+        this.apostas = result;
+        this.modalPage();
+      })
+      .catch((error:any)=>{
+        console.log('error:',error)
+    });
+  }
+
+  async loadingFechamento_9x15() {
+    const loading = await this.loadingController.create({
+      message: 'Criando fechamentos',
+      duration: 2000
+    });
+    await loading.present();
+    this.fechamentoService.callFechamentoQuina_9x15(this.entrada_usuario)
+      .then((result:any[])=>{
+        console.log(result)
+        this.apostas = result;
+        this.modalPage();
+      })
+      .catch((error:any)=>{
+        console.log('error:',error)
+    });
+  }
+
+  async loadingFechamento_7x21() {
+    const loading = await this.loadingController.create({
+      message: 'Criando fechamentos',
+      duration: 2000
+    });
+    await loading.present();
+    this.fechamentoService.callFechamentoQuina_7x21(this.entrada_usuario)
+      .then((result:any[])=>{
+        console.log(result)
+        this.apostas = result;
+        this.modalPage();
+      })
+      .catch((error:any)=>{
+        console.log('error:',error)
+    });
+  }
+  
+  // callServiceQuina_18x12x5x6(){
+  //   if (this.entrada_usuario.length == 18){
+  //     this.apiService.callServiceQuina_18x12x5x6(this.entrada_usuario)
   //       .then((result:any) => {
   //         this.apostas = result
   //       })
@@ -234,45 +327,72 @@ export class DezenasQuinaPage implements OnInit {
   //   }
   // }
 
+  // callServiceQuina_10x19(){
+  //   if (this.entrada_usuario.length == 10){
+  //     this.apiService.callServiceQuina_10x19(this.entrada_usuario)
+  //       .then((result:any) => {
+  //         this.apostas = result
+  //       })
+  //       .catch((error:any) => {
+  //         console.log('error', error)
+  //       });
+  //   } else {
+  //     this.presentToast()
+  //   }
+  // }
+  // // callServiceQuina_8x8(){
+  // //   if (this.entrada_usuario.length == 8){
+  // //     this.apiService.callServiceQuina_8x8(this.entrada_usuario)
+  // //       .then((result:any) => {
+  // //         this.apostas = result
+  // //       })
+  // //       .catch((error:any) => {
+  // //         console.log('error', error)
+  // //       });
+  // //   } else {
+  // //     this.presentToast()
+  // //   }
+  // // }
 
-  callServiceQuina_8x8(){
-    if (this.entrada_usuario.length == 8){
-      this.apiService.callServiceQuina_8x8(this.entrada_usuario)
-        .subscribe((result:any) => {
-          this.apostas = result;
-          this.modalFechamento()
-        })
-    } else {
-      this.presentToast()
-    }
-  }
 
-  callServiceQuina_10x2(){
-    if (this.entrada_usuario.length == 10){
-      this.loadingFechamento()
-    } else {
-      this.presentToast()
-    }
-  }
-  async loadingFechamento() {
-    const loading = await this.loadingController.create({
-      message: 'Analizando fechamentos',
-      duration: 3000
-    });
-    await loading.present();
-    const fechamento = this.apiService.callServiceQuina_10x2(this.entrada_usuario)
-      .then((result:any[])=>{
-        this.apostas = result
-        this.modalFechamento();
-      })
-  }
-  async modalFechamento() {
-    const modal = await this.modalController.create({
-      component: ModalFechamentoQuinaPage,
-      componentProps: {
-        apostas: this.apostas
-      }
-    })
-    await modal.present()
-  }
+  // callServiceQuina_8x8(){
+  //   if (this.entrada_usuario.length == 8){
+  //     this.apiService.callServiceQuina_8x8(this.entrada_usuario)
+  //       .subscribe((result:any) => {
+  //         this.apostas = result;
+  //         this.modalFechamento()
+  //       })
+  //   } else {
+  //     this.presentToast()
+  //   }
+  // }
+
+  // callServiceQuina_10x2(){
+  //   if (this.entrada_usuario.length == 10){
+  //     this.loadingFechamento()
+  //   } else {
+  //     this.presentToast()
+  //   }
+  // }
+  // async loadingFechamento() {
+  //   const loading = await this.loadingController.create({
+  //     message: 'Analizando fechamentos',
+  //     duration: 3000
+  //   });
+  //   await loading.present();
+  //   const fechamento = this.apiService.callServiceQuina_10x2(this.entrada_usuario)
+  //     .then((result:any[])=>{
+  //       this.apostas = result
+  //       this.modalFechamento();
+  //     })
+  // }
+  // async modalFechamento() {
+  //   const modal = await this.modalController.create({
+  //     component: ModalFechamentoQuinaPage,
+  //     componentProps: {
+  //       apostas: this.apostas
+  //     }
+  //   })
+  //   await modal.present()
+  // }
 }

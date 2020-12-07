@@ -6,8 +6,8 @@
     <ion-title>
       QUINA
     </ion-title>
-    <div id="frase">"UM HOMEM É APENAS O PRODUTO DOS SEUS PENSAMENTOS. O QUE ELE ACHA QUE SE TORNA" </div>
-    <span> - Gandhi</span>
+    <div id="frase">"A SORTE FAVORECE OS QUE ACREDITAM QUE SÃO SORTUDOS" </div>
+    
   </ion-toolbar>
 </ion-header>
 
@@ -19,55 +19,64 @@
         <ion-card class="card" id="ion-card-palpite" (click)="palpite()">
           <div id="dezena">Palpite da Sorte</div>
           <div id ="apostas">1 aposta</div>
-          <div id="valor">R$ 1,50</div>
-          <div></div>
+        
         </ion-card>
       </ion-col>
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-card (click)="fechamento_10x19()">
-          <div id="dezena">10 dezenas</div>
-          <div id="fixas">100% terno</div>
+        <ion-card class="card" (click)="fechamento_15x16()">
+          <div id="dezena">15 dezenas</div>
+          <div id="fixas">100% premiação</div>
           <div id="fixas">SE 3 acertos</div>
-          <div id ="apostas">19 apostas</div>
-          <div id="apostas">de 5 dezenas</div>
-          <div id="valor">R$ 28,50</div>
+          <div id ="apostas">16 apostas</div>
+          
           <div></div>
         </ion-card>
       </ion-col>
       <ion-col>
-        <ion-card (click)="fechamento_18x12x5x6()">
-          <div id="dezena">18 dezenas</div>
-          <div id="fixas">100% terno</div>
+        <ion-card class="card" (click)="fechamento_9x15()">
+          <div id="dezena">9 dezenas</div>
+          <div id="fixas">100% premiação</div>
           <div id="fixas">SE 5 acertos</div>
-          <div id="apostas">9 apostas</div>
-          <div id="apostas">de 6 dezenas</div>
-          <div id="valor">R$ 108,00</div>
+          <div id="apostas">15 apostas</div>
         </ion-card>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col>
-        <ion-card (click)="fechamento_8x8()">
+        <ion-card class="card" (click)="fechamento_8x8()">
           <div id="dezena">8 dezenas</div>
-          <div id="fixas">100% terno</div>
+          <div id="fixas">100% premiação</div>
           <div id="fixas">SE 3 acertos</div>
           <div id ="apostas">8 apostas</div>
-          <div id="valor">R$ 28,50</div>
-          <div></div>
+      
         </ion-card>
       </ion-col>
       <ion-col>
-        <ion-card (click)="fechamento_10x2()">
+        <ion-card class="card" (click)="fechamento_10x2()">
           <div id="dezena">10 dezenas</div>
-          <div id="fixas">100% terno</div>
+          <div id="fixas">100% premiação</div>
           <div id="fixas">SE 5 acertos</div>
           <div id="apostas">2 apostas</div>
-          <div id="valor">R$ 3,00</div>
+          
         </ion-card>
       </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+          <ion-card class="card" (click)="fechamento_7x21()">
+            <div id="dezena">7 dezenas</div>
+            <div id="fixas">100% premiação</div>
+            <div id="fixas">SE 5 acertos</div>
+            <div id="apostas">21 apostas</div>
+            
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          
+        </ion-col>
     </ion-row>
   </ion-grid>
   

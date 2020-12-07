@@ -1,6 +1,8 @@
+import { ModalLotomaniaPage } from './modal-lotomania/modal-lotomania.page';
+import { FechamentosService } from './../servicos/fechamentos.service';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { ToastController } from '@ionic/angular';
+import { ToastController, ModalController, LoadingController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FirebaseService } from '../servicos/firebase.service';
 
@@ -16,6 +18,7 @@ export class DezenasLotomaniaPage implements OnInit {
   fechamento_100x6
   fechamento_90x10x6
   verificador
+  fechamento
   fixas = []
   showFixas
   sorteio_corrente
@@ -129,14 +132,13 @@ export class DezenasLotomaniaPage implements OnInit {
     public toastController:ToastController,
     private route: ActivatedRoute,
     public firebaseService: FirebaseService,
-    private router: Router
+    private router: Router,
+    public fechamentoService: FechamentosService,
+    private modalController: ModalController,
+    public loadingController: LoadingController
   ) { 
-    this.fechamento_100x6 = this.route.snapshot.paramMap.get('fechamento_100x6');
-    this.fechamento_90x10x6 = this.route.snapshot.paramMap.get('fechamento_90x10x6');
-    this.verificador = this.route.snapshot.paramMap.get('verificador')
+    this.fechamento = this.route.snapshot.paramMap.get('fechamento')
     
-    this.callServiceSorteioCorrente()
-    this.callServiceDezenasCorrente()
   }
 
   ngOnInit() {
@@ -159,7 +161,22 @@ export class DezenasLotomaniaPage implements OnInit {
   //     }
   //     console.log('entrada_usuario:', this.entrada_usuario)
   // }
+
   onFilterChange(eve: any){
+    console.log("id:",this.form[eve.id])
+      this.form[eve.id].checked = !this.form[eve.id].checked
+      console.log('evento:',eve)
+      if (eve.checked){
+        this.entrada_usuario.push(eve.val)
+      } else {
+        let index = this.entrada_usuario.indexOf(eve.val);
+        console.log("index:",index);
+        this.entrada_usuario.splice(index, 1)
+        
+      }
+      console.log('entrada_usuario:', this.entrada_usuario)
+  }
+  onFilterChange2(eve: any){
     this.form[eve.id].checked = !this.form[eve.id].checked;
     if (this.form[eve.id].fixa && this.fixas.length >= 10){
       this.form[eve.id].fixa = false;
@@ -206,82 +223,149 @@ export class DezenasLotomaniaPage implements OnInit {
     });
     toast.present();
   }
-  callServiceSorteioCorrente() {
-    this.firebaseService.getSorteioCorrenteLoteria('lotomania')
-      .then((result:any)=>{
-        this.sorteio_corrente = result
-      })
-      .catch((error:any)=>{
-        console.log('error:', error)
-      })  
-  }
-  callServiceDezenasCorrente() {
-    this.firebaseService.getDezenasCorrenteLoteria('lotomania')
-      .then((result:any) =>{
-        this.dezenas_corrente = result
-      })
-      .catch((error:any)=>{
-        console.log('error:', error)
-      })
+
+  //Alerta
+  async showToast() {
+    
+    if (this.fechamento=='60x6'){
+      const toast = await this.toastController.create({
+        message: 'ERRO!: ESCOLHA 60 DEZENAS!.' +'/n TENTE DENOVO',
+        duration: 2000,
+        position: "middle"
+      });
+      toast.present();
+    } else if (this.fechamento=='60x12') {
+      const toast = await this.toastController.create({
+        message: 'ERRO!: ESCOLHA 60 DEZENAS!.',
+        duration: 2000,
+        position: "middle"
+      });
+      toast.present();
+    }
   }
 
-  async presentToast_90_10_6(){
-    const toast = await this.toastController.create({
-      message: 'ERRO!: ESCOLHA 90 DEZENAS!. AS PRIMEIRAS 10 DEZENAS SÃO FIXAS REPETINDO-SE EM TODOS OS JOGOS',
-      duration: 2000,
-      position: "middle"
-    });
-    toast.present();
+  // async presentToast_90_10_6(){
+  //   const toast = await this.toastController.create({
+  //     message: 'ERRO!: ESCOLHA 90 DEZENAS!. AS PRIMEIRAS 10 DEZENAS SÃO FIXAS REPETINDO-SE EM TODOS OS JOGOS',
+  //     duration: 2000,
+  //     position: "middle"
+  //   });
+  //   toast.present();
+  // }
+  // async presentToastVerificador() {
+  //   const toast = await this.toastController.create({
+  //     message: 'ERRO!: ESCOLHA 6 DEZENAS!.',
+  //     duration: 3000,
+  //     position: "middle"
+  //   });
+  //   toast.present();
+  // }
+  // verificarDezenas(){
+  //   if (this.entrada_usuario.length == 20){
+  //     this.apiService.callVerificadorLotomania(this.entrada_usuario)
+  //     .then((result:any[])=>{
+  //       this.apostas = result;
+  //     })
+  //     .catch((error:any)=>{
+  //       console.log('error:',error)
+  //     });
+  //   }
+  //   else {
+  //     this.presentToastVerificador()
+  //   }
+  // }
+
+
+  
+  
+  //Chamada do botão gerar fechamento na interface
+  callFechamento(){
+    if (this.entrada_usuario.length == 6 && this.fechamento == '60x6'){
+      this.loadingFechamento_60x6()
+
+    } else if (this.entrada_usuario.length == 60 && this.fechamento == '60x12') {
+      this.callServiceLotomania_60x12()
+
+    } else {
+      this.showToast()
+    }
   }
-  async presentToastVerificador() {
-    const toast = await this.toastController.create({
-      message: 'ERRO!: ESCOLHA 6 DEZENAS!.',
-      duration: 3000,
-      position: "middle"
-    });
-    toast.present();
+
+  //Modal Fechamento Lotomania
+  modalPage() {
+    this.modalController.create({
+      component: ModalLotomaniaPage,
+      componentProps: {
+        apostas: this.apostas,
+        fechamento: this.apostas
+      }
+    }).then(modal => {
+      modal.present();
+    })
+    .catch((error:any)=>{
+      console.log('error:', error)
+    })
   }
-  verificarDezenas(){
-    if (this.entrada_usuario.length == 20){
-      this.apiService.callVerificadorLotomania(this.entrada_usuario)
+
+  //Chamada de servicos
+  async loadingFechamento_60x6() {
+    const loading = await this.loadingController.create({
+      message: 'Criando fechamentos',
+      duration: 2000
+    });
+    await loading.present();
+    this.fechamentoService.callFechamentoLotomania_60x6(this.entrada_usuario)
       .then((result:any[])=>{
+        console.log(result)
         this.apostas = result;
+        this.modalPage();
       })
       .catch((error:any)=>{
         console.log('error:',error)
-      });
-    }
-    else {
-      this.presentToastVerificador()
-    }
+    });
   }
-  callServiceLotomania_100x6(){
+
+  // callServiceLotomania_60x6(){
     
-    if (this.entrada_usuario.length == 100){
-      this.apiService.callServiceLotomania_100x6(this.entrada_usuario)
+  //     this.fechamentoService.callFechamentoLotomania_60x6(this.entrada_usuario)
+  //       .then((result:any[]) => {
+  //         this.apostas = result
+  //         this.modalPage()
+  //       })
+  //       .catch((error:any) => {
+  //         console.log('error', error)
+  //       });
+    
+  // }
+
+  callServiceLotomania_60x12(){
+    
+    if (this.entrada_usuario.length == 60){
+      this.fechamentoService.callFechamentoLotomania_60x12(this.entrada_usuario)
         .then((result:any[]) => {
           this.apostas = result
+          this.modalPage()
         })
         .catch((error:any) => {
           console.log('error', error)
         });
     } else {
-      this.presentToast()
+      this.showToast()
     }
   }
 
-  callServiceLotomania_90x10x6(){
-    if (this.entrada_usuario.length == 90){
-      this.apiService.callServiceLotomania_90x10x6(this.entrada_usuario)
-        .then((result:any[]) => {
-          this.apostas = result
-        })
-        .catch((error:any) => {
-          console.log('error', error)
-        });
-    } else {
-      this.presentToast_90_10_6()
-    }
-  }
+  // callServiceLotomania_90x10x6(){
+  //   if (this.entrada_usuario.length == 90){
+  //     this.apiService.callServiceLotomania_90x10x6(this.entrada_usuario)
+  //       .then((result:any[]) => {
+  //         this.apostas = result
+  //       })
+  //       .catch((error:any) => {
+  //         console.log('error', error)
+  //       });
+  //   } else {
+  //     this.presentToast_90_10_6()
+  //   }
+  // }
 
 }

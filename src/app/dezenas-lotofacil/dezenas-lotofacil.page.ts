@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FirebaseService } from '../servicos/firebase.service';
 import { ModalFechamentosPage } from '../modal-fechamentos/modal-fechamentos.page';
 import { ModalFechamentosLotofacilPage } from '../modal-fechamentos-lotofacil/modal-fechamentos-lotofacil.page';
+import { FechamentosService } from '../servicos/fechamentos.service';
 
 @Component({
   selector: 'app-dezenas-lotofacil',
@@ -15,14 +16,9 @@ export class DezenasLotofacilPage implements OnInit {
 
   entrada_usuario =[]
   apostas = []
-  fechamento_22x8x6
-  fechamento_18x6
-  fechamento_20x4
-  fechamento_21x5
+  fechamento
   verificador
-  sorteio_corrente
-  dezenas_corrente
-
+  
 
 
   public form = [
@@ -59,19 +55,16 @@ export class DezenasLotofacilPage implements OnInit {
     public navCtrl: NavController,
     public firebaseService: FirebaseService,
     private loadingController: LoadingController,
-    private modalController: ModalController
+    private modalController: ModalController,
+    public fechamentoService: FechamentosService
   ) { 
-    this.fechamento_22x8x6 = this.route.snapshot.paramMap.get('fechamento22x8x6');
-    this.fechamento_18x6 = this.route.snapshot.paramMap.get('fechamento18x6');
-    this.fechamento_20x4 = this.route.snapshot.paramMap.get('fechamento20x4');
-    this.fechamento_21x5 = this.route.snapshot.paramMap.get('fechamento21x5');
-    this.verificador = this.route.snapshot.paramMap.get('verificador')
     
-    this.callServiceSorteioCorrente()
-    this.callServiceDezenasCorrente()
+    this.fechamento = this.route.snapshot.paramMap.get('fechamento');
+    
   }
 
   ngOnInit() {
+    
   }
   voltar() {
     this.navCtrl.navigateBack('lotofacil');
@@ -139,24 +132,8 @@ export class DezenasLotofacilPage implements OnInit {
     });
     toast.present();
   }
-  callServiceSorteioCorrente() {
-    this.firebaseService.getSorteioCorrenteLoteria('lotofacil')
-      .then((result:any)=>{
-        this.sorteio_corrente = result
-      })
-      .catch((error:any)=>{
-        console.log('error:', error)
-      })  
-  }
-  callServiceDezenasCorrente() {
-    this.firebaseService.getDezenasCorrenteLoteria('lotofacil')
-      .then((result:any) =>{
-        this.dezenas_corrente = result
-      })
-      .catch((error:any)=>{
-        console.log('error:', error)
-      })
-  }
+
+
   verificarDezenas(){
     if (this.entrada_usuario.length == 15){
       this.apiService.callVerificadorLotofacil(this.entrada_usuario)
@@ -197,8 +174,8 @@ export class DezenasLotofacilPage implements OnInit {
     this.modalController.create({
       component: ModalFechamentosLotofacilPage,
       componentProps: {
-        entrada: this.entrada_usuario,
-        fechamento: "18x6"
+        apostas: this.apostas,
+        fechamento: this.apostas
       }
     }).then(modal => {
       modal.present();
@@ -207,39 +184,134 @@ export class DezenasLotofacilPage implements OnInit {
       console.log('error:', error)
     })
   }
-  callServiceLotofacil_18x6(){
-    if (this.entrada_usuario.length == 18){
-      this.loadingFechamento_18x6()
-    } else {
-      this.presentToast_18_6()
+  
+  // callServiceLotofacil_20x4(){
+  //   if (this.entrada_usuario.length == 20){
+  //     this.loadingFechamento_20x4()
+  //   } else {
+  //     this.presentToast_20_4()
+  //   }
+  // }
+  // async loadingFechamento_20x4() {
+  //   const loading = await this.loadingController.create({
+  //     message: 'Analizando Fechamentos',
+  //     duration: 3000
+  //   });
+  //   await loading.present();
+  //   this.apiService.callServiceLotofacil_20x4(this.entrada_usuario)
+  //     .then((result:any[])=> {
+  //       this.apostas = result
+  //       this.modalPage()
+  //     })
+  //     .catch((error:any)=>{
+  //       console.log('error', error)
+  //     })
+  // }
+  // callServiceLotofacil_21x5(){
+  //   if (this.entrada_usuario.length == 21){
+  //     this.loadingFechamento_21x5()
+  //   } else {
+  //     this.presentToast_21_5()
+  //   }
+  // }
+  // async loadingFechamento_21x5() {
+  //   const loading = await this.loadingController.create({
+  //     message: 'Analizando Fechamentos',
+  //     duration: 3000
+  //   });
+  //   await loading.present();
+  //   this.apiService.callServiceLotofacil_21x5(this.entrada_usuario)
+  //     .then((result:any[])=> {
+  //       this.apostas = result
+  //       this.modalPage()
+  //     })
+  //     .catch((error:any)=>{
+  //       console.log('error', error)
+  //     })
+  // }
+
+  //NOVOS FECHAMENTOS
+
+  async showToast() {
+    if (this.fechamento=='13x66'){
+      const toast = await this.toastController.create({
+        message: 'ERRO!: ESCOLHA 13 DEZENAS!.',
+        duration: 2000,
+        position: "middle"
+      });
+      toast.present();
+    } else if (this.fechamento=='18x24') {
+      const toast = await this.toastController.create({
+        message: 'ERRO!: ESCOLHA 18 DEZENAS!.',
+        duration: 2000,
+        position: "middle"
+      });
+      toast.present();
+    } else if (this.fechamento=='20x4') {
+      const toast = await this.toastController.create({
+        message: 'ERRO!: ESCOLHA 20 DEZENAS!.',
+        duration: 2000,
+        position: "middle"
+      });
+      toast.present();
+    } else if (this.fechamento=='18x35') {
+      const toast = await this.toastController.create({
+        message: 'ERRO!: ESCOLHA 18 DEZENAS!.',
+        duration: 2000,
+        position: "middle"
+      });
+      toast.present();
+    } else if (this.fechamento=='18x6') {
+      const toast = await this.toastController.create({
+        message: 'ERRO!: ESCOLHA 18 DEZENAS!.',
+        duration: 2000,
+        position: "middle"
+      });
+      toast.present();
     }
   }
+
+  callFechamento(){
+    if (this.entrada_usuario.length == 13 && this.fechamento == '13x66'){
+      this.loadingFechamento_13x66()
+
+    } else if (this.entrada_usuario.length == 18 && this.fechamento == '18x24') {
+      this.loadingFechamento_18X24()
+
+    } else if (this.entrada_usuario.length == 20 && this.fechamento == '20x4') {
+      this.loadingFechamento_20x4()
+      
+    } else if (this.entrada_usuario.length == 18 && this.fechamento == '18x35'){
+      this.loadingFechamento_18x35()
+      
+    } else if (this.entrada_usuario.length == 18 && this.fechamento == '18x6'){
+      this.loadingFechamento_18x6() 
+    
+    } else {
+      this.showToast()
+    }
+  }
+
   async loadingFechamento_18x6() {
     const loading = await this.loadingController.create({
-      message: 'Analizando Fechamentos',
-      duration: 3000
+      message: 'Calculando Fechamentos',
+      duration: 2000
     });
     await loading.present();
-    this.apiService.callServiceLotofacil_18x6(this.entrada_usuario)
-      .subscribe((result:any[])=> {
+    this.fechamentoService.callFechamentoLotofacil_18x6(this.entrada_usuario)
+      .then((result:any[])=> {
         this.apostas = result
         this.modalPage()
       })
   }
-  callServiceLotofacil_20x4(){
-    if (this.entrada_usuario.length == 20){
-      this.loadingFechamento_20x4()
-    } else {
-      this.presentToast_20_4()
-    }
-  }
-  async loadingFechamento_20x4() {
+
+  async loadingFechamento_13x66() {
     const loading = await this.loadingController.create({
-      message: 'Analizando Fechamentos',
-      duration: 3000
+      message: 'Calculando Fechamentos',
+      duration: 2000
     });
     await loading.present();
-    this.apiService.callServiceLotofacil_20x4(this.entrada_usuario)
+    this.fechamentoService.callFechamentoLotofacil_13x66(this.entrada_usuario)
       .then((result:any[])=> {
         this.apostas = result
         this.modalPage()
@@ -248,20 +320,46 @@ export class DezenasLotofacilPage implements OnInit {
         console.log('error', error)
       })
   }
-  callServiceLotofacil_21x5(){
-    if (this.entrada_usuario.length == 21){
-      this.loadingFechamento_21x5()
-    } else {
-      this.presentToast_21_5()
-    }
-  }
-  async loadingFechamento_21x5() {
+
+  async loadingFechamento_18X24() {
     const loading = await this.loadingController.create({
-      message: 'Analizando Fechamentos',
-      duration: 3000
+      message: 'Calculando Fechamentos',
+      duration: 2000
     });
     await loading.present();
-    this.apiService.callServiceLotofacil_21x5(this.entrada_usuario)
+    this.fechamentoService.callFechamentoLotofacil_18x24(this.entrada_usuario)
+      .then((result:any[])=> {
+        this.apostas = result
+        this.modalPage()
+      })
+      .catch((error:any)=>{
+        console.log('error', error)
+      })
+  }
+
+  async loadingFechamento_20x4() {
+    const loading = await this.loadingController.create({
+      message: 'Calculando Fechamentos',
+      duration: 2000
+    });
+    await loading.present();
+    this.fechamentoService.callFechamentoLotofacil_20x4(this.entrada_usuario)
+      .then((result:any[])=> {
+        this.apostas = result
+        this.modalPage()
+      })
+      .catch((error:any)=>{
+        console.log('error', error)
+      })
+  }
+
+  async loadingFechamento_18x35() {
+    const loading = await this.loadingController.create({
+      message: 'Calculando Fechamentos',
+      duration: 2000
+    });
+    await loading.present();
+    this.fechamentoService.callFechamentoLotofacil_18x35(this.entrada_usuario)
       .then((result:any[])=> {
         this.apostas = result
         this.modalPage()

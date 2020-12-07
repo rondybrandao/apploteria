@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { map } from 'rxjs/operators';
 //import * as firebase from 'firebase';
 import * as firebase from 'firebase/app';
@@ -88,7 +88,7 @@ export class FirebaseService {
    return consulta
     
 }
-getConsultaDezena() {
+  getConsultaDezena() {
   return new Promise<any>((resolve,reject)=>{
     firebase.database().ref('megasena/').on('value', resp => {
       let res = snapshotToDezena(resp);
@@ -96,46 +96,144 @@ getConsultaDezena() {
       resolve(res)
     });
   })
-}
+  }
 
-getSorteioCorrente() {
-  return new Promise<any>((resolve, reject)=>{
-    firebase.database().ref('megasena/sorteio-corrente/').on('value', resp => {
-      let res = snapshotToDezena(resp);
-      console.log(res)
-      resolve(res)
+  getSorteioCorrente() {
+    return new Promise<any>((resolve, reject)=>{
+      firebase.database().ref('megasena/sorteio-corrente/').on('value', resp => {
+        let res = snapshotToDezena(resp);
+        console.log(res)
+        resolve(res)
+      })
     })
-  })
-}
-getDezenasCorrente() {
-  return new Promise<any>((resolve, reject)=>{
-    firebase.database().ref('megasena/dezenas-corrente/').on('value', resp =>{
-      let res = toIntDezenasCorrente(resp)
-      console.log(res)
-      resolve(res)
-    })
-  })
-}
+  }
 
-getSorteioCorrenteLoteria(loteria) {
-  return new Promise<any>((resolve, reject)=>{
-    firebase.database().ref(loteria + '/sorteio-corrente/').on('value', resp => {
-      let res = snapshotToDezena(resp);
-      console.log(res)
-      resolve(res)
+  getDezenasCorrente() {
+    return new Promise<any>((resolve, reject)=>{
+      firebase.database().ref('megasena/dezenas-corrente/').on('value', resp =>{
+        let res = toIntDezenasCorrente(resp)
+        console.log(res)
+        resolve(res)
+      })
     })
-  })
-}
-getDezenasCorrenteLoteria(loteria) {
-  return new Promise<any>((resolve, reject)=>{
-    firebase.database().ref(loteria + '/dezenas-corrente/').on('value', resp =>{
-      let res = toIntDezenasCorrente(resp)
-      console.log(res)
-      resolve(res)
+  }
+
+  getSorteioCorrenteLoteria(loteria) {
+    return new Promise<any>((resolve, reject)=>{
+      firebase.database().ref(loteria + '/sorteio-corrente/').on('value', resp => {
+        let res = snapshotToDezena(resp);
+        console.log(res)
+        resolve(res)
+      })
     })
-  })
-}
-  
+  }
+
+  getDezenasCorrenteLoteria(loteria) {
+    return new Promise<any>((resolve, reject)=>{
+      firebase.database().ref(loteria + '/dezenas-corrente/').on('value', resp =>{
+        let res = toIntDezenasCorrente(resp)
+        console.log(res)
+        resolve(res)
+      })
+    })
+  }
+
+  getSorteioAtual(loteria) {
+    return new Promise((resolve, reject)=>{
+      firebase.database().ref(loteria + '/sorteio-atual/').on('value', res=>{
+        console.log(res.val())
+        let d = res.val().dezenas
+        console.log(d)
+        let dezenas = toIntLoto(d)
+        console.log(dezenas)
+        let obj = {
+          dezenas: dezenas,
+          numero: res.val().numero
+        }
+        resolve(obj)
+        reject(false)
+      })
+    })
+  }
+
+  getResultados() {
+    return new Promise((resolve, reject)=>{
+      firebase.database().ref('resultados').on('value', res=>{
+        let d = res.val().lotofacil.dezenas
+        let m = res.val().megasena.dezenas
+        let lm = res.val().lotomania.dezenas
+        let q = res.val().quina.dezenas
+
+        let nLotofacil = res.val().lotofacil.numero
+        let nMegasena = res.val().megasena.numero
+        let nLotomania = res.val().lotomania.numero
+        let nQuina = res.val().quina.numero
+        
+        let dezenas_lotofacil = toIntLoto(d)
+        let dezenas_megasena = toIntLoto(m)
+        let dezenas_lotomania = toIntLoto(lm)
+        let dezenas_quina = toIntLoto(q)
+        
+        let obj = {
+          lotofacil: {
+            dezenas:dezenas_lotofacil,
+            numero: nLotofacil
+          },
+          megasena: {
+            dezenas:dezenas_megasena,
+            numero: nMegasena
+          },
+          lotomania: {
+            dezenas:dezenas_lotomania,
+            numero: nLotomania
+          },
+          quina: {
+            dezenas:dezenas_quina,
+            numero: nQuina
+          }
+          
+        }
+        resolve(obj)
+        reject(false)
+      })
+    })
+  }
+
+  getDezenasMegasenaMaisFrequentes(){
+    return new Promise((resolve, reject)=>{
+      firebase.database().ref('megasena').child('maisfrequentes').once('value', res =>{
+        console.log(res.val())
+        let r = res.val()
+        let dezenas = toIntLoto(r)
+        console.log(dezenas)
+        resolve(dezenas)
+      })
+    })
+  }
+
+  getDezenasLotofacilMaisFrequentes(){
+    return new Promise((resolve, reject)=>{
+      firebase.database().ref('lotofacil').child('maisfrequentes').on('value', res =>{
+        console.log(res.val())
+        let r = res.val()
+        let dezenas = toIntLoto(r)
+        console.log(dezenas)
+        resolve(dezenas)
+      })
+    })
+  }
+
+  getDezenasQuinaMaisFrequentes(){
+    return new Promise((resolve, reject)=>{
+      firebase.database().ref('quina').child('maisfrequentes').once('value', res =>{
+        console.log(res.val())
+        let r = res.val()
+        let dezenas = toIntLoto(r)
+        console.log(dezenas)
+        resolve(dezenas)
+      })
+    })
+  }
 }
 export const snapshotToObject = snapshot => {
   let item = snapshot.val();
@@ -166,4 +264,14 @@ export const toIntDezenasCorrente = snapshot => {
   });
 
   return item 
+}
+
+export const toIntLoto = snapshot => {
+  let item = snapshot.split(" ")
+  let res = []
+  item.forEach(element => {
+    res.push(element)
+  });
+
+  return res 
 }

@@ -11,7 +11,7 @@ ion-header {
   }
   ion-toolbar {
     //--background: linear-gradient(#f843956b, #f956a078), url('../../assets/lotomania/number.jpg') no-repeat center center / cover;
-    --background: linear-gradient(to left, rgba(255,0,204,1), rgba(255,0,204,0.2)), url('../../assets/lotomania/number.jpg') no-repeat center center / cover;
+    --background: linear-gradient(to left, rgba(249,86,160,0.6), rgba(249,86,160,0.6)), url('../../assets/lotomania/number.jpg') no-repeat center center / cover;
     -webkit-background-size: cover;
     color: black;
     font-family: fantasy;
@@ -24,9 +24,10 @@ h5 {
     margin-top: 5px;
     margin-left: 5px;
     margin-bottom: 0px;
-    margin-right: 5px;
+    margin-right: 10px;
     text-align: center;
-    font-size: 28px;
+    font-size: 31px;
+    letter-spacing: 9px;
   }
 q::before {
     content: counter(meucontador);
@@ -37,6 +38,7 @@ q::before {
   
 .title-md {
     padding-top: 10px;
+    text-align: center
   }
 .sc-ion-buttons-md-h {
     margin-top: -25px;

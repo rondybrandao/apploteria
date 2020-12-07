@@ -6,7 +6,7 @@
     <ion-title>
       MEGA-SENA
     </ion-title>
-    <div id="frase">"SIGA SEUS SONHOS E IDEAIS E LUTE ENQUANTO A SORTE FAZ SEU TRABALHO"</div>
+    <div id="frase">"EU SOU UM IMÃ PARA A SORTE E DINHEIRO"</div>
   </ion-toolbar>
 </ion-header>
 
@@ -19,43 +19,42 @@
         <ion-card class="card" id="ion-card-palpite" (click)="palpite()">
           <div id="dezena">Palpite da Sorte</div>
           <div id ="apostas">1 aposta</div>
-          <div id="valor-card">R$ 3,50</div>
           <div></div>
         </ion-card>
       </ion-col>
     <ion-row>
       <ion-col>
-        <ion-card class="card" (click)="escolherDezenas()">
+        <ion-card (click)="escolherDezenas()">
           <div id="dezena">12 dezenas</div>
           <div id ="apostas">6 apostas</div>
-          <div id="valor-card">R$ 21,00</div>
+          
           <div></div>
         </ion-card>
       </ion-col>
       <ion-col>
-        <ion-card (click)="fechamento18x3x9()">
+        <ion-card (click)="fechamento18x9()">
           <div id="dezena">18 dezenas</div>
-          <div id="fixas">3 fixas</div>
+          <!--<div id="fixas">3 fixas</div>-->
           <div id="apostas">9 apostas</div>
-          <div id="valor">R$ 31,50</div>
+          
         </ion-card>
       </ion-col>
     </ion-row>
     
     <ion-row>
       <ion-col>
-        <ion-card (click)="fechamento12x3x17()">
+        <ion-card (click)="fechamento12x7()">
           <div id="dezena">12 dezenas</div>
-          <div id="fixas">3 fixas</div>
-          <div id="apostas">17 apostas</div>
-          <div id="valor">R$ 59,50</div>
+          <!--<div id="fixas">3 fixas</div>-->
+          <div id="apostas">7 apostas</div>
+          
         </ion-card>
       </ion-col>
       <ion-col>
-        <ion-card class="card" (click)="fechamento9x12()">
-          <div id="dezena">9 dezenas</div>
-          <div id="apostas">12 apostas</div>
-          <div id="valor-card">R$ 42,50</div>
+        <ion-card (click)="fechamento12x17x3f()">
+          <div id="dezena">12 dezenas</div>
+          <div id="apostas">17 apostas</div>
+          
         </ion-card>
       </ion-col>
     </ion-row>
@@ -64,16 +63,16 @@
       <ion-col>
         <ion-card (click)="fechamento8x7()">
           <div id="dezena">8 dezenas</div>
-          <div id="fixas">3 fixas</div>
+          <!--<div id="fixas">3 fixas</div>-->
           <div id="apostas">7 apostas</div>
-          <div id="valor">R$ 24,50</div>
+          
         </ion-card>
       </ion-col>
       <ion-col>
-        <ion-card class="card" (click)="fechamento10x3()">
+        <ion-card  (click)="fechamento10x3()">
           <div id="dezena">10 dezenas</div>
           <div id="apostas">3 apostas</div>
-          <div id="valor-card">R$ 10,50</div>
+          
         </ion-card>
       </ion-col>
     </ion-row>

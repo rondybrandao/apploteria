@@ -1,9 +1,40 @@
+ion-header {
+  height: 100px;
+}
+ion-toolbar {
+  --background: linear-gradient( rgba(0,153,0,0.5), rgba(0,153,0,0.5)), url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
+  //--background: url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
+  -webkit-background-size: cover;
+  color: white;
+  font-family: GOLSansTextBold,'Trebuchet MS',Arial,sans-serif;
+  font-size: 22px;
+}
+
+ion-content {
+  --background: url('../../assets/lotomania/simpatias.jpg') no-repeat center center / cover;
+}
+
+ion-button {
+  width: -webkit-fill-available;
+}
+ion-grid {
+  padding-top: 0px;
+}
+
+ion-card {
+  --background: white;
+  margin: 0px;
+  padding: 11px;
+  font-size: large;
+}
+
   #palpite {
     align-items: center;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 9px;
   }
   #arr {
     display: inline-block;
@@ -11,56 +42,12 @@
     padding-right: 2px;
   }
   
-  #table-header {
-    color:cadetblue
+  .filtro {
+    margin-top: 69px;
+    display: contents;
+    position: absolute;
   }
   
-  table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-  }
-  table {
-    width:99%
-  }
-  td {
-    text-align: center
-  }
-  #sena {
-    color: #0c9c45
-  }
-  #quina {
-    color: blue
-  }
-  #quadra {
-    color: #f00
-  }
-  iion-header {
-    height: 100px;
-  }
-  ion-toolbar {
-    --background: linear-gradient( rgba(0,153,0,0.5), rgba(0,153,0,0.5)), url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
-    //--background: url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
-    -webkit-background-size: cover;
-    color: white;
-    font-family: fantasy;  
-    height: 100px;
-  }
-  
-  ion-content {
-    --background: url('../../assets/lotomania/simpatias.jpg') no-repeat center center / cover;
-  }
-
-  ion-button {
-    width: -webkit-fill-available;
-  }
-  ion-grid {
-    padding-top: 0px;
-  }
-  
-  ion-card {
-    --background: white
-  }
-
   .arredondar {
     
     background-color: #0c9c45;
@@ -69,31 +56,18 @@
     color:#fff;
     font-weight: bold;
   }
-  .arredondar-lotofacil {
-    
-    background-color: #f84395;
-    padding: 14px;
-    font-size: 14; /*remove "white spaces"*/
-    color:#fff;
-    font-weight: bold;
-  }
-  .arredondar-quina {
-    
-    background-color: #633ce0;;
-    padding: 14px;
-    font-size: 14; /*remove "white spaces"*/
-    color:#fff;
-    font-weight: bold;
-  }
+  
   .arredondar,.arredondar-lotofacil,.arredondar-quina, .arredondar img {
     -webkit-clip-path: circle(50% at 50% 50%);
             clip-path: circle(50% at 50% 50%);
   }
   .title-md {
-    padding-top: 10px
+    padding-top: 10px;
+    text-align: center;
+    font-weight: bold;
   }
   .sc-ion-buttons-md-h {
-    margin-top: -25px;
+    margin-top: -67px;
   }
   #frase {
     padding-top: 15px;

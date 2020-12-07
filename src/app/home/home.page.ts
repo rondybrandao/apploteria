@@ -33,5 +33,10 @@ export class HomePage {
   quadro_vizualizacao(){
     this.navCtrl.navigateForward('/quadro-vizualizacao')
   }
+  resultados(){
+    this.navCtrl.navigateForward('/resultados')
+  }
+
+  goInstagram(){console.log('instagram')}
 
 }

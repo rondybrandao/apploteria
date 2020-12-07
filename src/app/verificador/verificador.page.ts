@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-verificador',
@@ -9,21 +10,43 @@ import { Router } from '@angular/router';
 export class VerificadorPage implements OnInit {
 
   constructor(
-    private router: Router
+    private router: Router,
+    public loadingController: LoadingController,
   ) { }
 
   ngOnInit() {
   }
-  megasena(){
+  async megasena(){
+    const loading = await this.loadingController.create({
+      message: 'Carregando Analize',
+      duration: 2000
+    });
+    await loading.present();
     this.router.navigate(['analize-aposta', { megasena: true }]);
   }
-  lotofacil(){
+  async lotofacil(){
+    const loading = await this.loadingController.create({
+      message: 'Carregando Analize',
+      duration: 2000
+    });
+    await loading.present();
     this.router.navigate(['analize-lotofacil']);
   }
-  lotomania(){
-    this.router.navigate(['/dezenas-lotomania', { verificador: true }]);
-  }
-  quina(){
+  
+  // async lotomania(){
+  //   const loading = await this.loadingController.create({
+  //     message: 'Carregando Analize',
+  //     duration: 2000
+  //   });
+  //   await loading.present();
+  //   this.router.navigate(['/dezenas-lotomania', { verificador: true }]);
+  // }
+  async quina(){
+    const loading = await this.loadingController.create({
+      message: 'Carregando Analize',
+      duration: 2000
+    });
+    await loading.present();
     this.router.navigate(['/analize-quina']);
   }
   voltar(){

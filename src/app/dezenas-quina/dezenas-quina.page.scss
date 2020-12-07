@@ -1,3 +1,33 @@
+ion-toolbar {
+  --background: linear-gradient(to left, rgba(99,60,224,1), rgba(99,60,224,0.5)), url('../../assets/lotomania/number.jpg') no-repeat center center / cover;
+  -webkit-background-size: cover;
+  color: white;
+  font-family: GOLSansTextBold,'Trebuchet MS',Arial,sans-serif;
+  font-size: 22px;
+  
+}
+ion-content {
+  --background: url('../../assets/lotomania/dinheiro.jpg') no-repeat center center / cover;
+  --padding-start: 5px;
+  --padding-end: 0px;
+}
+
+ion-button {
+  width: -webkit-fill-available;
+  padding-right: 10px;
+}
+
+ion-note {
+  --color: #000000;
+  font-family: fantasy;
+  font-size: 22px;
+  padding: 3px;
+}
+
+ion-card {
+  --background: white
+}
+
 .arredondar {
   display: inline-block;
   background-color: #633ce0;
@@ -34,8 +64,8 @@ span {
   flex-wrap: wrap;
   justify-content: center;
   position: absolute;
-  
 }
+
 #n_sorteio {
   align-items: center;
   display: flex;
@@ -65,39 +95,7 @@ td {
   color: #f00
 }
 
-ion-header {
-  height: 100px;;
-}
 
-ion-toolbar {
-  --background: linear-gradient(to left, rgba(99,60,224,1), rgba(99,60,224,0.5)), url('../../assets/lotomania/number.jpg') no-repeat center center / cover;
-  -webkit-background-size: cover;
-  color: white;
-  font-family: fantasy;
-  height: 100px;
-  
-}
-ion-content {
-  --background: url('../../assets/lotomania/dinheiro.jpg') no-repeat center center / cover;
-  --padding-start: 5px;
-  --padding-end: 0px;
-}
-
-ion-button {
-  width: -webkit-fill-available;
-  padding-right: 10px;
-}
-
-ion-note {
-  --color: #000000;
-  font-family: fantasy;
-  font-size: 22px;
-  padding: 3px;
-}
-
-ion-card {
-  --background: white
-}
 
 q::before {
   content: counter(meucontador);
@@ -110,10 +108,12 @@ q::before {
   counter-reset: meuContador;
 }
 .title-md {
-  padding-top: 10px
+  padding-top: 10px;
+  text-align: center;
+  font-weight: bold;
 }
 .sc-ion-buttons-md-h {
-  margin-top: -49px;
+  margin-top: -73px;
 }
 
 h5 {
@@ -129,7 +129,7 @@ h5 {
   padding-top: 6px;
   text-align: center;
   color: white;
-  font-size: 16px;
+  font-size: 21px;
 }
 
 #aposta {
@@ -147,6 +147,7 @@ ul {
     list-style-type: none;
     padding-inline-start: 0px;
     padding-inline-end: 0px;
+    margin-top: 42px;
   }
   
   li {

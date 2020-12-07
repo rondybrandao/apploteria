@@ -53,9 +53,7 @@ export class EsotericoPage implements OnInit {
     private router: Router,
     private loadingController: LoadingController
 
-  ) { 
-  }
-
+  ) {}
   ngOnInit() {
   }
   voltar(){
@@ -100,8 +98,10 @@ export class EsotericoPage implements OnInit {
       dezenas.push(al)
     }
     console.log('dezena:', dezenas);
-    this.callServiceVerificadorMegasena(dezenas);
+    //this.callServiceVerificadorMegasena(dezenas);
+    
     this.dezenas_cabala = dezenas
+    this.megasena_check = true; 
   }
 
   quina_aleatorio(valor){
@@ -116,7 +116,8 @@ export class EsotericoPage implements OnInit {
       dezenas.push(al)
     }
     console.log('dezena:', dezenas);
-    this.callServiceVerificadorQuina(dezenas)
+    //this.callServiceVerificadorQuina(dezenas)
+    this.quina_check = true
     this.dezenas_cabala = dezenas
   }
 
@@ -132,7 +133,8 @@ export class EsotericoPage implements OnInit {
       dezenas.push(al)
     }
     console.log('dezena:', dezenas);
-    this.callServiceVerificadorLotofacil(dezenas)
+    //this.callServiceVerificadorLotofacil(dezenas)
+    this.lotofacil_check = true
     this.dezenas_cabala = dezenas
   }
   calc_cabala(valor){
@@ -189,10 +191,14 @@ export class EsotericoPage implements OnInit {
     return this.numero_cabalistico
   }
 
-  quina(f: NgForm){
+  async quina(f: NgForm){
     let num_cabala
+    const loading = await this.loadingController.create({
+      message: 'Assinando numero Cabalistico',
+      duration: 3000
+    });
+    await loading.present();
     num_cabala = this.numerologia_cabala(f.value.assinatura);
-    console.log('numero quina cabala:', num_cabala);
     this.quina_aleatorio(num_cabala)
   }
 
@@ -210,12 +216,15 @@ export class EsotericoPage implements OnInit {
     await loading.present();
     num_cabala = this.numerologia_cabala(f.value.assinatura);
     this.lotofacil_aleatorio(num_cabala)
-    
-    
   }
 
-  megasena(f: NgForm){
+  async megasena(f: NgForm){
     let num_cabala
+    const loading = await this.loadingController.create({
+      message: 'Assinando numero Cabalistico',
+      duration: 3000
+    });
+    await loading.present();
     num_cabala = this.numerologia_cabala(f.value.assinatura);
     this.megasena_aleatorio(num_cabala);
   }

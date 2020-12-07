@@ -14,8 +14,9 @@ ion-toolbar {
     //--background: url('../../assets/lotomania/beach.jpg') no-repeat center center / cover;
     -webkit-background-size: cover;
     color: white;
-    font-family: fantasy;  
-    height: 100px;
+    font-family: GOLSansTextBold,'Trebuchet MS',Arial,sans-serif;
+    font-size: 22px;
+    
   }
   
 h5 {
@@ -25,6 +26,7 @@ h5 {
     margin-bottom: 0px;
     text-align: center;
     font-size: 25px;
+    letter-spacing: 2px;
   }
 q::before {
     content: counter(meucontador);
@@ -35,9 +37,10 @@ q::before {
   
 .title-md {
     padding-top: 10px;
+    text-align: center
   }
 .sc-ion-buttons-md-h {
-    margin-top: -25px;
+    margin-top: -67px;
   }
 table, th, td {
     border: 1px solid black;

@@ -5,11 +5,12 @@ ion-toolbar {
   --background: linear-gradient(to left, rgba(0,153,0,1), rgba(0,153,0,0.2)), url('../../assets/lotomania/number.jpg') no-repeat center center / cover;
   -webkit-background-size: cover;
   color: white;
-  font-family: fantasy;  
-  height: 100px;
+  font-family: GOLSansTextBold,'Trebuchet MS',Arial,sans-serif;
+  font-size: 22px;
+  
 }
 ion-back-button {
-  --margin-top: -45px;
+  --margin-top: -30px;
   --margin-end: 0px;
   --padding-end: 0px;
   --padding-start: 0px;
@@ -30,6 +31,12 @@ ion-card {
   color: #fff;
   font-size: 15px;
   text-align: center;
+  padding-top: 29px;
+  padding-bottom: 29px;
+}
+
+ion-col {
+  margin: -11px;
 }
 #ion-card-palpite {
   --background: linear-gradient( rgba(0,153,0,0.5), rgba(0,153,0,0.5)), url('../../assets/lotomania/sorte-combo.jpg') no-repeat center center / cover;
@@ -37,16 +44,21 @@ ion-card {
   color: #fff;
   font-size: 15px;
   text-align: center;
+  width: 98%;
+  margin-left: 3px;
+  margin-bottom: -13px;
 }
 
 .card {
   padding-bottom: 9px;
 }
 .title-md {
-  padding-top: 10px
+  padding-top: 10px;
+  text-align: center;
+  font-weight: bold;
 }
 .sc-ion-buttons-md-h {
-  margin-top: -49px;
+  margin-top: -63px;
 }
 #valor {
   color: crimson;
@@ -59,13 +71,16 @@ ion-card {
   padding-top: 15px;
 }
 #dezena {
+  font-size: x-large;
   padding-top: 3px;
   color:white;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
 }
 #apostas {
+  font-size: large;
   color: black;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  
 }
 
 #fixas {

@@ -6,79 +6,64 @@
     <ion-title>
       LOTOFACIL
     </ion-title>
-    <div id="frase">"TUDO O QUE SOMOS É RESULTADO DO QUE PENSAMOS" <span>-Buda</span></div>
+    <div id="frase">"EU RECEBO DINHEIRO DE FONTES INESPERADAS E DE MANEIRAS INESPERADAS."</div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
 
-  <ion-card *ngIf="fechamento_22x8x6">
+  <ion-card *ngIf="fechamento === '22x8x6'">
     <ion-card-header>
       <ion-card-subtitle>LOTOFACIL</ion-card-subtitle>
-      <ion-card-title>Fechamento 22-8-6</ion-card-title>
+      <ion-card-title>Desdobramento 22-8-6</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
       Escolha 22 dezenas e click no botão GERAR COMBINAÇÕES o aplicativo
-      fixará as 8 primeiras dezenas que você selecionou e vai gerar 12 apostas fechadas 
-      e vai conferir se houve premiações naquela aposta.
+      fixará as 8 primeiras dezenas que você selecionou e vai gerar 12 apostas fechadas. 
+      
     </ion-card-content>
   </ion-card>
 
-  <ion-card *ngIf="fechamento_18x6">
+  <ion-card *ngIf="fechamento === '18x6'">
     <ion-card-header>
       <ion-card-subtitle>LOTOFACIL</ion-card-subtitle>
-      <ion-card-title>Fechamento 18-6</ion-card-title>
+      <ion-card-title>Desdobramento 18-6</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
       Escolha 18 dezenas e click no botão GERAR COMBINAÇÕES o aplicativo
-      vai gerar 6 apostas fechadas e vai conferir se houve premiações naquela aposta.
+      vai gerar 6 apostas fechadas.
       Acertando 15 dezenas você garantirá 13 pontos
     </ion-card-content>
   </ion-card>
 
-  <ion-card *ngIf="fechamento_20x4">
+  <ion-card *ngIf="fechamento === '20x4'">
     <ion-card-header>
       <ion-card-subtitle>LOTOFACIL</ion-card-subtitle>
-      <ion-card-title>Fechamento 20-4</ion-card-title>
+      <ion-card-title>Desdobramento 20-4</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
       Escolha 20 dezenas e click no botão GERAR COMBINAÇÕES o aplicativo
-      vai gerar 4 apostas fechadas e vai conferir se houve premiações naquela aposta.
+      vai gerar 4 apostas fechadas.
       Acertando 15 dezenas você garantirá 12 pontos
     </ion-card-content>
   </ion-card>
 
-  <ion-card *ngIf="fechamento_21x5">
+  <ion-card *ngIf="fechamento === '21x5'">
     <ion-card-header>
       <ion-card-subtitle>LOTOFACIL</ion-card-subtitle>
-      <ion-card-title>Fechamento 21-5</ion-card-title>
+      <ion-card-title>Desdobramento 21-5</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
       Escolha 21 dezenas e click no botão GERAR COMBINAÇÕES o aplicativo
-      vai gerar 5 apostas fechadas e vai conferir se houve premiações naquela aposta.
+      vai gerar 5 apostas fechadas.
       Acertando 15 dezenas você garantirá 12 pontos
     </ion-card-content>
   </ion-card>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col size="12">
-        <div id="n_sorteio">sorteio Nº {{sorteio_corrente}}</div>
-        <div id="palpite">
-          <div *ngFor="let dezenas of dezenas_corrente">
-            <div class="arredondar">{{dezenas}}</div>
-          </div>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <br>
-  <br>
-  <br>
   <ion-grid>
     <ion-row>
       <ion-col size="12">
@@ -180,13 +165,10 @@
     </li>
   </ul>
 
-  <ion-button *ngIf="fechamento_22x8x6" size="large" color="primary" (click)="callServiceLotofacil_22x8x6()">Gerar Combinações</ion-button>
-  <ion-button *ngIf="fechamento_18x6" size="large" color="primary" (click)="callServiceLotofacil_18x6()">Gerar Combinações</ion-button>
-  <ion-button *ngIf="fechamento_20x4" size="large" color="primary" (click)="callServiceLotofacil_20x4()">Gerar Combinações</ion-button>
-  <ion-button *ngIf="fechamento_21x5" size="large" color="primary" (click)="callServiceLotofacil_21x5()">Gerar Combinações</ion-button>
-  <ion-button *ngIf="verificador" size="large" color="primary" (click)="verificarDezenas()">VERIFICAR</ion-button>
+  <ion-button *ngIf="fechamento" size="large" color="primary" (click)="callFechamento()">Gerar Combinações</ion-button>
+  <!--<ion-button *ngIf="verificador" size="large" color="primary" (click)="verificarDezenas()">VERIFICAR</ion-button>-->
 
-  <ion-grid *ngIf="apostas.length > 0">
+  <!--<ion-grid *ngIf="apostas.length > 0">
     <ion-row>
       <ion-col size="12">
         <ion-card class="contador"  *ngFor="let aposta of apostas">
@@ -226,6 +208,6 @@
           <br>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid>-->
 
 </ion-content>

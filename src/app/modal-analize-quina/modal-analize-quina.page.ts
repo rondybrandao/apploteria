@@ -8,26 +8,30 @@ import { Chart } from 'chart.js';
 })
 export class ModalAnalizeQuinaPage implements OnInit {
 
-  @Input() dezena: any;
+  dezena
   @ViewChild('chartLineAposta') chartLineAposta;
   lineChartAposta: any;
-  fechamento: any
+  fechamento
 
   constructor(
     private navParams: NavParams,
     public navCtrl: NavController,
     private modalController: ModalController
   ) { 
-    
+
     this.dezena = this.navParams.get('dezena')
-    this.fechamento = this.navParams.get('fechamento')
-    this.showLineAposta()
+    this.fechamento = this.navParams.get('value')
+    console.log(this.fechamento)
+    console.log(this.dezena)
   }
 
   ngOnInit() {
     
   }
-  
+
+  ionViewDidEnter(){
+    this.showLineAposta()
+  }
   voltar(){
     this.navCtrl.navigateBack('analize-quina');
   }

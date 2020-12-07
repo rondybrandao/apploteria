@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="voltar()">
+      <ion-icon size="large" name="arrow-back"></ion-icon>
+    </ion-buttons>
+    <ion-title>
+      DESDOBRAMENTOS
+    </ion-title>
+    <div id="frase">"O MELHOR AMULETO DA SORTE É A FÉ"</div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card class="contador" *ngFor="let aposta of apostas; index as i">
+    <span>aposta {{i + 1}}:</span><h5>{{aposta}}</h5>
+  </ion-card>
+</ion-content>

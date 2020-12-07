@@ -11,51 +11,33 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-grid>
-    <ion-row>
-      <ion-col size="12">
-        <div id="palpite">
-          <div id="arr" *ngFor="let p of palpite" >
-            <div class="arredondar" >{{p}}</div>
-          </div>
-        </div>
-        <br>
-        <ion-button size="large" color="primary" (click)="gerarPalpite()">Gerar Palpite</ion-button>
-        <ion-grid>
-          <ion-row >
-            <ion-col size="12">
-              
-                <ion-card class="contador">
-                  <div id="aposta">
-                    <div id="aposta-label">
-                    <br>
-                      <table>
-                        <tr>
-                          <th id="table-header">Premio</th>
-                          <th id="table-header">Quantidade</th>
-                        </tr>
-                        <tr>
-                          <td id="sena">Sena</td>
-                          <td id="sena"></td>
-                        </tr>
-                        <tr>
-                          <td id="quina">Quina</td>
-                          <td id="quina"></td>
-                        </tr>
-                        <tr>
-                          <td id="quadra">Quadra</td>
-                          <td id="quadra"></td>
-                        </tr>
-                      </table>
-                    </div> 
-              
-                  </div>
-                </ion-card>
-                <br>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-card>
+    <div class="card">No <strong>Filtro</strong> você pode escolher gerar o palpite com <strong>Todos</strong> os numeros, ou com as <strong>10 Dezenas mais frequentes</strong> nos ultimos 10 jogos.</div>
+  </ion-card>
+  <br>
+  <ion-list class="filtro">
+    <ion-radio-group value="todos" name="radio" (ionChange)="radioGroupChange($event)">
+      <ion-list-header>
+        <ion-label>Filtro</ion-label>
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>Todos</ion-label>
+        <ion-radio slot="start" value="todos"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Dezenas mais frequentes</ion-label>
+        <ion-radio slot="start" value="dezmais"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+  <br>
+  <ion-button size="large" color="primary" (click)="gerar_palpite()">Gerar Palpite</ion-button>
+
+  <div id="palpite">
+      <div id="arr" *ngFor="let p of palpite" >
+          <div class="arredondar" >{{p}}</div>
+      </div>
+  </div>
 </ion-content>

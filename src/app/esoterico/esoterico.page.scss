@@ -1,12 +1,21 @@
+ion-header {
+  display: flex;
+  height: 15%;
+}
 ion-toolbar {
-    --background: url('../../assets/lotomania/cabala.jpg') no-repeat center center / cover;
+    --background: url('../../assets/header/numerologiacabala.jpg') no-repeat center center / cover;
     -webkit-background-size: cover;
-    color: black;
-    font-family: fantasy;  
-  }
+    color: white;
+    font-family: GOLSansTextBold,'Trebuchet MS',Arial,sans-serif;
+    font-size: 22px;  
+}
+
+ion-title {
+  font-weight: bold;
+}
   
 ion-content {
-  --background: url('../../assets/lotomania/simpatias.jpg') no-repeat center center / cover;
+  --background: url('../../assets/bg/bg-cabala.jpg');
 }
   
 ion-note {
@@ -15,6 +24,9 @@ ion-note {
 }
 ion-button {
   width: -webkit-fill-available;
+  height: 63px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 33px;
 }
 
 ion-card {
@@ -22,14 +34,51 @@ ion-card {
   color: black
 }
 span {
-  padding-inline-start: 145px;
+  padding-inline-start: 69px;
   font-family: 'Courier New', Courier, monospace;
 }
 .title-md {
-  padding-top: 10px
+  padding-top: 70px;
+  text-align: center
 }
 .sc-ion-buttons-md-h {
-  margin-top: -65px;
+  margin-top: -165px;
+}
+
+.img-icon {
+  width: 21%;
+  margin-right: 10px;
+  margin-left: -21px;
+}
+.title {
+  font-family: GOLSansTextBold,'Trebuchet MS',Arial,sans-serif;
+  font-size: 22px;
+  color: #ff5e00;
+  margin-bottom: 25px;
+  text-align: center;
+}
+.dezenas-cabala-mega {
+  font-family: GOLSansTextBold,'Trebuchet MS',Arial,sans-serif;
+  font-size: 33px;
+  color: #0c9c45;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.dezenas-cabala-lotofacil {
+  font-family: GOLSansTextBold,'Trebuchet MS',Arial,sans-serif;
+  font-size: 33px;
+  color: #f84395;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.dezenas-cabala-quina {
+  font-family: GOLSansTextBold,'Trebuchet MS',Arial,sans-serif;
+  font-size: 33px;
+  color: blue;
+  margin-bottom: 25px;
+  text-align: center;
 }
 
 #table-header {
@@ -66,9 +115,10 @@ td {
 }
 
 #frase {
-  padding-top: 20px;
+  padding-top: 99px;
   text-align: center;
   color: black;
+  font-weight: bold;
 }
 
 h5 {

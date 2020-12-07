@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
+import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'introducao',
     pathMatch: 'full'
   },
   {
     path: 'home',
-    loadChildren: './home/home.module#HomePageModule'
+    loadChildren: './home/home.module#HomePageModule',
+    canActivate: [AuthGuard]
   },
-  {
-    path: 'list',
-    loadChildren: './list/list.module#ListPageModule'
-  },
+ 
   { path: 'mega-sena', loadChildren: './mega-sena/mega-sena.module#MegaSenaPageModule' },
   { path: 'dezenas-megasena', loadChildren: './dezenas-megasena/dezenas-megasena.module#DezenasMegasenaPageModule' },
   { path: 'lotofacil', loadChildren: './lotofacil/lotofacil.module#LotofacilPageModule' },
@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: 'dezenas-lotomania', loadChildren: './dezenas-lotomania/dezenas-lotomania.module#DezenasLotomaniaPageModule' },
   { path: 'esoterico', loadChildren: './esoterico/esoterico.module#EsotericoPageModule' },
   { path: 'verificador', loadChildren: './verificador/verificador.module#VerificadorPageModule' },
-  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule', canActivate: [LoginGuard] },
   { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
   { path: 'palpite', loadChildren: './palpite/palpite.module#PalpitePageModule' },
   { path: 'analize-aposta', loadChildren: './analize-aposta/analize-aposta.module#AnalizeApostaPageModule' },
@@ -39,7 +39,10 @@ const routes: Routes = [
   { path: 'modal-fechamentos', loadChildren: './modal-fechamentos/modal-fechamentos.module#ModalFechamentosPageModule' },
   { path: 'modal-fechamentos-lotofacil', loadChildren: './modal-fechamentos-lotofacil/modal-fechamentos-lotofacil.module#ModalFechamentosLotofacilPageModule' },
   { path: 'modal-analize-lotofacil', loadChildren: './modal-analize-lotofacil/modal-analize-lotofacil.module#ModalAnalizeLotofacilPageModule' },
-  { path: 'modal-fechamento-quina', loadChildren: './modal-fechamento-quina/modal-fechamento-quina.module#ModalFechamentoQuinaPageModule' }
+  { path: 'modal-fechamento-quina', loadChildren: './modal-fechamento-quina/modal-fechamento-quina.module#ModalFechamentoQuinaPageModule' },
+  { path: 'modal-lotomania', loadChildren: './dezenas-lotomania/modal-lotomania/modal-lotomania.module#ModalLotomaniaPageModule' },
+  { path: 'resultados', loadChildren: './resultados/resultados.module#ResultadosPageModule' },
+  { path: 'introducao', loadChildren: './introducao/introducao.module#IntroducaoPageModule' }
 ];
 
 @NgModule({

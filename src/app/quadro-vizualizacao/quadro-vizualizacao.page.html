@@ -6,18 +6,36 @@
     <ion-title>
       
     </ion-title>
-    <div id="frase">"Todo pensamento positivo te leva na direção certa."</div>
+    <div id="frase">"TODO PENSAMENTO POSITIVO LEVA NA DIREÇÃO CERTA."</div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-card>
     <ion-card-header>
-      <ion-card-subtitle>Como usar</ion-card-subtitle>
+      <ion-card-subtitle>como usar</ion-card-subtitle>
+      <ion-card-title>Frequencia dos milagres financeiros</ion-card-title>
+    </ion-card-header>
+      <ion-card-content>
+        Coloque fones de ouvido e ative a frequência dos <strong>milagres</strong>(frequência 432hz) enquanto você vizualiza seus desejos, dessa forma você vai alterar suas vibrações para um estado de prosperidade e sorte. (inicia após 10s)
+      </ion-card-content>
+    <ion-item class="tgl-ativar">
+      <ion-grid>
+      <ion-row class="ion-align-items-start">
+        <ion-col size="12" class="ion-align-self-center">Ativar frequência</ion-col>
+        <ion-col size="12" class="ion-align-self-center"><ion-toggle color="primary" (ionChange)="ativarFrequencia($event)"></ion-toggle></ion-col>
+      </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>como usar</ion-card-subtitle>
       <ion-card-title>Quadro de Vizualização</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      A lei da Atração ensina que voce cria sua realidade atravez do que voce vibra para o universo.
+      A lei da Atração ensina que você cria sua realidade através do que você vibra para o universo.
+      O quadro de vizualização é uma técnica que ajuda a atingir a vibração correta.
       Escolha uma imagem e fixe seus pensamentos em como seria quando voce estiver conquistado.
       Faça isso por pelomenos 2 minutos, sinta como se ja estivesse de posse dessa conquista.
       O pensamento gera o sentimento, o sentimento atrai os resultados. Tenha FÉ e Boa Sorte.
@@ -25,8 +43,9 @@
   </ion-card>
 
   <ion-slides [options]="sliderOpts">
-    <ion-slide *ngFor="let img of [1,2,3,4,5,6,7,8,9,10,11,12]">
-      <img src="assets/lotomania/{{ img }}.jpg" tappable (click)="openPreview(img)">
+    <ion-slide *ngFor="let img of [1,2,3,4,5,6,7,8,9,10,11,12,13,14]">
+      <img src="assets/quadro/{{ img }}.jpg" tappable (click)="openPreview(img)">
     </ion-slide>
   </ion-slides>
+
 </ion-content>

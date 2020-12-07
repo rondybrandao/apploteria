@@ -3,9 +3,7 @@
     <ion-buttons slot="start" (click)="voltar()">
       <ion-icon size="large" name="arrow-back"></ion-icon>
     </ion-buttons>
-    <ion-title>
-      ATRAÇÃO da SORTE
-    </ion-title>
+  
     <div id="frase">"A IMAGINAÇÃO É TUDO. É A PREVIA DAS ATRAÇÕES FUTURAS DA VIDA"</div>
     <span>- Albert Einstein</span>
   </ion-toolbar>
@@ -14,7 +12,6 @@
 <ion-content padding>
   <ion-card>
     <ion-card-header>
-      <ion-card-subtitle>Resumo</ion-card-subtitle>
       <ion-card-title>CABALA</ion-card-title>
     </ion-card-header>
     <ion-card-content>
@@ -33,11 +30,13 @@
     </ion-card-header>
 
     <ion-card-content>
-      Para saber qual é o seu numero Cabalistico digite seu nome no campo abaixo e escolha uma loteria para ter seu numero
+      Digite seu nome no campo abaixo e escolha uma loteria para ter seu numero
       somado as dezenas geradas para a respectiva loteria.
       Dessa maneira voce "assinará" seu nome nas dezenas geradas.
       Voce pode também assinar uma palavra ou uma frase assinar e enviar para o universo.
-      Ex:"PROSPERIDADE", "SORTE", "EU SOU O GANHADOR DA LOTERIA"
+      Ex:"PROSPERIDADE", "SORTE", "EU SOU O GANHADOR DA LOTERIA".       
+      <br>
+      <strong>Como funciona:</strong> O app vai somar a representação cabalistica da palavra digitada a cada dezena gerada aleatoriamente.
     </ion-card-content>
     <form #f="ngForm" novalidade>
       <ion-item>
@@ -45,22 +44,31 @@
         <ion-input name="assinatura" ngModel placeholder="Digite aqui"></ion-input>
       </ion-item>
       <ion-button type="submit" color="success" (click)="megasena(f)">
-        <ion-icon slot="end" name="magnet"></ion-icon>
+        <img class="img-icon" src="assets/icon/money-magnet.png">
         MEGASENA
+        
       </ion-button>
       <ion-button type="submit" color="lotofacil" (click)="lotofacil(f)">
-        <ion-icon slot="end" name="magnet"></ion-icon>
+        <img class="img-icon" src="assets/icon/money-magnet.png">
         LOTOFACIL
+  
       </ion-button>
       <ion-button type="submit" color="tertiary" (click)="quina(f)">
-        <ion-icon slot="end" name="magnet"></ion-icon>
+        <img class="img-icon" src="assets/icon/money-magnet.png">
         QUINA
+
       </ion-button>
     </form>
-    
+  </ion-card>
+
+  <ion-card>
+    <h1 class="title">Suas dezenas geradas</h1>
+    <div *ngIf="megasena_check"><h2 class="dezenas-cabala-mega">{{ dezenas_cabala }}</h2></div>
+    <div *ngIf="lotofacil_check"><h2 class="dezenas-cabala-lotofacil">{{ dezenas_cabala }}</h2></div>
+    <div *ngIf="quina_check"><h2 class="dezenas-cabala-quina">{{ dezenas_cabala }}</h2></div>
   </ion-card>
   
-  <!--MEGASENA-->
+  <!--MEGASENA
   <ion-grid *ngIf="megasena_check">
     <ion-row>
       <ion-col size="12">
@@ -76,15 +84,15 @@
                         </tr>
                         <tr>
                           <td id="sena">Sena</td>
-                          <td id="sena">{{aposta.sena}}</td>
+                          <td id="sena">{{aposta[0].sena}}</td>
                         </tr>
                         <tr>
                           <td id="quina">Quina</td>
-                          <td id="quina">{{aposta.quina}}</td>
+                          <td id="quina">{{aposta[0].quina}}</td>
                         </tr>
                         <tr>
                           <td id="quadra">Quadra</td>
-                          <td id="quadra">{{aposta.quadra}}</td>
+                          <td id="quadra">{{aposta[0].quadra}}</td>
                         </tr>
                       </table>
                     </div> 
@@ -94,7 +102,7 @@
     </ion-row>
   </ion-grid>
 
-  <!--LOTOFACIL-->
+  LOTOFACIL
   <ion-grid *ngIf="lotofacil_check">
     <ion-row>
       <ion-col size="12">
@@ -136,7 +144,7 @@
     </ion-row>
   </ion-grid>
 
-  <!--QUINA-->
+  QUINA
   <ion-grid *ngIf="quina_check">
     <ion-row>
       <ion-col size="12">
@@ -152,15 +160,15 @@
                         </tr>
                         <tr>
                           <td id="sena">Quina</td>
-                          <td id="sena">{{aposta.quina}}</td>
+                          <td id="sena">{{aposta[0].quina}}</td>
                         </tr>
                         <tr>
                           <td id="quina">Quadra</td>
-                          <td id="quina">{{aposta.quadro}}</td>
+                          <td id="quina">{{aposta[0].quadra}}</td>
                         </tr>
                         <tr>
                           <td id="quadra">Terno</td>
-                          <td id="quadra">{{aposta.terno}}</td>
+                          <td id="quadra">{{aposta[0].terno}}</td>
                         </tr>
                       </table>
                     </div> 
@@ -168,7 +176,7 @@
         </ion-card>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid>-->
   
 
 </ion-content>

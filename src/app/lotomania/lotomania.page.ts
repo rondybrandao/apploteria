@@ -15,11 +15,11 @@ export class LotomaniaPage implements OnInit {
   ngOnInit() {
   }
 
-  fechamento_90x10x6(){
-    this.router.navigate(['/dezenas-lotomania', { fechamento_90x10x6: true }]);
+  fechamento_60x12(){
+    this.router.navigate(['/dezenas-lotomania', { fechamento: '60x12' }]);
   }
-  fechamento_100x6(){
-    this.router.navigate(['/dezenas-lotomania', { fechamento_100x6: true }]);
+  fechamento_60x6(){
+    this.router.navigate(['/dezenas-lotomania', { fechamento: '60x6' }]);
   }
   voltar() {
     this.router.navigate(['/home'])

@@ -6,7 +6,7 @@
     <ion-title>
       LOTOFACIL
     </ion-title>
-    <div id="frase">"TUDO O QUE SOMOS É RESULTADO DO QUE PENSAMOS" <span>-Buda</span></div>
+    <div id="frase">"TUDO NA MINHA VIDA ACONTECE PARA O MEU BEM SUPERIOR.</div>
   </ion-toolbar>
 </ion-header>
 
@@ -20,25 +20,24 @@
         <ion-card class="card" id="ion-card-palpite" (click)="palpite()">
           <div id="dezena">Palpite da Sorte</div>
           <div id ="apostas">1 apostas</div>
-          <div id="valor">R$ 2,00</div>
           <div></div>
         </ion-card>
       </ion-col>
     <ion-row>
       <ion-col>
-        <ion-card (click)="fechamento22x8x6()">
-          <div id="dezena">22 dezenas</div>
-          <div id="fixas">8 fixas</div>
+        <ion-card class="card" (click)="fechamento18x6()">
+          <div id="dezena">18 dezenas</div>
+          <!--<div id="fixas">8 fixas</div>-->
           <div id ="apostas">6 apostas</div>
-          <div id="valor">R$ 12,00</div>
+          
           <div></div>
         </ion-card>
       </ion-col>
       <ion-col>
-        <ion-card class="card" (click)="fechamento18x6()">
+        <ion-card class="card" (click)="fechamento18x24()">
           <div id="dezena">18 dezenas</div>
-          <div id="apostas">6 apostas</div>
-          <div id="valor-card">R$ 18,00</div>
+          <div id="apostas">24 apostas</div>
+         
         </ion-card>
       </ion-col>
     </ion-row>
@@ -48,17 +47,18 @@
         <ion-card class="card" (click)="fechamento20x4()">
           <div id="dezena">20 dezenas</div>
           <div id ="apostas">4 apostas</div>
-          <div id="valor">R$ 12,00</div>
+          
           <div></div>
         </ion-card>
       </ion-col>
-      <ion-col>
-        <ion-card class="card" (click)="fechamento21x5()">
-          <div id="dezena">21 dezenas</div>
-          <div id="apostas">5 aposta</div>
-          <div id="valor">R$ 18,00</div>
+      <ion-col >
+        <ion-card class="card" (click)="fechamento18x35()">
+          <div id="dezena">18 dezenas</div>
+          <div id="apostas">35 aposta</div>
         </ion-card>
       </ion-col>
     </ion-row>
+    
+    
   </ion-grid>
 </ion-content>

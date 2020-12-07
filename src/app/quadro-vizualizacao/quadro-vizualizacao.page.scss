@@ -7,17 +7,24 @@ ion-slides {
         padding-bottom: 20px;
     }
 }
-ion-header {
-    height: 100px;
-  }
+
 ion-toolbar {
     --background: url('../../assets/lotomania/olho-quantico.jpg') no-repeat center center / cover;
     -webkit-background-size: cover;
     color: white;
-    font-family: fantasy;
-    height: 100px;
+    font-family: GOLSansTextBold,'Trebuchet MS',Arial,sans-serif;
+    font-size: 22px;
     
   }
+
+ion-content {
+    --background: url('../../assets/lotomania/dinheiro.jpg') no-repeat center center / cover;
+}
+
+ion-card {
+  background: white
+}
+
 ion-back-button {
   --margin-end: 0px;
   --padding-end: 0px;
@@ -25,24 +32,32 @@ ion-back-button {
   --icon-margin-end: 0px;
   --icon-margin-start: 0px;
 }
+
+ion-grid {
+  text-align: center;
+}
+
+ion-col {
+  margin-top: -12px;
+}
+
 .title-md {
   padding-inline-start: 0px;
   padding-top: 3px;
 }
-ion-content {
-    --background: url('../../assets/lotomania/dinheiro.jpg') no-repeat center center / cover;
-  }
 
-ion-card {
-  background: white
-}
 .sc-ion-buttons-md-h {
-  margin-top: -20px;
+  margin-top: -67px;
 }
+
+.tgl-ativar {
+  
+}
+
 #frase {
   padding-top: 20px;
   text-align: center;
   color: white;
-  font-size: 18px;
+  font-size: 26px;
 }
   

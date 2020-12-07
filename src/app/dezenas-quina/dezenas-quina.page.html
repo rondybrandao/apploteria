@@ -6,77 +6,76 @@
     <ion-title>
       QUINA
     </ion-title>
-    <div id="frase">"UM HOMEM É APENAS O PRODUTO DOS SEUS PENSAMENTOS. O QUE ELE ACHA QUE SE TORNA" </div>
-    <span> - Gandhi</span>
+    <div id="frase">"Coisas boas, incluindo dinheiro, estão sempre vindo na minha direção." </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
 
-  <ion-card *ngIf="fechamento_18x12x5x6">
+  <ion-card *ngIf="fechamento === '15x16'">
     <ion-card-header>
       <ion-card-subtitle>QUINA</ion-card-subtitle>
-      <ion-card-title>Fechamento 18-12</ion-card-title>
+      <ion-card-title>Desdobramento 15-16</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      Escolha 18 dezenas e click no botão GERAR COMBINAÇÕES o aplicativo
-      vai gerar 12 apostas fechadas de 6 dezenas e vai conferir se já houve premiações naquela aposta.
-      Acertando 5 dezenas garantido no minimo Terno com possibiliades de premios maiores.
+      Escolha 15 dezenas e click no botão GERAR COMBINAÇÕES o aplicativo
+      vai gerar 16 apostas.
+      Acertando 3 dezenas garantido no minimo Terno com possibiliades de premios maiores.
     </ion-card-content>
   </ion-card>
 
-  <ion-card *ngIf="fechamento_10x19">
+  <ion-card *ngIf="fechamento === '9x15'">
     <ion-card-header>
       <ion-card-subtitle>QUINA</ion-card-subtitle>
-      <ion-card-title>Fechamento 10-19</ion-card-title>
+      <ion-card-title>Desdobramento 9-15</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      Escolha 10 dezenas e click no botão GERAR COMBINAÇÕES o aplicativo
-      vai gerar 19 apostas fechadas e vai conferir se já houve premiações naquela aposta.
-      100% Terno se acertar 3 dezenas. Com possibiliades de premios maiores.
+      Escolha 9 dezenas e click no botão GERAR COMBINAÇÕES o aplicativo
+      vai gerar 15 apostas.
+      100% Terno se acertar 5 dezenas. Com possibiliades de premios maiores.
     </ion-card-content>
   </ion-card>
 
-  <ion-card *ngIf="fechamento_8x8">
+  <ion-card *ngIf="fechamento === '8x8'">
     <ion-card-header>
       <ion-card-subtitle>QUINA</ion-card-subtitle>
-      <ion-card-title>Fechamento 8-8</ion-card-title>
+      <ion-card-title>Desdobramento 8-8</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
       Escolha 8 dezenas e click no botão GERAR COMBINAÇÕES o aplicativo
-      vai gerar 8 apostas fechadas e vai conferir se já houve premiações naquela aposta.
+      vai gerar 8 apostas fechadas.
       100% Quadra e no minimo 1 Terno SE acertar 4 dezenas
     </ion-card-content>
   </ion-card>
 
-  <ion-card *ngIf="fechamento_10x2">
+  <ion-card *ngIf="fechamento === '10x2'">
     <ion-card-header>
       <ion-card-subtitle>QUINA</ion-card-subtitle>
-      <ion-card-title>Fechamento 10-2</ion-card-title>
+      <ion-card-title>Desdobramento 10-2</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
       Escolha 8 dezenas e click no botão GERAR COMBINAÇÕES o aplicativo
-      vai gerar 8 apostas fechadas e vai conferir se já houve premiações naquela aposta.
+      vai gerar 8 apostas fechadas.
       100% Terno SE acertar 5 dezenas. Com possibilidades de premios maiores.
     </ion-card-content>
   </ion-card>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col size="12">
-        <div id="n_sorteio">sorteio Nº {{sorteio_corrente}}</div>
-        <div id="n_sorteio">
-          <div *ngFor="let dezenas of dezenas_corrente">
-            <div class="arredondar">{{dezenas}}</div>
-          </div>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-card *ngIf="fechamento === '7x21'">
+    <ion-card-header>
+      <ion-card-subtitle>QUINA</ion-card-subtitle>
+      <ion-card-title>Desdobramento 7-21</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      Escolha 7 dezenas e click no botão GERAR COMBINAÇÕES o aplicativo
+      vai gerar 21 apostas fechadas.
+      100% Terno SE acertar 5 dezenas. Com possibilidades de premios maiores.
+    </ion-card-content>
+  </ion-card>
 
   <ion-grid>
     <ion-row>
@@ -333,10 +332,7 @@
       <label for="cb80"><div class="trapezio" >[ 80 ]</div></label>
     </li>
   </ul>
-  <ion-button *ngIf="fechamento_18x12x5x6" size="large" color="primary" (click)="callServiceQuina_18x12x5x6()">Gerar Combinações</ion-button>
-  <ion-button *ngIf="fechamento_10x19" size="large" color="primary" (click)="callServiceQuina_10x19()">Gerar Combinações</ion-button>
-  <ion-button *ngIf="fechamento_8x8" size="large" color="primary" (click)="callServiceQuina_8x8()">Gerar Combinações</ion-button>
-  <ion-button *ngIf="fechamento_10x2" size="large" color="primary" (click)="callServiceQuina_10x2()">Gerar Combinações</ion-button>
+  <ion-button *ngIf="fechamento" size="large" color="primary" (click)="callFechamento()">Gerar Combinações</ion-button>
   <ion-button *ngIf="verificador" size="large" color="primary" (click)="verificarDezenas()">VERIFICAR</ion-button>
   
 </ion-content>

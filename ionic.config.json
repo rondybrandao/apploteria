@@ -6,7 +6,7 @@
   "type": "angular",
   "proxies": [
     {
-      "proxyUrl": "http://apploteria.sa-east-1.elasticbeanstalk.com/core/"
+      "proxyUrl": "http://apploteria-env.xqcciwrz2y.sa-east-1.elasticbeanstalk.com/core/"
     }
   ]
 }

@@ -1,7 +1,7 @@
 import { AuthService } from './../auth/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app'
+//import { auth } from 'firebase/app'
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,15 +17,24 @@ export class LoginPage implements OnInit {
   constructor(
     public afAuth: AngularFireAuth,
     public authService: AuthService,
-    public router: Router
-  ) { }
+    public router: Router,
+    private zone: NgZone
+  ) {
+    // afAuth.auth.onAuthStateChanged((user)=>{
+    //   if(user){
+    //     this.zone.run(() => {
+    //       this.router.navigate(['/home']);
+    //   });
+    //   }
+    // } )
+   }
 
   ngOnInit() {
   }
   async login2(){
     const {username, password} = this
     try {
-      const res = await this.afAuth.auth.signInWithEmailAndPassword(username, password)
+      await this.afAuth.auth.signInWithEmailAndPassword(username, password)
     } catch (error) {
       console.dir(error)
       if(error.code === "auth/user-not-found"){
@@ -37,8 +46,8 @@ export class LoginPage implements OnInit {
   async login(){
     const {username, password} = this
     try {
-      const res = await this.authService.login(username, password);
-      this.router.navigate(['home'])
+      await this.authService.login(username, password);
+      //this.router.navigate(['home'])
     } catch (error) {
       console.dir(error)
       if(error.code === "auth/user-not-found"){

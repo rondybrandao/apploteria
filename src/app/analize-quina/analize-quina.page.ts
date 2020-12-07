@@ -32,7 +32,6 @@ export class AnalizeQuinaPage implements OnInit {
   dez3 = []
   dez4 = []
   dez5 = []
-  dez6 = []
 
   public form = [
     { id: 0, val: '01', checked: false },
@@ -124,9 +123,7 @@ export class AnalizeQuinaPage implements OnInit {
     public firebaseService: FirebaseService,
     public loadingController: LoadingController,
     private modalController: ModalController
-  )  { 
-
-  }
+  )  {}
 
   ngOnInit() {
   }
@@ -134,22 +131,25 @@ export class AnalizeQuinaPage implements OnInit {
   voltar(){
     this.navCtrl.navigateBack('verificador');
   }
-  async presentLoading() {
-    const loading = await this.loadingController.create({
-      message: 'Analizando dezenas',
-      duration: 2000
-    });
-    await loading.present();
-    this.showLineAposta();
-    const { role, data } = await loading.onDidDismiss()
-  }
+  // async presentLoading() {
+  //   const loading = await this.loadingController.create({
+  //     message: 'Analizando dezenas',
+  //     duration: 2000
+  //   });
+  //   await loading.present();
+  //   this.showLineAposta();
+  //   const { role, data } = await loading.onDidDismiss()
+  // }
 
   async modalPage() {
     const modal = await this.modalController.create({
       component: ModalAnalizeQuinaPage,
-      componentProps: {value: this.verificar, dezena: this.dezena}
+      componentProps: {
+        value: this.verificar, 
+        dezena: this.dezena
+      }
     });
-    return await modal.present();
+    await modal.present();
   }
 
   onFilterChange(eve: any){
@@ -190,11 +190,12 @@ export class AnalizeQuinaPage implements OnInit {
   }
   verificarDezenas(){
     if (this.entrada_usuario.length == 5){
-      //this.getDezenasQuinaMes(this.entrada_usuario);
+      this.getDezenasQuinaMes(this.entrada_usuario);
       this.apiService.callVerificadorQuina(this.entrada_usuario)
       .then((result:any[])=>{
-        //this.modalPage(result)
-        
+        this.verificar = result
+        this.modalPage()
+  
         //this.showLineAposta();
       })
       .catch((error:any)=>{
@@ -209,16 +210,10 @@ export class AnalizeQuinaPage implements OnInit {
   verificarDezenas2(){
     
     if (this.entrada_usuario.length == 5){
-      this.loadingVerificar()
-      this.modalController.create({
-        component: ModalAnalizeQuinaPage,
-        componentProps: {
-          fechamento: this.verificar,
-          dezena: this.dezena 
-        }
-      }).then(modal => {
-        modal.present();
-      });
+      this.firebaseService.getDezenasMes2(this.entrada_usuario).then((result:any)=>{
+        this.dezena = result
+        this.loadingVerificar()
+      })
     }
     else {
       this.presentToastVerificador()
@@ -230,88 +225,85 @@ export class AnalizeQuinaPage implements OnInit {
       duration: 3000
     });
     await loading.present();
-    this.firebaseService.getDezenasMes2(this.entrada_usuario).then((result:any)=>{
-      this.dezena = result
-    })
-
     this.apiService.callVerificadorQuina(this.entrada_usuario)
       .then((result:any[])=>{
         this.verificar = result;
-        //this.modalPage()
+        this.modalPage()
       })
       .catch((error:any)=>{
         console.log('error:',error)
-      }); 
+      });
+    //this.modalPage() 
   }
 
-  showLineAposta(){
-    this.lineChartAposta = new Chart(this.chartLineAposta.nativeElement, {
+//   showLineAposta(){
+//     this.lineChartAposta = new Chart(this.chartLineAposta.nativeElement, {
  
-      type: 'line',
-      data: {
-          labels: ['JAN', 'FEV', 'MAR', 'ABR'],
-          //labels: this.datas,
-          datasets: [{
-            backgroundColor: 'rgba(156, 195, 20, 1.0)',
+//       type: 'line',
+//       data: {
+//           labels: ['JAN', 'FEV', 'MAR', 'ABR'],
+//           //labels: this.datas,
+//           datasets: [{
+//             backgroundColor: 'rgba(156, 195, 20, 1.0)',
             
-            data: this.dez1,
-            label: this.dezena[0].dezena
-          }, {
-            backgroundColor:'rgba(176, 71, 33, 1.0)',
+//             data: this.dez1,
+//             label: this.dezena[0].dezena
+//           }, {
+//             backgroundColor:'rgba(176, 71, 33, 1.0)',
             
-            data:this.dez2,
-            label: this.dezena[1].dezena,
-            fill: '-1'
-          }, {
-            backgroundColor:'rgba(182, 46, 235, 1.0)',
+//             data:this.dez2,
+//             label: this.dezena[1].dezena,
+//             fill: '-1'
+//           }, {
+//             backgroundColor:'rgba(182, 46, 235, 1.0)',
             
-            data: this.dez3,
-            label: this.dezena[2].dezena,
-            fill: 1
-          }, {
-            backgroundColor: 'rgba(47, 198, 67, 1.0)',
+//             data: this.dez3,
+//             label: this.dezena[2].dezena,
+//             fill: 1
+//           }, {
+//             backgroundColor: 'rgba(47, 198, 67, 1.0)',
             
-            data: this.dez4,
-            label: this.dezena[3].dezena,
-            fill: '-1'
-          }, {
-            backgroundColor: 'rgba(81, 46, 34, 1.0)',
+//             data: this.dez4,
+//             label: this.dezena[3].dezena,
+//             fill: '-1'
+//           }, {
+//             backgroundColor: 'rgba(81, 46, 34, 1.0)',
             
-            data: this.dez5,
-            label: this.dezena[4].dezena,
-            fill: '-1'
-          }]
-      },
-      options: {
-        maintainAspectRatio: false,
-        spanGaps: false,
-        elements: {
-          line: {
-            tension: 0.000001
-          }
-        },
-				scales: {
-					xAxes: [{
+//             data: this.dez5,
+//             label: this.dezena[4].dezena,
+//             fill: '-1'
+//           }]
+//       },
+//       options: {
+//         maintainAspectRatio: false,
+//         spanGaps: false,
+//         elements: {
+//           line: {
+//             tension: 0.000001
+//           }
+//         },
+// 				scales: {
+// 					xAxes: [{
 	
-						ticks: {
-							source: 'labels'
-						}
-					}],
-					yAxes: [{
-						stacked: true,
-					}]
-        },
-        plugins: {
-          filler: {
-            propagate: false
-          },
-          'samples-filler-analyser': {
-            target: 'chart-analyser'
-          }
-        }
-			}
+// 						ticks: {
+// 							source: 'labels'
+// 						}
+// 					}],
+// 					yAxes: [{
+// 						stacked: true,
+// 					}]
+//         },
+//         plugins: {
+//           filler: {
+//             propagate: false
+//           },
+//           'samples-filler-analyser': {
+//             target: 'chart-analyser'
+//           }
+//         }
+// 			}
 
-  });
-}
+//   });
+// }
 
 }

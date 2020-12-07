@@ -1,3 +1,53 @@
+ion-header {
+  height: 100px;
+}
+ion-toolbar {
+  --background: linear-gradient(to left, rgba(0,153,0,1), rgba(0,153,0,0.2)), url('../../assets/lotomania/number.jpg') no-repeat center center / cover;
+  //--background: url('../../assets/lotomania/beach.jpg') no-repeat center center / cover;
+  -webkit-background-size: cover;
+  color: white;
+  font-family: GOLSansTextBold,'Trebuchet MS',Arial,sans-serif;
+  font-size: 22px;
+  //height: 100px;
+}
+
+ion-title {
+  font-weight: bold;
+}
+
+ion-content {
+  --background: url('../../assets/lotomania/dinheiro.jpg') no-repeat center center / cover;
+  --padding-start: 5px;
+  --padding-end: 0px;
+}
+
+ion-note {
+  --color: #000000;
+  font-family: fantasy;
+  font-size: 22px;
+  padding: 3px;
+}
+ion-button {
+  width: -webkit-fill-available;
+  margin-inline-end: 6px;
+}
+ion-grid {
+  padding-top: 0px;
+}
+
+ion-card {
+  --background: white
+}
+
+h5 {
+  color: black;
+  font-family: fantasy;
+  padding-top: 2px;
+  margin-top: 5px;
+  margin-bottom: 0px;
+  text-align: center
+}
+
 #circulo1 {
     background: radial-gradient(circle closest-side,#f00 0%,#f00 98%,rgba(0,0,0,0) 100%);
   }
@@ -77,56 +127,14 @@ td {
   display: flex;
   justify-content: center;
 }
-ion-header {
-  height: 100px;
-}
-ion-toolbar {
-  --background: linear-gradient(to left, rgba(0,153,0,1), rgba(0,153,0,0.2)), url('../../assets/lotomania/number.jpg') no-repeat center center / cover;
-  //--background: url('../../assets/lotomania/beach.jpg') no-repeat center center / cover;
-  -webkit-background-size: cover;
-  color: white;
-  font-family: fantasy;  
-  height: 100px;
-}
 
-ion-content {
-  --background: url('../../assets/lotomania/dinheiro.jpg') no-repeat center center / cover;
-  --padding-start: 5px;
-  --padding-end: 0px;
-}
-
-ion-note {
-  --color: #000000;
-  font-family: fantasy;
-  font-size: 22px;
-  padding: 3px;
-}
-ion-button {
-  width: -webkit-fill-available;
-  margin-inline-end: 6px;
-}
-ion-grid {
-  padding-top: 0px;
-}
-
-ion-card {
-  --background: white
-}
-
-h5 {
-  color: black;
-  font-family: fantasy;
-  padding-top: 2px;
-  margin-top: 5px;
-  margin-bottom: 0px;
-  text-align: center
-}
 
 .title-md {
   padding-top: 10px;
+  text-align: center
 }
 .sc-ion-buttons-md-h {
-  margin-top: -25px;
+  margin-top: -70px;
 }
 #dezenas-corrente {
   align-items: center;
@@ -138,7 +146,7 @@ h5 {
   padding-inline-start: 35px;
 }
 #frase {
-  padding-top: 15px;
+  padding-top: 20px;
   text-align: center;
   color: white;
 }

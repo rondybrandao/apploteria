@@ -12,14 +12,8 @@ const basepath = "/dezenas-megasena"
   providedIn: 'root'
 })
 export class ApiService {
-  private API_URL = 'http://127.0.0.1:8000/megasena'
-  private API_URL_18x3x9 = 'http://127.0.0.1:8000/fechamento18-3-9'
-  private API_URL_lotofacil_22x8x6 = 'http://127.0.0.1:8000/lotofacil-22-8-6'
-  private API_URL_qui_18x12x5x6 = 'http://127.0.0.1:8000/quina-18-12-5-6'
-  private API_URL_qui_10x19 = 'http://127.0.0.1:8000/quina-10-19'
   
-  private AWS_URL = 'http://apploteria.sa-east-1.elasticbeanstalk.com/core/'
-
+  private AWS_URL = 'http://apploteria-env.xqcciwrz2y.sa-east-1.elasticbeanstalk.com/core/'
   private URL = 'http://127.0.0.1:8000/'
   constructor(
     public httpCliente: HttpClient,
@@ -32,7 +26,7 @@ export class ApiService {
             dezenas:dezenas
         };
         console.log('data:',data)
-        this.httpCliente.post(this.AWS_URL + 'megasena-12-6', data, httpOptions)
+        this.httpCliente.post(this.URL + 'megasena-12-6', data, httpOptions)
             .subscribe((result:any[])=>{
                 console.log('post:',result)
                 resolve(result)
@@ -51,7 +45,7 @@ export class ApiService {
             dezenas:dezenas
         };
         console.log('data:',data)
-        this.httpCliente.post(this.AWS_URL + 'megasena-18-3-9', data, httpOptions)
+        this.httpCliente.post(this.URL + 'megasena-18-3-9', data, httpOptions)
             .subscribe((result:any[])=>{
                 console.log('post:',result)
                 resolve(result)
@@ -70,7 +64,7 @@ export class ApiService {
             dezenas:dezenas
         };
         console.log('data:',data)
-        this.httpCliente.post(this.AWS_URL + 'megasena-9-12', data, httpOptions)
+        this.httpCliente.post(this.URL + 'megasena-9-12', data, httpOptions)
             .subscribe((result:any[])=>{
                 console.log('post:',result)
                 resolve(result)
@@ -88,7 +82,7 @@ export class ApiService {
             dezenas:dezenas
         };
         console.log('data:',data)
-        this.httpCliente.post(this.AWS_URL + 'megasena-8-7', data, httpOptions)
+        this.httpCliente.post(this.URL + 'megasena-8-7', data, httpOptions)
             .subscribe((result:any[])=>{
                 console.log('post:',result)
                 resolve(result)
@@ -106,7 +100,7 @@ export class ApiService {
             dezenas:dezenas
         };
         console.log('data:',data)
-        this.httpCliente.post(this.AWS_URL + 'megasena-10-3', data, httpOptions)
+        this.httpCliente.post(this.URL + 'megasena-10-3', data, httpOptions)
             .subscribe((result:any[])=>{
                 console.log('post:',result)
                 resolve(result)
@@ -122,7 +116,7 @@ export class ApiService {
         dezenas:dezenas
     }
     const fechamentoObservable = new Observable(observer => {
-        this.httpCliente.post(this.AWS_URL + 'megasena-10-3', data, httpOptions)
+        this.httpCliente.post(this.URL + 'megasena-10-3', data, httpOptions)
             .subscribe((result:any[])=>{
                 observer.next(result)
             })
@@ -137,7 +131,7 @@ export class ApiService {
             dezenas:dezenas
         };
         console.log('data:',data)
-        this.httpCliente.post(this.AWS_URL + 'megasena-12-3-17', data, httpOptions)
+        this.httpCliente.post(this.URL + 'megasena-12-3-17', data, httpOptions)
             .subscribe((result:any[])=>{
                 console.log('post:',result)
                 resolve(result)

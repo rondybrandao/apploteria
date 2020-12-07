@@ -1,0 +1,88 @@
+ion-toolbar {
+    --background: black ;
+    color: white;
+    font-family: GOLSansTextBold,'Trebuchet MS',Arial,sans-serif;
+    font-size: 22px;
+}
+
+ion-content {
+    --background: url('../../assets/lotomania/dinheiro.jpg') no-repeat center center / cover;
+}
+
+ion-title {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.arredondar {
+    display: inline-block;
+    background-color: lightcyan;
+    padding: 10px;
+    /*font-size: 13px; /*remove "white spaces"*/
+    color: black;
+    font-weight: bold;
+    box-shadow: yellow;
+}
+.arredondar, .arredondar img {
+    -webkit-clip-path: circle(50% at 50% 50%);
+            clip-path: circle(50% at 50% 50%);
+}
+
+.card-megasena {
+    background: darkgreen;
+    height: 27%;
+}
+
+.card-lotofacil {
+    background: #f84395;
+    height: 36%;
+}
+
+.card-lotomania {
+    background: #ff8000;
+    height: 42%;
+}
+
+.card-quina {
+    background: #633ce0;
+    height: 27%;
+}
+
+.title-megasena {
+    color: white;
+    font-family: GOLSansTextBold,'Trebuchet MS',Arial,sans-serif;
+    font-size: 22px;
+}
+
+.voltar {
+    margin-top: -69px;
+}
+
+#n_sorteio {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    font-size: larger;
+    padding-bottom: 9px;
+}
+
+#palpite {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: absolute;
+    padding-inline-start: 0px;
+}
+
+#frase {
+    padding-top: 15px;
+    text-align: center;
+    color: white;
+    padding-bottom: 10px;
+}
+    

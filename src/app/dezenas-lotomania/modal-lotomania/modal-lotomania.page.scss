@@ -1,0 +1,50 @@
+ion-content {
+    --background: url('../../../assets/lotomania/dinheiro.jpg') no-repeat center center / cover;
+    --padding-start: 5px;
+    --padding-end: 0px;
+  }
+ion-card {
+    --background: white
+  }
+ion-header {
+    height: 100px;
+  }
+ion-toolbar {
+    --background: linear-gradient(to left,rgba(255,128,0,1), rgba(255,128,0,0.7)), url('../../../assets/lotomania/number.jpg') no-repeat center center / cover;
+    //--background: url('../../assets/lotomania/beach.jpg') no-repeat center center / cover;
+    -webkit-background-size: cover;
+    color: white;
+    font-family: fantasy;  
+    height: 100px;
+  }
+  
+h5 {
+    color: black;
+    font-family: fantasy;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    text-align: center;
+    font-size: 25px;
+    letter-spacing: 2px;
+  }
+q::before {
+    content: counter(meucontador);
+  }
+.contador {
+    counter-increment: meucontador;
+  }
+  
+.title-md {
+    padding-top: 10px;
+    text-align: center
+  }
+.sc-ion-buttons-md-h {
+    margin-top: -25px;
+  }
+
+#frase {
+    padding-top: 15px;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+  }

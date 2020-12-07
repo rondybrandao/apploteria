@@ -4,8 +4,6 @@ import { ApiService } from '../api.service';
 import { ToastController, NavController, LoadingController } from '@ionic/angular';
 
 import { Chart } from 'chart.js';
-import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-analize-aposta',
@@ -108,41 +106,15 @@ export class AnalizeApostaPage implements OnInit {
     public navCtrl: NavController,
     public firebaseService: FirebaseService,
     public loadingController: LoadingController,
-    private router: Router
-  ) {
 
-  }
+  ) {}
 
   ngOnInit() {}
   
-  // presentLoadingCustom() {
-  //   let loading = this.loadingCtrl.create({
-  //     spinner: 'dots',
-    
-  //     duration: 3000
-  //   });
-  
-  //   loading.onDidDismiss(() => {
-      
-  //     //this.showLineLucro();
-  //     //this.showLine();
-  //   });
-  //   loading.present();
-  // }
   voltar(){
     this.navCtrl.navigateBack('verificador');
   }
-  async presentLoading(result) {
-    const loading = await this.loadingController.create({
-      message: 'Analizando dezenas',
-      duration: 2000
-    });
-    await loading.present();
-    this.apostas = result;
-    this.showLineAposta();
   
-  }
-
   onFilterChange(eve: any){
       this.form[eve.id].checked = !this.form[eve.id].checked
       if (eve.checked){
@@ -158,66 +130,42 @@ export class AnalizeApostaPage implements OnInit {
   async presentToastVerificador() {
     const toast = await this.toastController.create({
       message: 'ERRO!: ESCOLHA 6 DEZENAS!.',
-      duration: 3000,
+      duration: 2000,
       position: "middle"
     });
     toast.present();
   }
-
-  verificarDezenas(){
-    if (this.entrada_usuario.length == 6){
-      this.apiService.callVerificadorMegasena(this.entrada_usuario)
-      .then((result:any[])=>{
-        this.verificarLoading(result)
-        //this.router.navigate(['analize-aposta'])
-      })
-      .catch((error:any)=>{
-        console.log('error:',error)
-      });
-    }
-    else {
-      this.presentToastVerificador()
-    }
-  }
-
-  async verificarLoading(result) {
+  async presentLoading() {
     const loading = await this.loadingController.create({
       message: 'Analizando dezenas',
       duration: 2000
     });
     await loading.present();
-    this.apostas=result;
+    this.apiService.callVerificadorMegasena(this.entrada_usuario)
+      .then((result:any[])=>{
+        this.apostas = result
+        this.showLineAposta();
+      })
+      .catch((error:any)=>{
+        console.log('error:',error)
+      }); 
   }
-
-  teste_analize(){
-    console.log(this.getDezenasMes2(this.entrada_usuario))
-  }
-
-  getConsulta(){
-    this.firebaseService.getDezenasMes().then((result:any)=>{
-      this.dez1 = result[0]
-      this.dez2 = result[1]
-      this.dez3 = result[2]
-      this.dez4 = result[3]
-      this.dez5 = result[4]
-      this.dez6 = result[5]
-    })
-    //this.presentLoading()
-  }
-  getDezenasMes2(entrada){
-    
-    this.firebaseService.getDezenasMes2(entrada).then((result:any)=>{
-      console.log(result)
-      this.dezena = result
-      //console.log(this.dezena[0].dezena)
-      this.dez1 = result[0].total
-      this.dez2 = result[1].total
-      this.dez3 = result[2].total
-      this.dez4 = result[3].total
-      this.dez5 = result[4].total
-      this.dez6 = result[5].total
-    })
-    this.presentLoading(this.apos)
+  analizar(){
+    if(this.entrada_usuario.length == 6 ) {
+      this.firebaseService.getDezenasMes2(this.entrada_usuario).then((result:any)=>{
+        console.log(result)
+        this.dezena = result
+        this.dez1 = result[0].total
+        this.dez2 = result[1].total
+        this.dez3 = result[2].total
+        this.dez4 = result[3].total
+        this.dez5 = result[4].total
+        this.dez6 = result[5].total
+      })
+      this.presentLoading()
+    } else {
+      this.presentToastVerificador()
+    }
     
   }
   // getConsultaDezena(){

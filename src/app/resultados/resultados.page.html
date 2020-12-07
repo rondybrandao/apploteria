@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons class="voltar" slot="start" (click)="voltar()">
+      <ion-icon size="large" name="arrow-back"></ion-icon>
+    </ion-buttons>
+    <ion-title>Resultados das Loterias</ion-title>
+    <div id="frase">"EU ESTOU DE POSSE DO BILHETE PREMIADO"</div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+   <ion-card class="card-megasena">
+    <div class="title-megasena">Megasena</div>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <div id="n_sorteio">sorteio Nº {{sorteio_megasena}}</div>
+          <div id="palpite">
+            <div *ngFor="let dezenas of dezenas_megasena">
+              <div class="arredondar">{{dezenas}}</div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+   </ion-card>
+
+   <ion-card class="card-lotofacil">
+    <div class="title-megasena">Lotofacil</div>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <div id="n_sorteio">sorteio Nº {{sorteio_lotofacil}}</div>
+          <div id="palpite">
+            <div *ngFor="let dezenas of dezenas_lotofacil">
+              <div class="arredondar">{{dezenas}}</div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+   </ion-card>
+
+   <ion-card class="card-lotomania">
+    <div class="title-megasena">Lotomania</div>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <div id="n_sorteio">sorteio Nº {{sorteio_lotomania}}</div>
+          <div id="palpite">
+            <div *ngFor="let dezenas of dezenas_lotomania">
+              <div class="arredondar">{{dezenas}}</div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+   </ion-card>
+
+   <ion-card class="card-quina">
+    <div class="title-megasena">Quina</div>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <div id="n_sorteio">sorteio Nº {{sorteio_quina}}</div>
+          <div id="palpite">
+            <div *ngFor="let dezenas of dezenas_quina">
+              <div class="arredondar">{{dezenas}}</div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+   </ion-card>
+   
+</ion-content>

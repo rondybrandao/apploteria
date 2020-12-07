@@ -1,3 +1,4 @@
+import { FechamentosService } from './../servicos/fechamentos.service';
 import { ModalFechamentosPage } from './../modal-fechamentos/modal-fechamentos.page';
 import { ApiService } from './../api.service';
 import { FirebaseService } from './../servicos/firebase.service'
@@ -5,8 +6,6 @@ import { Component, OnInit } from '@angular/core';
 import { ToastController, NavController, LoadingController, ModalController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 
-import { Observable, interval } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 export interface Concurso{
   concurso:string,
@@ -22,21 +21,13 @@ export interface Concurso{
 
 export class DezenasMegasenaPage implements OnInit {
   
-  sorteio_corrente
-  dezenas_corrente
   dezenas = []
   apostas = []
   entrada_usuario = []
-  fechamento18x3x9
-  fechamento12x6
-  fechamento12x3x17
-  fechamento9x12
-  fechamento8x7
-  fechamento10x3
   verificador
   concurso_pontos = []
   chamada
-  message$: Observable<string>;
+  fechamento
 
   public form = [
     { id: 0, val: '01', checked: false },
@@ -105,36 +96,22 @@ export class DezenasMegasenaPage implements OnInit {
   constructor(
     public firebaseService: FirebaseService,
     public apiService: ApiService,
+    public fechamentoService: FechamentosService,
     public toastController:ToastController,
     public loadingController: LoadingController,
     private route: ActivatedRoute,
     public navCtrl: NavController,
     private modalController: ModalController) 
     {
-      this.fechamento18x3x9 = this.route.snapshot.paramMap.get('fechamento18x3x9');
-      this.fechamento12x6 = this.route.snapshot.paramMap.get('fechamento12x6');
-      this.fechamento12x3x17 = this.route.snapshot.paramMap.get('fechamento12x3x17');
-      this.fechamento9x12 = this.route.snapshot.paramMap.get('fechamento9x12');
-      this.fechamento8x7 = this.route.snapshot.paramMap.get('fechamento8x7');
-      this.fechamento10x3 = this.route.snapshot.paramMap.get('fechamento10x3');
-      this.verificador = this.route.snapshot.paramMap.get('verificador');
-
-      this.callServiceSorteioCorrente()
-      this.callServiceDezenasCorrente()
+      this.fechamento = this.route.snapshot.paramMap.get('fechamento')
+      
     }
 
-  ngOnInit() {}
-  notify(){
-    //let checks = document.querySelectorAll("input[type='checkbox']");
+  ngOnInit() {
+    console.log(this.fechamento)
   }
   voltar() {
     this.navCtrl.navigateBack('mega-sena');
-  }
-  resend(){
-    this.message$ = interval(500).pipe(
-      map(i => this.message$[i])
-      
-    )
   }
 
   onFilterChange(eve: any){
@@ -152,110 +129,75 @@ export class DezenasMegasenaPage implements OnInit {
       console.log('entrada_usuario:', this.entrada_usuario)
   }
 
-  async presentToast() {
-    const toast = await this.toastController.create({
-      message: 'ERRO!: ESCOLHA 12 DEZENAS!.',
-      duration: 3000,
-      position: "middle"
-    });
-    toast.present();
+  async showToast() {
+    if (this.fechamento=='12x6'){
+      const toast = await this.toastController.create({
+        message: 'ERRO!: ESCOLHA 12 DEZENAS!.',
+        duration: 2000,
+        position: "middle"
+      });
+      toast.present();
+    } else if (this.fechamento=='12x7') {
+      const toast = await this.toastController.create({
+        message: 'ERRO!: ESCOLHA 12 DEZENAS!.',
+        duration: 2000,
+        position: "middle"
+      });
+      toast.present();
+    } else if (this.fechamento=='9x12') {
+      const toast = await this.toastController.create({
+        message: 'ERRO!: ESCOLHA 9 DEZENAS!.',
+        duration: 2000,
+        position: "middle"
+      });
+      toast.present();
+    } else if (this.fechamento=='8x7') {
+      const toast = await this.toastController.create({
+        message: 'ERRO!: ESCOLHA 8 DEZENAS!.',
+        duration: 2000,
+        position: "middle"
+      });
+      toast.present();
+    } else if (this.fechamento=='18x9') {
+      const toast = await this.toastController.create({
+        message: 'ERRO!: ESCOLHA 18 DEZENAS!.',
+        duration: 2000,
+        position: "middle"
+      });
+      toast.present();
+    } else if (this.fechamento=='10x3') {
+      const toast = await this.toastController.create({
+        message: 'ERRO!: ESCOLHA 10 DEZENAS!.',
+        duration: 2000,
+        position: "middle"
+      });
+      toast.present();
+    } else if (this.fechamento=='12x17x3f') {
+      const toast = await this.toastController.create({
+        message: 'ERRO!: ESCOLHA 12 DEZENAS!.',
+        duration: 2000,
+        position: "middle"
+      });
+      toast.present();
+    } 
+  
   }
 
   async presentToastVerificador() {
     const toast = await this.toastController.create({
       message: 'ERRO!: ESCOLHA 6 DEZENAS!.',
-      duration: 3000,
+      duration: 2000,
       position: "middle"
     });
     toast.present();
   }
-  async presentToast_10_3() {
-    const toast = await this.toastController.create({
-      message: 'ERRO!: ESCOLHA 10 DEZENAS!.',
-      duration: 3000,
-      position: "middle"
-    });
-    toast.present();
-  }
-  async presentToast_18_3_9() {
-    const toast = await this.toastController.create({
-      message: 'ERRO!: ESCOLHA 18 DEZENAS!.',
-      duration: 3000,
-      position: "middle"
-    });
-    toast.present();
-  }
-  async presentToast_12_3_17() {
-    const toast = await this.toastController.create({
-      message: 'ERRO!: ESCOLHA 18 DEZENAS!.',
-      duration: 3000,
-      position: "middle"
-    });
-    toast.present();
-  }
-  async presentToast_9_12() {
-    const toast = await this.toastController.create({
-      message: 'ERRO!: ESCOLHA 9 DEZENAS!.',
-      duration: 3000,
-      position: "middle"
-    });
-    toast.present();
-  }
-  async presentToast_8_7() {
-    const toast = await this.toastController.create({
-      message: 'ERRO!: ESCOLHA 8 DEZENAS!.',
-      duration: 3000,
-      position: "middle"
-    });
-    toast.present();
-  }
-  // async modalPage(result) {
-  //   console.log('result:', result)
-  //   const modal = await this.modalController.create({
-  //     component: ModalFechamentosPage,
-  //     componentProps: {fechamentos: result, apostas: this.apostas}
-  //   });
-  //   return await modal.present();
-  // }
-
-  callServiceSorteioCorrente() {
-    this.firebaseService.getSorteioCorrente()
-      .then((result:any)=>{
-        this.sorteio_corrente = result
-      })
-      .catch((error:any)=>{
-        console.log('error:', error)
-      })  
-  }
-  callServiceDezenasCorrente() {
-    this.firebaseService.getDezenasCorrente()
-      .then((result:any) =>{
-        this.dezenas_corrente = result
-      })
-      .catch((error:any)=>{
-        console.log('error:', error)
-      })
-  }
-  verificarDezenas(){
-    if (this.entrada_usuario.length == 6){
-      this.apiService.callVerificadorMegasena(this.entrada_usuario)
-      .then((result:any[])=>{
-        this.apostas = result;
-      })
-      .catch((error:any)=>{
-        console.log('error:',error)
-      });
-    }
-    else {
-      this.presentToastVerificador()
-    }
-  }
+  
   modalPage() {
     this.modalController.create({
       component: ModalFechamentosPage,
       componentProps: {
         apostas: this.apostas,
-        entrada: this.entrada_usuario
+        fechamento: this.apostas
       }
     }).then(modal => {
       modal.present();
@@ -264,121 +206,102 @@ export class DezenasMegasenaPage implements OnInit {
       console.log('error:', error)
     })
   }
-  async modal(result) {
-    const modal = await this.modalController.create({
-      component: ModalFechamentosPage,
-      componentProps: {
-        apostas: this.apostas,
-        fechamento:result,
-        entrada: this.entrada_usuario
-      }
-    })
-    await modal.present()
-  }
-  callService(){
-    if (this.entrada_usuario.length == 12){
-      this.apiService.callFechamento(this.entrada_usuario)
-      .then((result:any[])=>{
-        if (result) {
-          this.modal(result)
-        }
-      })
-      .catch((error:any)=>{
-        console.log('error:',error)
-      });
+  
+  callFechamento(){
+    if (this.entrada_usuario.length == 12 && this.fechamento == '12x6'){
+      this.loadingFechamento12x6()
+
+    } else if (this.entrada_usuario.length == 9 && this.fechamento == '9x12') {
+      this.loadingFechamento9x12()
+
+    } else if (this.entrada_usuario.length == 12 && this.fechamento == '12x7') {
+      this.loadingFechamento12x7()
+      
+    } else if (this.entrada_usuario.length == 8 && this.fechamento == '8x7'){
+      this.loadingFechamento_8x7()
+      
+    } else if (this.entrada_usuario.length == 18 && this.fechamento == '18x9') {
+      this.loadingFechamento_18_3_9()
+
+    } else if (this.entrada_usuario.length == 12 && this.fechamento == '12x17x3f') {
+      this.loadingFechamento12x3x17()
+
+    } else if (this.entrada_usuario.length == 10 && this.fechamento == '10x3') {
+      this.loadingFechamento_10x3()
     }
     else {
-      this.presentToast()
+      this.showToast()
     }
   }
   async loadingFechamento12x6() {
     const loading = await this.loadingController.create({
-      message: 'Analizando fechamentos',
-      duration: 3000
+      message: 'Criando fechamentos',
+      duration: 2000
     });
     await loading.present();
-    this.apiService.callFechamento(this.entrada_usuario)
+    this.fechamentoService.callFechamento_12x6(this.entrada_usuario)
       .then((result:any[])=>{
+        console.log(result)
         this.apostas = result;
         this.modalPage();
-        console.log('callServiceFechamento12x6:',result)
       })
       .catch((error:any)=>{
         console.log('error:',error)
     });
   }
 
-  callServiceFechamento18x3x9(){
-    if (this.entrada_usuario.length == 18){
-      //this.loadingFechamento_18_3_9()
-      this.modalController.create({
-        component: ModalFechamentosPage,
-        componentProps: {
-          entrada: this.entrada_usuario,
-          tag: true
-        }
-      }).then(modal => {
-        modal.present()
+  async loadingFechamento12x7() {
+    const loading = await this.loadingController.create({
+      message: 'Criando fechamentos',
+      duration: 3000
+    });
+    await loading.present();
+    this.fechamentoService.callFechamento_12x7(this.entrada_usuario)
+      .then((result:any[])=>{
+        console.log(result)
+        this.apostas = result;
+        this.modalPage();
       })
-    }
-    else {
-      this.presentToast_18_3_9()
-    }
+      .catch((error:any)=>{
+        console.log('error:',error)
+    });
   }
+
+ 
   async loadingFechamento_18_3_9() {
     const loading = await this.loadingController.create({
       message: 'Analizando fechamentos',
       duration: 3000
     });
     await loading.present();
-    this.apiService.callFechamento18x3x9(this.entrada_usuario)
+    this.fechamentoService.callFechamento_18x9(this.entrada_usuario)
       .then((result:any[])=>{
         this.apostas = result;
-        console.log('callServiceFechamento18x3x9:',result)
+        this.modalPage()
       })
       .catch((error:any)=>{
         console.log('error:',error)
     });
-
-    return this.modalPage()
-    
   }
 
-  callServiceFechamento12x3x17(){
-    if (this.entrada_usuario.length == 12){
-      this.loadingFechamento12x3x17()
-    }
-    else {
-      this.presentToast_12_3_17()
-    }
-  }
+
   async loadingFechamento12x3x17() {
     const loading = await this.loadingController.create({
-      message: 'Analizando fechamentos',
+      message: 'Criando fechamentos',
       duration: 3000
     });
     await loading.present();
-    this.apiService.callFechamento12x3x17(this.entrada_usuario)
+    this.fechamentoService.callFechamento_12x17x3f(this.entrada_usuario)
       .then((result:any[])=>{
         this.apostas = result;
-        console.log('callServiceFechamento12x3x17:',result)
+        this.modalPage()
       })
       .catch((error:any)=>{
         console.log('error:',error)
       });
-    return this.modalPage()
-    
   }
 
-  callServiceFechamento9x12(){
-    if (this.entrada_usuario.length == 9){
-      this.loadingFechamento9x12()
-      this.modalPage()
-    }
-    else {
-      this.presentToast_9_12()
-    }
-  }
+  
   async loadingFechamento9x12() {
     const loading = await this.loadingController.create({
       message: 'Analizando fechamentos',
@@ -388,7 +311,7 @@ export class DezenasMegasenaPage implements OnInit {
     this.apiService.callFechamento9x12(this.entrada_usuario)
       .then((result:any[])=>{
         this.apostas = result;
-        console.log('callServiceFechamento10x3:',result)
+        this.modalPage()
       })
       .catch((error:any)=>{
         console.log('error:',error)
@@ -396,104 +319,37 @@ export class DezenasMegasenaPage implements OnInit {
     
   }
 
-  callServiceFechamento8x7(){
-    let fechamento
-    if (this.entrada_usuario.length == 8){
-      this.modalController.create({
-        component: ModalFechamentosPage,
-        componentProps: {
-          fechamentos: fechamento, 
-          apostas: this.apostas
-        }
-      }).then(modal => {
-        this.apiService.callFechamento8x7(this.entrada_usuario)
-          .then((result:any[])=>{
-            fechamento = result;
-            console.log('callServiceFechamento8x7:',result)
-          })
-          .catch((error:any)=>{
-            console.log('error:',error)
-          }); 
-      modal.present();     
-      })
-      .catch((error:any)=>{
-        console.log('error:', error)
-      })
-    }
-    else {
-      this.presentToast_8_7()
-    }
-  }
+  
   async loadingFechamento_8x7() {
     const loading = await this.loadingController.create({
       message: 'Analizando fechamentos',
       duration: 3000
     });
     await loading.present();
-    this.apiService.callFechamento8x7(this.entrada_usuario)
+    this.fechamentoService.callFechamento_8x7(this.entrada_usuario)
+      .then((result:any[])=>{
+        this.apostas = result;
+        this.modalPage()
+      })
+      .catch((error:any)=>{
+        console.log('error:',error)
+    });
+  }
+  
+  async loadingFechamento_10x3() {
+    const loading = await this.loadingController.create({
+      message: 'Criando fechamentos',
+      duration: 3000
+    });
+    await loading.present()
+    this.fechamentoService.callFechamento_10x3(this.entrada_usuario)
       .then((result:any[])=>{
         this.apostas = result;
         this.modalPage();
-        console.log('callServiceFechamento8x7:',result)
       })
       .catch((error:any)=>{
         console.log('error:',error)
     });
-    
-  }
-  // callServiceFechamento10x3(){
-  //   if (this.entrada_usuario.length == 10){
-  //     this.apiService.callFechamento10x3(this.entrada_usuario)
-  //     .then((result:any[])=>{
-  //       this.apostas = result;
-  //       console.log('callServiceFechamento10x3:',result)
-  //     })
-  //     .catch((error:any)=>{
-  //       console.log('error:',error)
-  //     });
-  //   }
-  //   else {
-  //     this.presentToast_10_3()
-  //   }
-  // }
-  callServiceFechamento10x3(){
-    if (this.entrada_usuario.length == 10){
-      this.loadingFechamento_2()
-    }
-    else {
-      this.presentToast_10_3()
-    }
-  }
-  async loadingFechamento_2() {
-    const loading = await this.loadingController.create({
-      message: 'Analizando fechamentos',
-      duration: 3000
-    });
-    await loading.present();
-    const fechamento = this.apiService.callFechamento10x3_2(this.entrada_usuario)
-      .subscribe((result:any[])=>{
-        //this.apostas = result;
-        this.modal(result);
-        //this.modalPage(result);
-        console.log('callServiceFechamento10x3:',result)
-      })
-  }
-  async loadingFechamento() {
-    const loading = await this.loadingController.create({
-      message: 'Analizando fechamentos',
-      duration: 3000
-    });
-    this.apiService.callFechamento10x3(this.entrada_usuario)
-      .then((result:any[])=>{
-        this.apostas = result;
-        //this.modalPage(result);
-        console.log('callServiceFechamento10x3:',result)
-      })
-      .catch((error:any)=>{
-        console.log('error:',error)
-    });
-    await loading.present();
-    return this.modalPage()
     
   }
 

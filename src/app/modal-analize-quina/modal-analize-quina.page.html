@@ -11,11 +11,10 @@
 </ion-header>
 
 <ion-content padding>
-  {{fechamento|json}}
   <ion-card class="contador" >
     <div id="aposta">
       <div id="aposta-label">
-        <h5>{{fechamento["0"].num_usuario}}</h5>
+        <h5>{{fechamento[0].num_usuario}}</h5>
         <table>
           <tr>
             <th id="table-header">Premio</th>
@@ -27,18 +26,18 @@
           </tr>
           <tr>
             <td id="quina">Quadra</td>
-            <td id="quina">{{fechamneto["0"].quadra}}</td>
+            <td id="quina">{{fechamento[0].quadra}}</td>
           </tr>
           <tr>
             <td id="quadra">Terno</td>
-            <td id="quadra">{{fechamento["0"].terno}}</td>
+            <td id="quadra">{{fechamento[0].terno}}</td>
           </tr>
         </table>
       </div>       
     </div>
   </ion-card>
 
-  <ion-card>
+  <ion-card *ngIf="dezena.length > 0">
     <h2 id="charts">Total de saidas</h2>
     <div style="padding-top: 10px;">
       <canvas #chartLineAposta width="400" height="300"></canvas>

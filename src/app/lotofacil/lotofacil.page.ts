@@ -17,18 +17,22 @@ export class LotofacilPage implements OnInit {
   ngOnInit() {
   }
 
-  fechamento22x8x6(){
-    this.router.navigate(['/dezenas-lotofacil', { fechamento22x8x6: true }]);
+  fechamento18x6(){
+    this.router.navigate(['/dezenas-lotofacil', { fechamento: '18x6' }]);
   }
 
-  fechamento18x6(){
-    this.router.navigate(['/dezenas-lotofacil', { fechamento18x6: true }]);
+  fechamento18x24(){
+    this.router.navigate(['/dezenas-lotofacil', { fechamento: '18x24' }]);
   }
   fechamento20x4(){
-    this.router.navigate(['/dezenas-lotofacil', { fechamento20x4: true }]);
+    this.router.navigate(['/dezenas-lotofacil', { fechamento: '20x4' }]);
   }
-  fechamento21x5(){
-    this.router.navigate(['/dezenas-lotofacil', { fechamento21x5: true }]);
+  fechamento13x66(){
+    this.router.navigate(['/dezenas-lotofacil', { fechamento: '13x66' }]);
+  }
+
+  fechamento18x35(){
+    this.router.navigate(['/dezenas-lotofacil', { fechamento: '18x35' }]);
   }
 
   palpite() {

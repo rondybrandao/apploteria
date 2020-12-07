@@ -21,7 +21,8 @@
     font-weight: bold;
 }
 .title-md {
-  padding-top: 10px
+  padding-top: 10px;
+  text-align: center
 }
 .sc-ion-buttons-md-h {
   margin-top: -30px;
@@ -29,7 +30,7 @@
 #frase {
 padding-top: 15px;
 text-align: center;
-color: white;
+color: black;
 }
 
 #table-header {
@@ -68,9 +69,9 @@ ion-header {
     height: 100px;
 }
 ion-toolbar {
-  --background: linear-gradient(to left, rgba(255,0,204,1), rgba(255,0,204,0.2)), url('../../assets/lotomania/number.jpg') no-repeat center center / cover;
+  --background: linear-gradient(to left, rgba(255,0,204,1), rgba(255,0,204,0.2)), url('../../assets/lotomania/grafico3.jpg') no-repeat center center / cover;
   -webkit-background-size: cover;
-  color: white;
+  color: black;
   font-family: fantasy;  
   height: 100px;
 }
